@@ -200,16 +200,15 @@ public class Lab {
                 .register(Main.instance);
 
         EMERALD_CAPACITY_1 = new SlimefunItemStack("LAB_EMERALD_CAPACITY_1",
-                new CustomPotion(
-                        "&a绿宝石电容 &7- &eI",
                         Color.LIME,
                         new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 0, 0, false, false),
+                        "&a绿宝石电容 &7- &eI",
                         "",
                         "&f移动时消耗电容中的电量为背包中的物品充电",
                         "&f不会为另一个绿宝石电容充电",
                         "",
                         "&c&o&8⇨ &7充电效率: &e0.01 J/move",
-                        "&c&o&8⇨ &e⚡ &70 / 2048 J"));
+                        "&c&o&8⇨ &e⚡ &70 / 2048 J");
 
         (new ChargeableItem(
                         c,
@@ -225,20 +224,17 @@ public class Lab {
                         2048))
                 .register(Main.instance);
 
-        EMERALD_CAPACITY_2 = new SlimefunItemStack("LAB_EMERALD_CAPACITY_2", 
-                new CustomPotion(
-                        "&a绿宝石电容 &7- &eII",
+        EMERALD_CAPACITY_2 = new SlimefunItemStack("LAB_EMERALD_CAPACITY_2",
                         Color.LIME,
                         new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 0, 0, false, false),
-                        new String[] {
-                            "",
-                            "&b&l&o急速充电中!",
-                            "",
-                            "&f可能会导致电量损耗",
-                            "",
-                            "&c&o&8⇨ &7充电效率: &e1 J/move",
-                            "&c&o&8⇨ &e⚡ &70 / 8192 J"
-                        }));
+                        "&a绿宝石电容 &7- &eII",
+                        "",
+                        "&b&l&o急速充电中!",
+                        "",
+                        "&f可能会导致电量损耗",
+                        "",
+                        "&c&o&8⇨ &7充电效率: &e1 J/move",
+                        "&c&o&8⇨ &e⚡ &70 / 8192 J");
 
         (new ChargeableItem(
                         c,

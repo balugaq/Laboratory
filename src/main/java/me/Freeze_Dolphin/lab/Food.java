@@ -25,12 +25,13 @@ public class Food {
                 3);
 
         MILK_BOTTLE = new SlimefunItemStack("LAB_MILK_BOTTLE",
-                new CustomPotion(
-                        "&f牛奶瓶",
-                        Color.WHITE,
-                        new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 0, 0, false, false)));
+                Color.WHITE,
+                new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 300, 1, false, false),
+                "&f牛奶瓶");
         COLA = new SlimefunItemStack("LAB_COLA",
-                new CustomPotion("&c可乐", Color.BLACK, new PotionEffect(PotionEffectType.SPEED, 600, 1, false, true)));
+                Color.BLACK,
+                new PotionEffect(PotionEffectType.SPEED, 600, 1, false, true),
+                "&c可乐");
 
         (new SlimefunItem(c, MILK_BOTTLE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     null, null, null,

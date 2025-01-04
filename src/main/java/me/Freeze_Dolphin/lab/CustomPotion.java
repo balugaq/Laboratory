@@ -15,7 +15,7 @@ public class CustomPotion extends ItemStack {
     public CustomPotion(String name, Color color, PotionEffect effect, String... lore) {
         super(Material.POTION);
 
-        ItemMeta meta = this.getItemMeta();
+        ItemMeta meta = getItemMeta();
         if (meta == null) {
             return;
         }
@@ -23,16 +23,17 @@ public class CustomPotion extends ItemStack {
         if (name != null) {
             meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
         }
+
         if (lore != null) {
             meta.setLore(Arrays.stream(lore).map(s -> ChatColor.translateAlternateColorCodes('&', s)).toList());
         }
-        if (meta instanceof PotionMeta potionMeta) {
-            if (effect != null) {
-                potionMeta.addCustomEffect(effect, true);
-            }
 
+        if (meta instanceof PotionMeta potionMeta) {
             if (color != null) {
                 potionMeta.setColor(color);
+            }
+            if (effect != null) {
+                potionMeta.addCustomEffect(effect, true);
             }
         }
 

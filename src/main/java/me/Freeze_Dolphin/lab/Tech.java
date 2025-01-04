@@ -403,11 +403,9 @@ public class Tech {
                         "&7&o滋滋滋滋滋滋......"));
 
         PLASMA_CELL = new SlimefunItemStack("LAB_PLASMA_CELL",
-                new CustomPotion(
-                        "&d等离子单元",
                         Color.PURPLE,
                         new PotionEffect(PotionEffectType.HARM, 10, 2, false, false),
-                        new String[] {"", "&f&m请勿食用", "&f&l放心食用"}));
+                        "&d等离子单元", "", "&f&m请勿食用", "&f&l放心食用");
 
         PLASMA_BALL = new SlimefunItemStack("LAB_PLASMA_BALL",
                 new CustomItemStack(
