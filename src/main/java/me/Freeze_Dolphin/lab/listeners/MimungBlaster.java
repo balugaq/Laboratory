@@ -89,7 +89,7 @@ public class MimungBlaster implements Listener {
         List<String> l = it.getItemMeta().getLore();
         if (l.size() == 3) {
             if (l.get(1).equals(U.color("&ftag: &o&m&l&rmimung-blaster-bullet"))) {
-                return new Object[] {false, l.get(2)};
+                return new Object[] {true, l.get(2)};
             }
         }
         return new Object[] {false, null};
