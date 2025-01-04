@@ -486,7 +486,7 @@ public class Tech {
         charged_certus_quartz_recipe[4] = CERTUS_QUARTZ.clone();
         (new RadioactiveItem(
                         cr,
-                        Radioactivity.LOW,
+                        Radioactivity.HIGH,
                         CHARGED_CERTUS_QUARTZ,
                         RecipeType.ENHANCED_CRAFTING_TABLE,
                         charged_certus_quartz_recipe))
@@ -512,7 +512,7 @@ public class Tech {
 
         (new RadioactiveItem(
                         c,
-                        Radioactivity.LOW,
+                        Radioactivity.HIGH,
                         GRENCO_POWER_CRYSTAL,
                         RecipeType.ENHANCED_CRAFTING_TABLE,
                         U.halfr3(LAMA_POWER_CRYSTAL, IRRADIANT_GLASS, SlimefunItems.BOOSTED_URANIUM)))
@@ -607,7 +607,7 @@ public class Tech {
                 }))
                 .register(Main.instance);
 
-        (new RadioactiveAlloyIngot(cr, Radioactivity.LOW, SPEED_INGOT, new ItemStack[] {
+        (new RadioactiveAlloyIngot(cr, Radioactivity.HIGH, SPEED_INGOT, new ItemStack[] {
                     SlimefunItems.CARBONADO,
                     SlimefunItems.BLISTERING_INGOT_3,
                     SlimefunItems.BLISTERING_INGOT_3,
@@ -677,7 +677,7 @@ public class Tech {
                 }))
                 .register(Main.instance);
         (new RadioactiveItem(
-                        cr, Radioactivity.LOW, IRRADIANT_URANIUM, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+                        cr, Radioactivity.HIGH, IRRADIANT_URANIUM, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                             U.mat(Material.GLOWSTONE_DUST), U.mat(Material.GLOWSTONE_DUST),
                                     U.mat(Material.GLOWSTONE_DUST),
                             U.mat(Material.GLOWSTONE_DUST), SlimefunItems.URANIUM, U.mat(Material.GLOWSTONE_DUST),
@@ -686,7 +686,7 @@ public class Tech {
                         }))
                 .register(Main.instance);
         (new RadioactiveItem(
-                        cm, Radioactivity.LOW, ENRICHED_SUNNARIUM, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+                        cm, Radioactivity.HIGH, ENRICHED_SUNNARIUM, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                             IRRADIANT_URANIUM, IRRADIANT_URANIUM, IRRADIANT_URANIUM,
                             IRRADIANT_URANIUM, SUNNARIUM, IRRADIANT_URANIUM,
                             IRRADIANT_URANIUM, IRRADIANT_URANIUM, IRRADIANT_URANIUM
@@ -694,7 +694,7 @@ public class Tech {
                 .register(Main.instance);
         (new RadioactiveItem(
                         cm,
-                        Radioactivity.LOW,
+                        Radioactivity.HIGH,
                         ENRICHED_SUNNARIUM_ALLOY,
                         RecipeType.ENHANCED_CRAFTING_TABLE,
                         new ItemStack[] {
@@ -811,9 +811,9 @@ public class Tech {
                 }))
                 .register(Main.instance);
 
-        (new SlimefunItem(cr, RADIUM, MT, U.midr(SlimefunItems.PLUTONIUM))).register(Main.instance);
+        (new RadioactiveItem(cr, Radioactivity.VERY_HIGH, RADIUM, MT, U.midr(SlimefunItems.PLUTONIUM))).register(Main.instance);
 
-        (new SlimefunItem(cr, IRRADIANT_RADIUM, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+        (new RadioactiveItem(cr, Radioactivity.VERY_HIGH, IRRADIANT_RADIUM, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SUNNARIUM_PIECE, SUNNARIUM_PIECE, SUNNARIUM_PIECE,
                     SUNNARIUM_PIECE, RADIUM, SUNNARIUM_PIECE,
                     SUNNARIUM_PIECE, SUNNARIUM_PIECE, SUNNARIUM_PIECE

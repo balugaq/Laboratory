@@ -535,13 +535,13 @@ public class Nuclear {
     }
 
     private void registerCell(SlimefunItemStack item, ItemStack inside) {
-        (new RadioactiveItem(c, Radioactivity.MODERATE, item, MELTINGM, new ItemStack[] {inside, LEAD_CELL_EMPTY}))
+        (new RadioactiveItem(c, Radioactivity.HIGH, item, MELTINGM, new ItemStack[] {inside, LEAD_CELL_EMPTY}))
                 .register(Main.instance);
         meltingm_r.put(new ItemStack[] {inside, LEAD_CELL_EMPTY}, new ItemStack[] {item});
     }
 
     private void registerFluorideCell(SlimefunItemStack item, ItemStack origin) {
-        (new RadioactiveItem(c, Radioactivity.MODERATE, item, FLUORIDEM, new ItemStack[] {origin, Resource.CAROBBIITE}))
+        (new RadioactiveItem(c, Radioactivity.VERY_HIGH, item, FLUORIDEM, new ItemStack[] {origin, Resource.CAROBBIITE}))
                 .register(Main.instance);
         fluoridem_r.put(new ItemStack[] {origin, Resource.CAROBBIITE}, new ItemStack[] {item});
     }

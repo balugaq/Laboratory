@@ -86,7 +86,7 @@ public class ArmorWeapon {
         IRRADIANT_URANIUM_SWORD.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 5);
         IRRADIANT_URANIUM_SWORD.addUnsafeEnchantment(Enchantment.DURABILITY, 5);
 
-        (new SlimefunItem(c, IRRADIANT_URANIUM_SWORD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+        (new RadioactiveItem(c, Radioactivity.HIGH, IRRADIANT_URANIUM_SWORD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     null, Tech.IRRADIANT_URANIUM, Tech.IRRADIANT_URANIUM, SlimefunItems.REINFORCED_PLATE
                 }))
                 .register(Main.instance);
@@ -104,7 +104,7 @@ public class ArmorWeapon {
         RADIUM_SWORD.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 2);
         RADIUM_SWORD.addUnsafeEnchantment(Enchantment.DURABILITY, 3);
 
-        (new SlimefunItem(c, RADIUM_SWORD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+        (new RadioactiveItem(c, Radioactivity.VERY_HIGH, RADIUM_SWORD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     null, Tech.RADIUM, Tech.RADIUM, Tech.REINFORCED_IRIDIUM_IRON_PLATE
                 }))
                 .register(Main.instance);
