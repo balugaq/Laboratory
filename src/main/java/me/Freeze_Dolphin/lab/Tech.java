@@ -760,7 +760,7 @@ public class Tech {
                 }))
                 .register(Main.instance);
 
-        (new SlimefunItem(cm, RUSTY_MECHANICAL_PARTS, Variables.Mystery, new ItemStack[0])).register(Main.instance);
+        (new SlimefunItem(cm, RUSTY_MECHANICAL_PARTS, RecipeType.NULL, new ItemStack[0])).register(Main.instance);
 
         (new SlimefunItem(c, MV_TRANSFORMER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     RUBBER_BALL,
