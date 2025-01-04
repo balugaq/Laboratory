@@ -1828,7 +1828,7 @@ public class Tech {
 
         PLASMA_GENERATOR = new SlimefunItemStack("LAB_PLASMA_GENERATOR",
                 new CustomItemStack(
-                        Material.BLACK_STAINED_GLASS_PANE,
+                        Material.PURPLE_STAINED_GLASS,
                         "&9等离子生成机",
                         "",
                         "&d量子机器",
