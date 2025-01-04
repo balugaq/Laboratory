@@ -1,0 +1,24 @@
+name: Laboratory
+main: me.Freeze_Dolphin.lab.Main
+version: 20.2.17 Nuclear Update
+api-version: 1.20
+
+author: Freeze_Dolphin
+depend: [Slimefun]
+
+commands: 
+  charge: 
+    description: charge the item on your hand
+    aliases: cg
+    usage: '/charge'
+  techitems: 
+    description: get abnormal items for you
+    usage: '/techitems <debugfish>'
+  
+permissions:
+  laboratory.commands.charge:
+    description: Allows you to charge items without electricity
+    default: op
+  laboratory.commands.techitems: 
+    description: Allows you to get abnormal items (debug items)
+    default: op

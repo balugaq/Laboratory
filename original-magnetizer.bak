@@ -1,0 +1,96 @@
+(new SlimefunMachine(Categories.MACHINES_1, Tech.ORIGINAL_MAGNETIZER, "ORIGINAL_MAGNETIZER", new ItemStack[] 
+				{
+				null, null, null, 
+				null, MAGNETIC_IRON_BLOCK, null, 
+				null, new CustomItem(Material.DISPENSER, "发射器 (口朝上)", 0), null
+				}, new ItemStack[] { U.mat(Material.IRON_INGOT), Tech.MAGNETIC_IRON_INGOT }, Material.IRON_BLOCK)).register(true, new MultiBlockInteractionHandler() {
+
+					@Override
+					public boolean onInteract(final Player p, MultiBlock mb, Block b) {
+
+						SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByID("ORIGINAL_MAGNETIZER");
+
+						if (mb.isMultiBlock(machine)) {
+							if(CSCoreLib.getLib().getProtectionManager().canAccessChest(p.getUniqueId(), b, true)) {
+								if (Slimefun.hasUnlocked(p, machine.getItem(), true)) {
+									
+									try { if (BlockStorage.getBlockInfo(b, "original-magnetizer-process").equalsIgnoreCase("working")) return true; } catch (NullPointerException ex) {}
+									
+									Dispenser disp = (Dispenser) b.getRelative(BlockFace.DOWN).getState();
+									final Inventory inv = disp.getInventory();
+									List<ItemStack[]> inputs = RecipeType.getRecipeInputList(machine);
+
+									for (int i = 0; i < inputs.size(); i++) {
+										boolean craft = true;
+										for (int j = 0; j < inv.getContents().length; j++) {
+											if (!SlimefunManager.isItemSimiliar(inv.getContents()[j], inputs.get(i)[j], true)) {
+												craft = false;
+												break;
+											}
+										}
+
+										if (craft) {
+											final ItemStack adding = RecipeType.getRecipeOutputList(machine, inputs.get(i));
+											if (Slimefun.hasUnlocked(p, adding, true)) {
+												if (InvUtils.fits(inv, adding)) {
+													for (ItemStack removing: inputs.get(i)) {
+														if (removing != null) inv.removeItem(removing);
+													}
+													
+													BlockStorage.addBlockInfo(b, "original-magnetizer-process", "working");
+													
+													p.getWorld().playSound(p.getLocation(), Sound.BLOCK_ANVIL_LAND, 1, 0.5F);
+													Bukkit.getScheduler().scheduleSyncDelayedTask(SlimefunStartup.instance, new BukkitRunnable() {
+
+														@Override
+														public void run() {
+															p.getWorld().playSound(p.getLocation(), Sound.BLOCK_ANVIL_LAND, 1, 0.5F);
+															Bukkit.getScheduler().scheduleSyncDelayedTask(SlimefunStartup.instance, new BukkitRunnable() {
+																@Override
+																public void run() {
+																	p.getWorld().playSound(p.getLocation(), Sound.BLOCK_ANVIL_LAND, 1, 0.5F);
+																	Bukkit.getScheduler().scheduleSyncDelayedTask(SlimefunStartup.instance, new BukkitRunnable() {
+																		@Override
+																		public void run() {
+																			p.getWorld().playSound(p.getLocation(), Sound.BLOCK_ANVIL_LAND, 1, 0.5F);
+																			Bukkit.getScheduler().scheduleSyncDelayedTask(SlimefunStartup.instance, new BukkitRunnable() {
+																				@Override
+																				public void run() {
+																					p.getWorld().playSound(p.getLocation(), Sound.BLOCK_ANVIL_LAND, 1, 0.5F);
+																					Bukkit.getScheduler().scheduleSyncDelayedTask(SlimefunStartup.instance, new BukkitRunnable() {
+																						@Override
+																						public void run() {
+																							p.getWorld().playSound(p.getLocation(), Sound.BLOCK_ANVIL_LAND, 1, 0.5F);
+																							Bukkit.getScheduler().scheduleSyncDelayedTask(SlimefunStartup.instance, new BukkitRunnable() {
+																								@Override
+																								public void run() {
+																									p.getWorld().playSound(p.getLocation(), Sound.ENTITY_ARROW_HIT_PLAYER, 1F, 1F);
+																									BlockStorage.addBlockInfo(b, "original-magnetizer-process", "spare");
+																									inv.addItem(adding);
+																								}
+
+																							}, Long.valueOf(Main.cfg.getLong("items.original-magnetizer.time")));
+																						}
+																					}, Long.valueOf(Main.cfg.getLong("items.original-magnetizer.time")));
+																				}
+																			}, Long.valueOf(Main.cfg.getLong("items.original-magnetizer.time")));
+																		}														
+																	}, Long.valueOf(Main.cfg.getLong("items.original-magnetizer.time")));
+																}
+															}, Long.valueOf(Main.cfg.getLong("items.original-magnetizer.time")));
+														}
+													}, Long.valueOf(Main.cfg.getLong("items.original-magnetizer.time")));
+												}
+												else p.sendMessage(U.getCfgMessage("messages.original-magnetizer.full-inventory"));
+											}
+											return true;
+										}
+									}
+									p.sendMessage(U.getCfgMessage("messages.original-magnetizer.pattern-no-found"));
+								}
+							}
+							return true;
+						}
+						else return false;
+					}
+				});
