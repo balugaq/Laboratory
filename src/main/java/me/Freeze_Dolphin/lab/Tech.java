@@ -52,16 +52,16 @@ public class Tech {
             new CustomItemStack(Material.WHITE_STAINED_GLASS, "&f石英钻机", "", "&a赛特斯石英需要利用石英钻机挖取"));
     public static final RecipeType MZER = new RecipeType(
             new NamespacedKey(Main.instance, "mzer"),
-            new CustomItemStack(Material.IRON_BLOCK, "&b磁化机", new String[] {"", "&a通过磁化机磁化其他物品获得"}));
+            new CustomItemStack(Material.IRON_BLOCK, "&b磁化机", "", "&a通过磁化机磁化其他物品获得"));
     public static final RecipeType ELYZER = new RecipeType(
             new NamespacedKey(Main.instance, "elyzer"),
-            new CustomItemStack(Material.IRON_BLOCK, "&b电解机", new String[] {"", "&a通过电解机电解其他物品获得"}));
+            new CustomItemStack(Material.IRON_BLOCK, "&b电解机", "", "&a通过电解机电解其他物品获得"));
     public static final RecipeType MT = new RecipeType(
             new NamespacedKey(Main.instance, "mt"),
-            new CustomItemStack(Material.BEACON, "&b分子重组仪", new String[] {"", "&a使用分子重组仪将某些物质转化为另一种物质"}));
+            new CustomItemStack(Material.BEACON, "&b分子重组仪", "", "&a使用分子重组仪将某些物质转化为另一种物质"));
     public static final RecipeType DIG = new RecipeType(
             new NamespacedKey(Main.instance, "dig"),
-            new CustomItemStack(Material.IRON_PICKAXE, "&7采掘", new String[] {"", "&a在挖掘特定方块时有几率掉落"}));
+            new CustomItemStack(Material.IRON_PICKAXE, "&7采掘", "", "&a在挖掘特定方块时有几率掉落"));
     public static final RecipeType PLASMAG = new RecipeType(
             new NamespacedKey(Main.instance, "plasmag"),
             new CustomItemStack(Material.PURPLE_STAINED_GLASS, "&d等离子生成机", "", "&a使用等离子生成机产生等离子体"));
@@ -185,22 +185,30 @@ public class Tech {
 
         STARC = new RecipeType(
                 new NamespacedKey(Main.instance, "starc"),
-                new CustomItemStack(Material.DIAMOND_BLOCK, "&f下界之星粉碎机", new String[] {"", "&a使用此粉碎机将下界之星粉碎获得"}));
+                new CustomItemStack(Material.DIAMOND_BLOCK, "&f下界之星粉碎机", "", "&a使用此粉碎机将下界之星粉碎获得"));
 
         LOGS = new RecipeType(
                 new NamespacedKey(Main.instance, "logs"),
-                new CustomItemStack(Material.IRON_AXE, "&e伐木", new String[] {"", "&a砍伐橡木和深色橡木时有几率掉落"}));
+                new CustomItemStack(Material.IRON_AXE, "&e伐木", "", "&a砍伐橡木和深色橡木时有几率掉落"));
 
-        IRIDIUM = new SlimefunItemStack("LAB_IRIDIUM",
-                new CustomItemStack(
-                        SkullUtil.getByBase64(
-                                "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDJlY2Q2OTFiYWY1ZTg5NjYxOThlOWY0Zjc5NGM5OTM0NGMzZjQzYWRkMTMwZDNiOTljY2ViM2YwNGI3Nzk3ZSJ9fX0="),
-                        "&d铱",
-                        "",
-                        "&f一种稀有的贵重金属",
-                        "&f其质地硬而脆"));
+        SlimefunItem iridium = SlimefunItem.getById("IRIDIUM");
+        SlimefunItem spacetechIridium = SlimefunItem.getById("SPACETECH_IRIDIUM");
+        if (iridium != null) {
+            IRIDIUM = new SlimefunItemStack(iridium.getId(), iridium.getItem());
+        } else if (spacetechIridium != null) {
+            IRIDIUM = new SlimefunItemStack(spacetechIridium.getId(), spacetechIridium.getItem());
+        } else {
+            IRIDIUM = new SlimefunItemStack("LAB_IRIDIUM",
+                    new CustomItemStack(
+                            SkullUtil.getByBase64(
+                                    "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDJlY2Q2OTFiYWY1ZTg5NjYxOThlOWY0Zjc5NGM5OTM0NGMzZjQzYWRkMTMwZDNiOTljY2ViM2YwNGI3Nzk3ZSJ9fX0="),
+                            "&d铱",
+                            "",
+                            "&f一种稀有的贵重金属",
+                            "&f其质地硬而脆"));
 
-        (new SlimefunItem(cr, IRIDIUM, MT, U.midr(new ItemStack(Material.IRON_BLOCK)))).register(Main.instance);
+            (new SlimefunItem(cr, IRIDIUM, MT, U.midr(new ItemStack(Material.IRON_BLOCK)))).register(Main.instance);
+        }
 
         OreGenSystem.registerResource(new CertusQuartz());
 
@@ -818,8 +826,6 @@ public class Tech {
                 }))
                 .register(Main.instance);
 
-        if (Variables.plug.getConfig().getBoolean("items.solar-generator.new-texture")) {}
-
         if (Variables.plug.getConfig().getBoolean("items.circuit.new-recipe")) {
             SlimefunItem.getById("BASIC_CIRCUIT_BOARD").setRecipeType(RecipeType.ENHANCED_CRAFTING_TABLE);
             SlimefunItem.getById("BASIC_CIRCUIT_BOARD").setRecipe(new ItemStack[] {
@@ -1034,7 +1040,7 @@ public class Tech {
         new AGenerator(lockedCategory, EGG_GENERATOR, NON, new ItemStack[0]) {
             @NotNull @Override
             public ItemStack getProgressBar() {
-                return null;
+                return new ItemStack(Material.FLINT_AND_STEEL);
             }
 
             @Override
@@ -1095,11 +1101,11 @@ public class Tech {
                         return 2;
                     }
 
-                    public String getInventoryTitle() {
+                    public @NotNull String getInventoryTitle() {
                         return getItemName();
                     }
 
-                    public ItemStack getProgressBar() {
+                    public @NotNull ItemStack getProgressBar() {
                         return U.mat(Material.END_PORTAL_FRAME);
                     }
 
@@ -1161,11 +1167,11 @@ public class Tech {
                         return 4;
                     }
 
-                    public String getInventoryTitle() {
+                    public @NotNull String getInventoryTitle() {
                         return getItemName();
                     }
 
-                    public ItemStack getProgressBar() {
+                    public @NotNull ItemStack getProgressBar() {
                         return U.mat(Material.COMPARATOR);
                     }
 
@@ -1217,11 +1223,11 @@ public class Tech {
                         registerFuel(new MachineFuel(1, new ItemStack(Material.DARK_OAK_LEAVES)));
                     }
 
-                    public ItemStack getProgressBar() {
+                    public @NotNull ItemStack getProgressBar() {
                         return new ItemStack(Material.GOLDEN_HOE);
                     }
 
-                    public String getInventoryTitle() {
+                    public @NotNull String getInventoryTitle() {
                         return getItemName();
                     }
 
@@ -1265,7 +1271,7 @@ public class Tech {
                         registerFuel(new MachineFuel(2400, Tech.SPEED_INGOT));
                     }
 
-                    public ItemStack getProgressBar() {
+                    public @NotNull ItemStack getProgressBar() {
                         try {
                             return SkullUtil.getByBase64(
                                     "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTM0M2NlNThkYTU0Yzc5OTI0YTJjOTMzMWNmYzQxN2ZlOGNjYmJlYTliZTQ1YTdhYzg1ODYwYTZjNzMwIn19fQ==");
@@ -1275,7 +1281,7 @@ public class Tech {
                         }
                     }
 
-                    public String getInventoryTitle() {
+                    public @NotNull String getInventoryTitle() {
                         return getItemName();
                     }
 
@@ -1616,7 +1622,7 @@ public class Tech {
                             SlimefunItems.STEEL_INGOT, SlimefunItems.MEDIUM_CAPACITOR, SlimefunItems.STEEL_INGOT,
                             SlimefunItems.STEEL_INGOT, SlimefunItems.HEATING_COIL, SlimefunItems.STEEL_INGOT
                         }) {
-                    public String getInventoryTitle() {
+                    public @NotNull String getInventoryTitle() {
                         return getItemName();
                     }
 
@@ -1660,7 +1666,7 @@ public class Tech {
                         return 3;
                     }
 
-                    public String getMachineIdentifier() {
+                    public @NotNull String getMachineIdentifier() {
                         return getId();
                     }
 
@@ -1708,11 +1714,11 @@ public class Tech {
                         return SlimefunItems.MAGNET;
                     }
 
-                    public String getMachineIdentifier() {
+                    public @NotNull String getMachineIdentifier() {
                         return getId();
                     }
 
-                    public String getInventoryTitle() {
+                    public @NotNull String getInventoryTitle() {
                         return getItemName();
                     }
 
@@ -1765,11 +1771,11 @@ public class Tech {
                         return SlimefunItems.MAGNET;
                     }
 
-                    public String getMachineIdentifier() {
+                    public @NotNull String getMachineIdentifier() {
                         return getId();
                     }
 
-                    public String getInventoryTitle() {
+                    public @NotNull String getInventoryTitle() {
                         return getItemName();
                     }
 
