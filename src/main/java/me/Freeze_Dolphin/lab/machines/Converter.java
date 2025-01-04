@@ -26,7 +26,7 @@ public abstract class Converter extends AContainer {
     public static ItemStack cfg2it(String cfg) {
         ItemStack rt = new ItemStack(Material.AIR);
 
-        Main.debug("\n\n" + cfg + "\n");
+        Main.debug(cfg);
 
         if (cfg.contains("SF")) {
             String id = cfg.split("SF\\{")[1].split("\\}")[0];
@@ -43,11 +43,11 @@ public abstract class Converter extends AContainer {
         }
 
         try {
-            Main.debug("\n=---------------------------=\n" + rt + "\n=---------------------------=");
+            Main.debug("=---------------------------=" + rt + "=---------------------------=");
         } catch (Exception ex) {
-            Main.debug("\n=---------------------------=\n An Error Happened Here\n=---------------------------=\n");
+            Main.debug("=---------------------------= An Error Happened Here=---------------------------=");
             U.scolor("&c&l=-E-R-R-O-R-_-H-E-R-E--------=");
-            Main.debug("\n");
+            Main.debug("");
         }
 
         return rt;

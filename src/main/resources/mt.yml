@@ -1,12 +1,12 @@
 recipes:
   sunnarium: 
     - MC{GLOWSTONE}=1
-    - SF{SUNNARIUM}
+    - SF{LAB_SUNNARIUM}
     - 900
     
   sunnarium_piece: 
     - MC{GLOWSTONE_DUST}=1
-    - SF{SUNNARIUM_PIECE}
+    - SF{LAB_SUNNARIUM_PIECE}
     - 150
 
 # 你可以对以下配置随意更改
@@ -17,12 +17,12 @@ recipes:
     - 360
   
   lapis_block: 
-    - MC{HARD_CLAY}=11
+    - MC{BLUE_TERRACOTTA}=1
     - MC{LAPIS_BLOCK}=1
     - 480
   
   redstone_block: 
-    - MC{HARD_CLAY}=14
+    - MC{RED_TERRACOTTA}=1
     - MC{REDSTONE_BLOCK}=1
     - 480
   

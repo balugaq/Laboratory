@@ -40,8 +40,8 @@ public class Food {
         })).register(Main.instance);
 
         (new SlimefunItem(c, COLA, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                U.bottle(), U.sfi("LAB_LEMON"), U.mat(Material.SUGAR),
-                U.mat(Material.SUGAR), null, null,
+                U.bottle(), U.mat(Material.SUGAR), U.mat(Material.SUGAR),
+                null, null, null,
                 null, null, null
         })).register(Main.instance);
 

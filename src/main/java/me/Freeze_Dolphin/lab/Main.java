@@ -55,7 +55,7 @@ public class Main extends JavaPlugin implements SlimefunAddon {
             Variables.plug
                     .getServer()
                     .getConsoleSender()
-                    .sendMessage("\n" + ChatColor.translateAlternateColorCodes('&', "&c&l[&4&lDEBUG&c&l]&c: &r" + msg));
+                    .sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&l[&4&lDEBUG&c&l]&c: &r" + msg));
         }
     }
 
