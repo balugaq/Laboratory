@@ -204,14 +204,12 @@ public class Lab {
                         "&a绿宝石电容 &7- &eI",
                         Color.LIME,
                         new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 0, 0, false, false),
-                        new String[] {
-                            "",
-                            "&f移动时消耗电容中的电量为背包中的物品充电",
-                            "&f不会为另一个绿宝石电容充电",
-                            "",
-                            "&c&o&8⇨ &7充电效率: &e0.01 J/move",
-                            "&c&o&8⇨ &e⚡ &70 / 2048 J"
-                        }));
+                        "",
+                        "&f移动时消耗电容中的电量为背包中的物品充电",
+                        "&f不会为另一个绿宝石电容充电",
+                        "",
+                        "&c&o&8⇨ &7充电效率: &e0.01 J/move",
+                        "&c&o&8⇨ &e⚡ &70 / 2048 J"));
 
         (new ChargeableItem(
                         c,

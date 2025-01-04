@@ -1,8 +1,11 @@
 package me.Freeze_Dolphin.lab;
 
 import java.util.Arrays;
+
+import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
@@ -18,10 +21,10 @@ public class CustomPotion extends ItemStack {
         }
 
         if (name != null) {
-            meta.setDisplayName(name);
+            meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
         }
         if (lore != null) {
-            meta.setLore(Arrays.stream(lore).toList());
+            meta.setLore(Arrays.stream(lore).map(s -> ChatColor.translateAlternateColorCodes('&', s)).toList());
         }
         if (meta instanceof PotionMeta potionMeta) {
             if (effect != null) {
@@ -32,6 +35,8 @@ public class CustomPotion extends ItemStack {
                 potionMeta.setColor(color);
             }
         }
+
+        meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
 
         this.setItemMeta(meta);
     }
