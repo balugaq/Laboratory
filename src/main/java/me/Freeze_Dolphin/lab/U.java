@@ -5,6 +5,8 @@ import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -15,6 +17,10 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
@@ -25,6 +31,15 @@ public class U {
     public static final String cprefix_s = color("&b[&9Laboratory&b] ");
     private static final Random rand = new Random();
 
+    public static ItemStack bottle() {
+        CustomItemStack cis = new CustomItemStack(Material.POTION);
+        cis.editMeta(meta -> {
+            if (meta instanceof PotionMeta pm) {
+                pm.setBasePotionData(new PotionData(PotionType.WATER));
+            }
+        });
+        return cis;
+    }
     public static ItemStack mat(Material material) {
         return new ItemStack(material);
     }

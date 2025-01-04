@@ -34,24 +34,16 @@ public class Food {
                 "&c可乐");
 
         (new SlimefunItem(c, MILK_BOTTLE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                    null, null, null,
-                    null, U.mat(Material.MILK_BUCKET), U.mat(Material.GLASS_BOTTLE),
-                    null, null, null
-                }))
-                .register(Main.instance);
+                U.mat(Material.MILK_BUCKET), U.mat(Material.GLASS_BOTTLE), null,
+                null, null, null,
+                null, null, null
+        })).register(Main.instance);
 
         (new SlimefunItem(c, COLA, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                    U.mat(Material.POTION),
-                    U.sfi("LAB_LEMON"),
-                    U.mat(Material.SUGAR),
-                    U.mat(Material.SUGAR),
-                    null,
-                    null,
-                    null,
-                    null,
-                    null
-                }))
-                .register(Main.instance);
+                U.bottle(), U.sfi("LAB_LEMON"), U.mat(Material.SUGAR),
+                U.mat(Material.SUGAR), null, null,
+                null, null, null
+        })).register(Main.instance);
 
         ShapelessRecipe MILK_BOTTLE_R = new ShapelessRecipe(new NamespacedKey(Main.instance, "milk_bottle_recipe"), MILK_BOTTLE);
         MILK_BOTTLE_R.addIngredient(Material.MILK_BUCKET);
