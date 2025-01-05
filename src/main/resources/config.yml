@@ -225,3 +225,7 @@ messages:
     
   mimung-blaster: 
     not-enough-power: '&7[&9Mimung Blaster&7] &c电量不足'
+
+machines:
+  nether-star-crusher:
+    amount: 4
