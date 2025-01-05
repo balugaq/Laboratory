@@ -1,22 +1,36 @@
 package me.Freeze_Dolphin.lab;
 
+import com.xzavier0722.mc.plugin.slimefun4.storage.controller.SlimefunBlockData;
+import com.xzavier0722.mc.plugin.slimefun4.storage.util.StorageCacheUtils;
+import io.github.thebusybiscuit.slimefun4.api.events.PlayerRightClickEvent;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.SubItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
+import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.gadgets.JetBoots;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.gadgets.Jetpack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+
+import java.util.Optional;
 import java.util.Random;
+
+import me.Freeze_Dolphin.lab.machines.BatteryEnergyExtractor;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -25,6 +39,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class Lab {
+    public static SlimefunItemStack BATTERY_ENERGY_EXTRACTOR;
     public static SlimefunItemStack SAPPHIRE_CAPACITY;
     public static SlimefunItemStack MIMUNG_BLASTER;
     public static SlimefunItemStack CONFIG_RELOADER;
@@ -320,8 +335,44 @@ public class Lab {
                         BASIC_MOBILE_BATTERY,
                         RecipeType.ENHANCED_CRAFTING_TABLE,
                         U.halfr3(SlimefunItems.REDSTONE_ALLOY, SlimefunItems.BATTERY, null),
-                        64))
-                .register(Laboratory.instance);
+                        64) {
+            @Override
+            public void preRegister() {
+                super.preRegister();
+                addItemHandler((ItemUseHandler) playerRightClickEvent -> {
+                    ItemStack item = playerRightClickEvent.getItem();
+                    float stored = ItemEnergy.getStoredEnergy(item);
+                    if (stored > 0) {
+                        Optional<Block> clickedBlock = playerRightClickEvent.getClickedBlock();
+                        if (clickedBlock.isPresent()) {
+                            Block block = clickedBlock.get();
+                            Location location = block.getLocation();
+                            SlimefunBlockData blockData = StorageCacheUtils.getBlock(location);
+                            Player player = playerRightClickEvent.getPlayer();
+                            if (blockData != null && SlimefunItem.getById(blockData.getSfId()) instanceof EnergyNetComponent energyNetComponent && energyNetComponent.isChargeable() && Slimefun.getProtectionManager().hasPermission(player, location, Interaction.INTERACT_BLOCK)) {
+                                int remain = energyNetComponent.getCapacity() - energyNetComponent.getCharge(location);
+                                if (remain < 0) {
+                                    remain = 0;
+                                }
+
+                                int consume;
+                                if (remain > stored) {
+                                    consume = (int) (remain - stored);
+                                } else {
+                                    consume = remain;
+                                }
+
+                                if (consume > 0) {
+                                    energyNetComponent.addCharge(location, consume);
+                                    ItemEnergy.removeEnergy(item, consume);
+                                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a成功充电 &e" + consume + " J"));
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }).register(Laboratory.instance);
 
         U.addUnplaceableItem(BASIC_MOBILE_BATTERY);
 
@@ -340,7 +391,44 @@ public class Lab {
                         ADVANCED_MOBILE_BATTERY,
                         RecipeType.ENHANCED_CRAFTING_TABLE,
                         U.halfr3(SlimefunItems.BASIC_CIRCUIT_BOARD, BASIC_MOBILE_BATTERY, null),
-                        256))
+                        256){
+            @Override
+            public void preRegister() {
+                super.preRegister();
+                addItemHandler((ItemUseHandler) playerRightClickEvent -> {
+                    ItemStack item = playerRightClickEvent.getItem();
+                    float stored = ItemEnergy.getStoredEnergy(item);
+                    if (stored > 0) {
+                        Optional<Block> clickedBlock = playerRightClickEvent.getClickedBlock();
+                        if (clickedBlock.isPresent()) {
+                            Block block = clickedBlock.get();
+                            Location location = block.getLocation();
+                            SlimefunBlockData blockData = StorageCacheUtils.getBlock(location);
+                            Player player = playerRightClickEvent.getPlayer();
+                            if (blockData != null && SlimefunItem.getById(blockData.getSfId()) instanceof EnergyNetComponent energyNetComponent && energyNetComponent.isChargeable() && Slimefun.getProtectionManager().hasPermission(player, location, Interaction.INTERACT_BLOCK)) {
+                                int remain = energyNetComponent.getCapacity() - energyNetComponent.getCharge(location);
+                                if (remain < 0) {
+                                    remain = 0;
+                                }
+
+                                int consume;
+                                if (remain > stored) {
+                                    consume = (int) (remain - stored);
+                                } else {
+                                    consume = remain;
+                                }
+
+                                if (consume > 0) {
+                                    energyNetComponent.addCharge(location, consume);
+                                    ItemEnergy.removeEnergy(item, consume);
+                                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a成功充电 &e" + consume + " J"));
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        })
                 .register(Laboratory.instance);
 
         U.addUnplaceableItem(ADVANCED_MOBILE_BATTERY);
@@ -360,7 +448,44 @@ public class Lab {
                         ULTIMATE_MOBILE_BATTERY,
                         RecipeType.ENHANCED_CRAFTING_TABLE,
                         U.halfr3(SlimefunItems.ADVANCED_CIRCUIT_BOARD, ADVANCED_MOBILE_BATTERY, null),
-                        1024))
+                        1024){
+            @Override
+            public void preRegister() {
+                super.preRegister();
+                addItemHandler((ItemUseHandler) playerRightClickEvent -> {
+                    ItemStack item = playerRightClickEvent.getItem();
+                    float stored = ItemEnergy.getStoredEnergy(item);
+                    if (stored > 0) {
+                        Optional<Block> clickedBlock = playerRightClickEvent.getClickedBlock();
+                        if (clickedBlock.isPresent()) {
+                            Block block = clickedBlock.get();
+                            Location location = block.getLocation();
+                            SlimefunBlockData blockData = StorageCacheUtils.getBlock(location);
+                            Player player = playerRightClickEvent.getPlayer();
+                            if (blockData != null && SlimefunItem.getById(blockData.getSfId()) instanceof EnergyNetComponent energyNetComponent && energyNetComponent.isChargeable() && Slimefun.getProtectionManager().hasPermission(player, location, Interaction.INTERACT_BLOCK)) {
+                                int remain = energyNetComponent.getCapacity() - energyNetComponent.getCharge(location);
+                                if (remain < 0) {
+                                    remain = 0;
+                                }
+
+                                int consume;
+                                if (remain > stored) {
+                                    consume = (int) (remain - stored);
+                                } else {
+                                    consume = remain;
+                                }
+
+                                if (consume > 0) {
+                                    energyNetComponent.addCharge(location, consume);
+                                    ItemEnergy.removeEnergy(item, consume);
+                                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a成功充电 &e" + consume + " J"));
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        })
                 .register(Laboratory.instance);
 
         U.addUnplaceableItem(ULTIMATE_MOBILE_BATTERY);
@@ -380,7 +505,44 @@ public class Lab {
                         QUANTUM_MOBILE_BATTERY,
                         RecipeType.ENHANCED_CRAFTING_TABLE,
                         U.halfr3(Tech.SUPER_CIRCUIT_BOARD, ULTIMATE_MOBILE_BATTERY, null),
-                        8192))
+                        8192){
+            @Override
+            public void preRegister() {
+                super.preRegister();
+                addItemHandler((ItemUseHandler) playerRightClickEvent -> {
+                    ItemStack item = playerRightClickEvent.getItem();
+                    float stored = ItemEnergy.getStoredEnergy(item);
+                    if (stored > 0) {
+                        Optional<Block> clickedBlock = playerRightClickEvent.getClickedBlock();
+                        if (clickedBlock.isPresent()) {
+                            Block block = clickedBlock.get();
+                            Location location = block.getLocation();
+                            SlimefunBlockData blockData = StorageCacheUtils.getBlock(location);
+                            Player player = playerRightClickEvent.getPlayer();
+                            if (blockData != null && SlimefunItem.getById(blockData.getSfId()) instanceof EnergyNetComponent energyNetComponent && energyNetComponent.isChargeable() && Slimefun.getProtectionManager().hasPermission(player, location, Interaction.INTERACT_BLOCK)) {
+                                int remain = energyNetComponent.getCapacity() - energyNetComponent.getCharge(location);
+                                if (remain < 0) {
+                                    remain = 0;
+                                }
+
+                                int consume;
+                                if (remain > stored) {
+                                    consume = (int) (remain - stored);
+                                } else {
+                                    consume = remain;
+                                }
+
+                                if (consume > 0) {
+                                    energyNetComponent.addCharge(location, consume);
+                                    ItemEnergy.removeEnergy(item, consume);
+                                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&a成功充电 &e" + consume + " J"));
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        })
                 .register(Laboratory.instance);
 
         U.addUnplaceableItem(QUANTUM_MOBILE_BATTERY);
@@ -587,6 +749,25 @@ public class Lab {
                         },
                         1024))
                 .register(Laboratory.instance);
+
+        Variables.rechargableBattery.add(BASIC_MOBILE_BATTERY);
+        Variables.rechargableBattery.add(ADVANCED_MOBILE_BATTERY);
+        Variables.rechargableBattery.add(ULTIMATE_MOBILE_BATTERY);
+        Variables.rechargableBattery.add(QUANTUM_MOBILE_BATTERY);
+
+        BATTERY_ENERGY_EXTRACTOR = new SlimefunItemStack("LAB_BATTERY_ENERGY_EXTRACTOR",
+                new CustomItemStack(
+                        Material.GLOWSTONE,
+                        "&b电池能量提取器",
+                        "",
+                        "&f提取电池中的能量"
+                ));
+
+        new BatteryEnergyExtractor(Tech.lockedCategory, BATTERY_ENERGY_EXTRACTOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+                SlimefunItems.HEATING_COIL, SlimefunItems.BATTERY, SlimefunItems.HEATING_COIL,
+                SlimefunItems.BATTERY, SlimefunItems.BATTERY, SlimefunItems.BATTERY,
+                SlimefunItems.ADVANCED_CIRCUIT_BOARD, SlimefunItems.MEDIUM_CAPACITOR, SlimefunItems.ADVANCED_CIRCUIT_BOARD
+        }).register(Laboratory.instance);
     }
 
     public static ItemStack mat(Material material) {

@@ -48,7 +48,7 @@ public final class ItemEnergy {
 
     public static ItemStack chargeItem(ItemStack item, float energy) {
         if (energy < 0) {
-            return removeEnergy(item, energy * -1);
+            return removeEnergy(item, -energy);
         }
         if (energy == 0) {
             return item;

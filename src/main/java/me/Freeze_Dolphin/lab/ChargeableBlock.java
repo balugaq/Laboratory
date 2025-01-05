@@ -119,16 +119,21 @@ public class ChargeableBlock {
         }
     }
 
-    public static void addCharge(@NotNull Block block, int charge) {
+    public static int addCharge(@NotNull Block block, int charge) {
         if (charge < 0) {
             removeCharge(block, -charge);
-            return;
+            return -charge;
         }
 
         SlimefunItem item = getSfItem(block);
         if (item instanceof EnergyNetComponent component) {
+            int before = component.getCharge(block.getLocation());
             component.addCharge(block.getLocation(), charge);
+            int after = component.getCharge(block.getLocation());
+            return after - before;
         }
+
+        return 0;
     }
 
     public static void removeCharge(@NotNull Block block, int charge) {

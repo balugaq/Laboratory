@@ -5,6 +5,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+import me.Freeze_Dolphin.lab.AdvancedAContainer;
 import me.Freeze_Dolphin.lab.BlockMenuUtil;
 import me.Freeze_Dolphin.lab.ChargeableBlock;
 import me.Freeze_Dolphin.lab.ItemEnergy;
@@ -19,7 +20,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class BatteryEnergyExtractor extends AContainer {
+public class BatteryEnergyExtractor extends AdvancedAContainer {
     public BatteryEnergyExtractor(
             ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
@@ -67,7 +68,7 @@ public class BatteryEnergyExtractor extends AContainer {
                 boolean isBattery = false;
 
                 for (ItemStack battery : Variables.rechargableBattery) {
-                    if (SlimefunUtils.isItemSimilar(stack, battery, false)) {
+                    if (SlimefunUtils.isItemSimilar(stack, battery, false, false)) {
                         isBattery = true;
                     }
                 }
@@ -75,8 +76,8 @@ public class BatteryEnergyExtractor extends AContainer {
                 if (!isBattery) return;
 
                 if (ItemEnergy.getStoredEnergy(stack) >= 10) {
-                    ChargeableBlock.addCharge(b, 10);
-                    ItemEnergy.chargeItem(stack, -10);
+                    int charged = ChargeableBlock.addCharge(b, 10);
+                    ItemEnergy.chargeItem(stack, -charged);
                     StorageCacheUtils.getMenu(b.getLocation()).replaceExistingItem(slot, stack);
                 } else if (BlockMenuUtil.fits(b, new ItemStack[] {stack})) {
                     BlockMenuUtil.pushItem(b, new ItemStack[] {stack});

@@ -14,7 +14,6 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public final class Vanisher implements Listener {
-    // todo: remove player move event listener and use other event
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
         Player p = e.getPlayer();

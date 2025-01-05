@@ -21,7 +21,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import me.Freeze_Dolphin.lab.geo.CertusQuartz;
+import me.Freeze_Dolphin.lab.geo.Iridium;
 import me.Freeze_Dolphin.lab.machines.AdvancedChargingBench;
+import me.Freeze_Dolphin.lab.machines.ChemicalReactor;
 import me.Freeze_Dolphin.lab.machines.Converter;
 import me.Freeze_Dolphin.lab.machines.CreatorGenerator;
 import me.Freeze_Dolphin.lab.machines.IridiumDrill;
@@ -196,6 +198,7 @@ public class Tech {
                 new NamespacedKey(Laboratory.instance, "logs"),
                 new CustomItemStack(Material.IRON_AXE, "&e伐木", "", "&a砍伐橡木和深色橡木时有几率掉落"));
 
+        boolean useSelfIridium = false;
         SlimefunItem iridium = SlimefunItem.getById("IRIDIUM");
         SlimefunItem spacetechIridium = SlimefunItem.getById("SPACETECH_IRIDIUM");
         if (iridium != null) {
@@ -213,6 +216,7 @@ public class Tech {
                             "&f其质地硬而脆"));
 
             (new SlimefunItem(cr, IRIDIUM, MT, U.midr(new ItemStack(Material.IRON_BLOCK)))).register(Laboratory.instance);
+            useSelfIridium = true;
         }
 
         CertusQuartz.instance.register();
@@ -1536,20 +1540,22 @@ public class Tech {
                 })
                 .register(Laboratory.instance);
 
-        IRIDIUM_DRILL = new SlimefunItemStack("LAB_IRIDIUM_DRILL",
-                new CustomItemStack(
-                        Material.IRON_BLOCK,
-                        "&b铱钻机",
-                        "",
-                        "&r用于挖掘铱",
-                        "",
-                        "&4终级机器",
-                        "&8⇨ &7速度: 1x",
-                        "&8⇨ &e⚡ &764 J/s",
-                        "",
-                        "&c&l! &c仅能在地狱使用!",
-                        "&c&l! &c使用前请先扫描想使用的区块"));
-        (new IridiumDrill(lockedCategory, IRIDIUM_DRILL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+        if (useSelfIridium) {
+            Iridium.instance.register();
+            IRIDIUM_DRILL = new SlimefunItemStack("LAB_IRIDIUM_DRILL",
+                    new CustomItemStack(
+                            Material.IRON_BLOCK,
+                            "&b铱钻机",
+                            "",
+                            "&r用于挖掘铱",
+                            "",
+                            "&4终级机器",
+                            "&8⇨ &7速度: 1x",
+                            "&8⇨ &e⚡ &764 J/s",
+                            "",
+                            "&c&l! &c仅能在地狱使用!",
+                            "&c&l! &c使用前请先扫描想使用的区块"));
+            (new IridiumDrill(lockedCategory, IRIDIUM_DRILL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                     SUPER_ELECTRO_MAGNET,
                     SlimefunItems.REINFORCED_PLATE,
                     SUPER_ELECTRO_MAGNET,
@@ -1559,13 +1565,14 @@ public class Tech {
                     SlimefunItems.ADVANCED_CIRCUIT_BOARD,
                     SlimefunItems.ELECTRIC_MOTOR,
                     SlimefunItems.ADVANCED_CIRCUIT_BOARD,
-                }) {
-                    @Override
-                    public int getCapacity() {
-                        return 4096;
-                    }
-                })
-                .register(Laboratory.instance);
+            }) {
+                @Override
+                public int getCapacity() {
+                    return 4096;
+                }
+            })
+                    .register(Laboratory.instance);
+        }
 
         ADVANCED_CHARGING_BENCH = new SlimefunItemStack("LAB_ADVANCED_CHARGING_BENCH",
                 new CustomItemStack(
@@ -2057,5 +2064,43 @@ public class Tech {
                 U.newResearch("Grenco Power Crystal", Variables.cfg.getInt("researches.grenco-power-crystal.level"));
         grenco_power_crystal.addItems(SlimefunItem.getByItem(GRENCO_POWER_CRYSTAL));
         grenco_power_crystal.register();
+
+        CHEMICAL_REACTOR = new SlimefunItemStack("LAB_CHEMICAL_REACTOR",
+                new CustomItemStack(
+                        Material.IRON_BLOCK,
+                        "&b化学反应器",
+                        "",
+                        "&7用于制造化学反应",
+                        "&7并将其转化为物质",
+                        "",
+                        "&8⇨ &7速度: 1x",
+                        "&8⇨ &e⚡ &7256 J 缓存",
+                        "&8⇨ &e⚡ &732 J/s"));
+        new ChemicalReactor(lockedCategory, CHEMICAL_REACTOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+                SlimefunItems.HEATING_COIL,
+                SlimefunItems.PLASTIC_SHEET,
+                SlimefunItems.HEATING_COIL,
+                Tech.ALUMAG_ALLOY,
+                SlimefunItems.HEATED_PRESSURE_CHAMBER_2,
+                Tech.ALUMAG_ALLOY,
+                SlimefunItems.ADVANCED_CIRCUIT_BOARD,
+                SlimefunItems.COOLING_UNIT,
+                SlimefunItems.ADVANCED_CIRCUIT_BOARD
+        }) {
+            @Override
+            public int getSpeed() {
+                return 1;
+            }
+
+            @Override
+            public int getCapacity() {
+                return 256;
+            }
+
+            @Override
+            public int getEnergyConsumption() {
+                return 16;
+            }
+        }.register(Laboratory.instance);
     }
 }
