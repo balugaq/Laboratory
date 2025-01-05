@@ -1,7 +1,5 @@
 package me.Freeze_Dolphin.lab;
 
-import java.util.Arrays;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -10,6 +8,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionEffect;
+
+import java.util.Arrays;
 
 public class CustomPotion extends ItemStack {
     public CustomPotion(String name, Color color, PotionEffect effect, String... lore) {

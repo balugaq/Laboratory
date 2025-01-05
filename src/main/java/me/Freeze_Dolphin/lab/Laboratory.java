@@ -4,11 +4,6 @@ import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.NestedItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import me.Freeze_Dolphin.lab.bugrepair.ElevatorBook;
 import me.Freeze_Dolphin.lab.bugrepair.Me;
@@ -44,10 +39,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 public class Laboratory extends JavaPlugin implements SlimefunAddon {
     public static final Map<ItemStack, Float> capacities = new HashMap<>();
-    public static NestedItemGroup nest;
     public static final Map<Double, ItemStack> lo = new HashMap<>();
+    public static final Map<UUID, Location> locations = new HashMap<>();
+    public static NestedItemGroup nest;
     public static Laboratory instance;
 
     static {
@@ -85,12 +86,10 @@ public class Laboratory extends JavaPlugin implements SlimefunAddon {
                     .getConsoleSender()
                     .sendMessage("\n"
                             + ChatColor.translateAlternateColorCodes(
-                                    '&',
-                                    "&c&l[&4&lDEBUG&c&l] &7" + c.getName() + ": &cBreakpoint &f[" + breakpointOrder
-                                            + "]"));
+                            '&',
+                            "&c&l[&4&lDEBUG&c&l] &7" + c.getName() + ": &cBreakpoint &f[" + breakpointOrder
+                                    + "]"));
     }
-
-    public static final Map<UUID, Location> locations = new HashMap<>();
 
     public void onEnable() {
         getLogger().info("Enabling Laboratory...");
@@ -219,12 +218,14 @@ public class Laboratory extends JavaPlugin implements SlimefunAddon {
         DragonFireBall.clean();
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public JavaPlugin getJavaPlugin() {
         return this;
     }
 
-    @Nullable @Override
+    @Nullable
+    @Override
     public String getBugTrackerURL() {
         return null;
     }

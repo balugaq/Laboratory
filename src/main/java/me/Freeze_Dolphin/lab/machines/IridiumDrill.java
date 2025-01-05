@@ -2,11 +2,9 @@ package me.Freeze_Dolphin.lab.machines;
 
 import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import me.Freeze_Dolphin.lab.ADrill;
-import me.Freeze_Dolphin.lab.OreGenSystem;
 import me.Freeze_Dolphin.lab.Tech;
 import me.Freeze_Dolphin.lab.geo.Iridium;
 import org.bukkit.Material;
@@ -24,7 +22,7 @@ public abstract class IridiumDrill extends ADrill {
 
     @Override
     public ItemStack[] getOutputItems() {
-        return new ItemStack[] {Tech.IRIDIUM};
+        return new ItemStack[]{Tech.IRIDIUM};
     }
 
     @Override

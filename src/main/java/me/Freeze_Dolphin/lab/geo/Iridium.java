@@ -1,9 +1,6 @@
 package me.Freeze_Dolphin.lab.geo;
 
 import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
-
-import java.util.Random;
-
 import me.Freeze_Dolphin.lab.Laboratory;
 import me.Freeze_Dolphin.lab.Tech;
 import org.bukkit.NamespacedKey;
@@ -12,9 +9,11 @@ import org.bukkit.block.Biome;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Random;
+
 public class Iridium implements GEOResource {
-    public static Iridium instance = new Iridium();
     private static final Random random = new Random();
+    public static Iridium instance = new Iridium();
 
     @Override
     public int getDefaultSupply(World.Environment environment, Biome bio) {
@@ -34,7 +33,8 @@ public class Iridium implements GEOResource {
         return "铱";
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public ItemStack getItem() {
         return Tech.IRIDIUM.clone();
     }

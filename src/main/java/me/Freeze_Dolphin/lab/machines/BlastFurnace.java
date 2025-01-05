@@ -8,10 +8,6 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import me.Freeze_Dolphin.lab.MachineHelper;
 import me.Freeze_Dolphin.lab.U;
 import me.Freeze_Dolphin.lab.Variables;
@@ -33,6 +29,11 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public abstract class BlastFurnace extends SlimefunItem {
     public static final Map<Block, MachineRecipe> processing = new HashMap<>();
     public static final Map<Block, Integer> progress = new HashMap<>();
@@ -42,7 +43,7 @@ public abstract class BlastFurnace extends SlimefunItem {
     private static final int[] border_in = {0, 1, 2, 3, 9, 12, 18, 19, 20, 21};
     private static final int[] border_out = {5, 6, 7, 8, 14, 17, 23, 24, 25, 26};
     private static final int[] border_heat = {
-        27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53
+            27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53
     };
     private static final int[] heat = {39, 40, 41, 42, 43};
     private static final int process = 13, heat_source = 37, heat_process = 38;
@@ -57,7 +58,8 @@ public abstract class BlastFurnace extends SlimefunItem {
             }
 
             @Override
-            public void newInstance(BlockMenu menu, Block b) {}
+            public void newInstance(BlockMenu menu, Block b) {
+            }
 
             @Override
             public boolean canOpen(Block b, Player p) {
@@ -178,11 +180,11 @@ public abstract class BlastFurnace extends SlimefunItem {
     }
 
     public int[] getInputSlots() {
-        return new int[] {10, 11};
+        return new int[]{10, 11};
     }
 
     public int[] getOutputSlots() {
-        return new int[] {15, 16};
+        return new int[]{15, 16};
     }
 
     public MachineRecipe getProcessing(Block b) {
@@ -249,7 +251,8 @@ public abstract class BlastFurnace extends SlimefunItem {
             }
 
             @Override
-            public void uniqueTick() {}
+            public void uniqueTick() {
+            }
 
             @Override
             public boolean isSynchronized() {

@@ -34,13 +34,13 @@ public class Food {
                 new PotionEffect(PotionEffectType.SPEED, 600, 1, false, true),
                 "&c可乐");
 
-        (new SlimefunItem(c, MILK_BOTTLE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+        (new SlimefunItem(c, MILK_BOTTLE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 U.mat(Material.MILK_BUCKET), U.mat(Material.GLASS_BOTTLE), null,
                 null, null, null,
                 null, null, null
         })).register(Laboratory.instance);
 
-        (new SlimefunItem(c, COLA, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+        (new SlimefunItem(c, COLA, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 U.bottle(), U.mat(Material.SUGAR), U.mat(Material.SUGAR),
                 null, null, null,
                 null, null, null

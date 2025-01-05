@@ -9,10 +9,6 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import me.Freeze_Dolphin.lab.ADrill;
 import me.Freeze_Dolphin.lab.ChargeableBlock;
 import me.Freeze_Dolphin.lab.Laboratory;
@@ -38,6 +34,11 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Deprecated
 @Warning(reason = "Not used")
 public abstract class LaserDrill extends ADrill {
@@ -58,7 +59,8 @@ public abstract class LaserDrill extends ADrill {
             }
 
             @Override
-            public void newInstance(BlockMenu menu, Block b) {}
+            public void newInstance(BlockMenu menu, Block b) {
+            }
 
             @Override
             public boolean canOpen(Block b, Player p) {
@@ -147,11 +149,11 @@ public abstract class LaserDrill extends ADrill {
     }
 
     public int[] getOutputSlots() {
-        return new int[] {10, 11, 12, 13, 14, 15, 16};
+        return new int[]{10, 11, 12, 13, 14, 15, 16};
     }
 
     public int[] getDrillSlots() {
-        return new int[] {40, 41, 42, 43};
+        return new int[]{40, 41, 42, 43};
     }
 
     public MachineRecipe getProcessing(Block b) {
@@ -204,7 +206,8 @@ public abstract class LaserDrill extends ADrill {
             }
 
             @Override
-            public void uniqueTick() {}
+            public void uniqueTick() {
+            }
 
             @Override
             public boolean isSynchronized() {

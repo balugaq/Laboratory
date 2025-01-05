@@ -7,14 +7,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.OptionalInt;
-
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
@@ -27,14 +20,20 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.OptionalInt;
+
 public abstract class ADrill extends AdvancedAContainer {
     public static final Map<Block, MachineRecipe> processing = new HashMap<>();
     public static final Map<Block, Integer> progress = new HashMap<>();
-    private static final int[] border = new int[] {
-        0, 1, 2, 3, 4, 5, 6, 7, 8, 13, 31, 36, 37, 38, 39, 40, 41, 42, 43, 44, 9, 10, 11, 12, 18, 21, 27, 28, 29, 30,
-        19, 20
+    private static final int[] border = new int[]{
+            0, 1, 2, 3, 4, 5, 6, 7, 8, 13, 31, 36, 37, 38, 39, 40, 41, 42, 43, 44, 9, 10, 11, 12, 18, 21, 27, 28, 29, 30,
+            19, 20
     };
-    private static final int[] border_out = new int[] {14, 15, 16, 17, 23, 26, 32, 33, 34, 35};
+    private static final int[] border_out = new int[]{14, 15, 16, 17, 23, 26, 32, 33, 34, 35};
 
     public ADrill(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
@@ -80,7 +79,8 @@ public abstract class ADrill extends AdvancedAContainer {
                 }
             }
 
-            public void newInstance(@NotNull BlockMenu menu, @NotNull Block b) {}
+            public void newInstance(@NotNull BlockMenu menu, @NotNull Block b) {
+            }
 
             public boolean canOpen(@NotNull Block b, @NotNull Player p) {
                 if (!p.hasPermission("slimefun.inventory.bypass") && !canUse(p, true)) {
@@ -108,7 +108,8 @@ public abstract class ADrill extends AdvancedAContainer {
         return new int[0];
     }
 
-    public void registerDefaultRecipes() {}
+    public void registerDefaultRecipes() {
+    }
 
     protected void tick(Block b) {
         if (isProcessing(b)) {

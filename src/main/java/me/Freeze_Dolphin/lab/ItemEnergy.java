@@ -10,7 +10,8 @@ import org.jetbrains.annotations.Nullable;
 
 public final class ItemEnergy {
 
-    private ItemEnergy() {}
+    private ItemEnergy() {
+    }
 
     //	"&c&o&8\u21E8 &e\u26A1 &70 / 50 J"
 

@@ -7,7 +7,6 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
-import java.util.List;
 import me.Freeze_Dolphin.lab.ChargeableBlock;
 import me.Freeze_Dolphin.lab.Variables;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
@@ -15,6 +14,8 @@ import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.block.Block;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.List;
 
 public abstract class Lantern extends SlimefunItem {
     private static final String light =
@@ -47,7 +48,8 @@ public abstract class Lantern extends SlimefunItem {
             }
 
             @Override
-            public void uniqueTick() {}
+            public void uniqueTick() {
+            }
 
             @Override
             public boolean isSynchronized() {

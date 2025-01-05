@@ -8,8 +8,6 @@ import me.Freeze_Dolphin.lab.AdvancedAContainer;
 import me.Freeze_Dolphin.lab.BlockMenuUtil;
 import me.Freeze_Dolphin.lab.ChargeableBlock;
 import me.Freeze_Dolphin.lab.ItemEnergy;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
@@ -32,7 +30,8 @@ public class AdvancedChargingBench extends AdvancedAContainer {
         return 40;
     }
 
-    public void registerDefaultRecipes() {}
+    public void registerDefaultRecipes() {
+    }
 
     protected void tick(Block b) {
         if (ChargeableBlock.getCharge(b) < getEnergyConsumption()) return;
@@ -48,8 +47,8 @@ public class AdvancedChargingBench extends AdvancedAContainer {
                     ChargeableBlock.addCharge(b, -getEnergyConsumption());
                     float rest = ItemEnergy.addStoredEnergy(stack, (float) (getEnergyConsumption() * 0.75D));
                     if (rest > 0.0F) {
-                        if (BlockMenuUtil.fits(b, new ItemStack[] {stack})) {
-                            BlockMenuUtil.pushItem(b, new ItemStack[] {stack});
+                        if (BlockMenuUtil.fits(b, new ItemStack[]{stack})) {
+                            BlockMenuUtil.pushItem(b, new ItemStack[]{stack});
                             StorageCacheUtils.getMenu(b.getLocation()).replaceExistingItem(slot, null);
                         } else {
 
@@ -60,8 +59,8 @@ public class AdvancedChargingBench extends AdvancedAContainer {
                         StorageCacheUtils.getMenu(b.getLocation()).replaceExistingItem(slot, stack);
                     }
 
-                } else if (BlockMenuUtil.fits(b, new ItemStack[] {stack})) {
-                    BlockMenuUtil.pushItem(b, new ItemStack[] {stack});
+                } else if (BlockMenuUtil.fits(b, new ItemStack[]{stack})) {
+                    BlockMenuUtil.pushItem(b, new ItemStack[]{stack});
                     StorageCacheUtils.getMenu(b.getLocation()).replaceExistingItem(slot, null);
                 } else {
 

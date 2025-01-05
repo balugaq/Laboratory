@@ -2,8 +2,6 @@ package me.Freeze_Dolphin.lab.listeners;
 
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import java.util.List;
-import java.util.UUID;
 import me.Freeze_Dolphin.lab.ItemEnergy;
 import me.Freeze_Dolphin.lab.Lab;
 import me.Freeze_Dolphin.lab.Laboratory;
@@ -38,10 +36,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.List;
+import java.util.UUID;
+
 public class DragonFireBall implements Listener {
     private static final int[] border =
-            new int[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
-    private static final int[] plasma_slot = new int[] {10, 11, 12, 13, 14, 15, 16};
+            new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
+    private static final int[] plasma_slot = new int[]{10, 11, 12, 13, 14, 15, 16};
 
     private static final String inv_title = U.color("&8龙息发射器");
 
@@ -262,7 +263,7 @@ public class DragonFireBall implements Listener {
             if (dfb.getShooter() instanceof Player p) {
                 if (dfb.getCustomName().matches("(.*),(.*)")
                         && p.getUniqueId()
-                                .equals(UUID.fromString(dfb.getCustomName().split(",")[1]))) {
+                        .equals(UUID.fromString(dfb.getCustomName().split(",")[1]))) {
                     Location loc;
                     ArmorStand as;
                     if (e.getHitEntity() == null) {

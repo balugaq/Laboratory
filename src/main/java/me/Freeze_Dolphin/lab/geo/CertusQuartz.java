@@ -30,7 +30,8 @@ public class CertusQuartz implements GEOResource {
         return "赛特斯石英";
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public ItemStack getItem() {
         return Tech.CERTUS_QUARTZ.clone();
     }

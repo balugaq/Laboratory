@@ -17,7 +17,6 @@ import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.data.Levelled;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
@@ -151,7 +150,8 @@ public class CreatorGenerator extends AGenerator {
     }
 
     @Override
-    protected void registerDefaultFuelTypes() {}
+    protected void registerDefaultFuelTypes() {
+    }
 
     public int getGeneratedOutput(Location l, SlimefunBlockData data) {
         if (l.getBlock().getBlockPower() < 0) {

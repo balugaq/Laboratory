@@ -1,16 +1,14 @@
 package me.Freeze_Dolphin.lab;
 
 import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
-import io.github.thebusybiscuit.slimefun4.api.geo.ResourceManager;
-import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.Chunk;
 import org.bukkit.block.Biome;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class OreGenSystem {
     public static final Map<String, GEOResource> map = new HashMap<>();
@@ -91,10 +89,10 @@ public class OreGenSystem {
         if (resource == null) return false;
 
         return BlockStorage.getChunkInfo(
-                        chunk.getWorld(),
-                        chunk.getX(),
-                        chunk.getZ(),
-                        "resources_" + resource.getName().toUpperCase())
+                chunk.getWorld(),
+                chunk.getX(),
+                chunk.getZ(),
+                "resources_" + resource.getName().toUpperCase())
                 != null;
     }
 }

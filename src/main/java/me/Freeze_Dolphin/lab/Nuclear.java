@@ -12,9 +12,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.RadioactiveItem;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.reactors.Reactor;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import java.util.HashMap;
-import java.util.Map;
-
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Bukkit;
@@ -32,6 +29,8 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Nuclear {
     public static final BlockData particleData = Material.ORANGE_TERRACOTTA.createBlockData();
@@ -68,7 +67,7 @@ public class Nuclear {
             new SlimefunItemStack("LAB_GRAPHITE_CORE", new CustomItemStack(Material.OBSIDIAN, "&8石墨堆芯"));
     public static final RecipeType FLUORIDEM = new RecipeType(
             new NamespacedKey(Laboratory.instance, "fluoridem"),
-            new CustomItemStack(Material.ORANGE_STAINED_GLASS, "&e氟化机", new String[] {"", "&a使用氟化机将物质氟化制取"}));
+            new CustomItemStack(Material.ORANGE_STAINED_GLASS, "&e氟化机", new String[]{"", "&a使用氟化机将物质氟化制取"}));
     private static final Map<ItemStack[], ItemStack[]> meltingm_r = new HashMap<>();
     private static final Map<ItemStack[], ItemStack[]> fluoridem_r = new HashMap<>();
     public static ItemGroup c;
@@ -91,7 +90,7 @@ public class Nuclear {
     public static RecipeType MELTINGM;
     public static RecipeType CENTRIFUGEM = new RecipeType(
             new NamespacedKey(Laboratory.instance, "centrifugem"),
-            new CustomItemStack(Material.ORANGE_TERRACOTTA, "&c热能离心机", new String[] {"", "&a使用热能离心机处理物质"}));
+            new CustomItemStack(Material.ORANGE_TERRACOTTA, "&c热能离心机", new String[]{"", "&a使用热能离心机处理物质"}));
 
     static {
         try {
@@ -101,7 +100,7 @@ public class Nuclear {
                             SkullUtil.getByBase64(
                                     "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODI5NmYwOTI1MjRhZTljMmEyZTg3ODgxY2I0MTVhZGIzNThkNmNiNzczYzg1ZGM5NzIwMmZlZmI3NTRjMSJ9fX0="),
                             "&7Consider 实验室核电",
-                            new String[] {"", "&a> 点击打开"}),
+                            new String[]{"", "&a> 点击打开"}),
                     5,
                     new NamespacedKey(Slimefun.instance(), "cargo"));
 
@@ -228,7 +227,7 @@ public class Nuclear {
                             SkullUtil.getByBase64(
                                     "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODI5NmYwOTI1MjRhZTljMmEyZTg3ODgxY2I0MTVhZGIzNThkNmNiNzczYzg1ZGM5NzIwMmZlZmI3NTRjMSJ9fX0="),
                             "&c熔炼机",
-                            new String[] {"", "&a通过熔炼机将固体融为流体"}));
+                            new String[]{"", "&a通过熔炼机将固体融为流体"}));
         } catch (Exception e) {
             Laboratory.debugException(e);
         }
@@ -241,11 +240,11 @@ public class Nuclear {
 
         Variables.UnplaceableItems.add(GRAPHITE_CORE);
 
-        (new SlimefunItem(c, LEAD_CELL_EMPTY, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                    SlimefunItems.LEAD_INGOT, SlimefunItems.LEAD_INGOT, SlimefunItems.LEAD_INGOT,
-                    SlimefunItems.LEAD_INGOT, U.mat(Material.GLASS_PANE), SlimefunItems.LEAD_INGOT,
-                    SlimefunItems.LEAD_INGOT, SlimefunItems.LEAD_INGOT, SlimefunItems.LEAD_INGOT
-                }))
+        (new SlimefunItem(c, LEAD_CELL_EMPTY, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                SlimefunItems.LEAD_INGOT, SlimefunItems.LEAD_INGOT, SlimefunItems.LEAD_INGOT,
+                SlimefunItems.LEAD_INGOT, U.mat(Material.GLASS_PANE), SlimefunItems.LEAD_INGOT,
+                SlimefunItems.LEAD_INGOT, SlimefunItems.LEAD_INGOT, SlimefunItems.LEAD_INGOT
+        }))
                 .register(Laboratory.instance);
 
         registerCell(URANIUM_FLUID_CELL, SlimefunItems.URANIUM);
@@ -261,305 +260,306 @@ public class Nuclear {
         registerFluorideCell(FLUORIDE_LITHIUM_FLUID_CELL, LITHIUM_FLUID_CELL);
 
         (new RadioactiveItem(
-                        c,
-                        Radioactivity.HIGH,
-                        ENRICHED_FUSED_SALT_REACTOR_FUEL,
-                        RecipeType.ENHANCED_CRAFTING_TABLE,
-                        new ItemStack[] {
-                            FLUORIDE_URANIUM_FLUID_CELL, FLUORIDE_BERYLLIUM_FLUID_CELL, FLUORIDE_LITHIUM_FLUID_CELL
-                        }))
-                .register(Laboratory.instance);
-
-        (new RadioactiveItem(
-                        c,
-                        Radioactivity.HIGH,
-                        ENRICHED_BOOSTED_FUSED_SALT_REACTOR_FUEL,
-                        RecipeType.ENHANCED_CRAFTING_TABLE,
-                        new ItemStack[] {
-                            FLUORIDE_BOOSTED_URANIUM_FLUID_CELL,
-                            FLUORIDE_BERYLLIUM_FLUID_CELL,
-                            FLUORIDE_LITHIUM_FLUID_CELL
-                        }))
-                .register(Laboratory.instance);
-
-        (new SlimefunItem(c, FUSED_SALT_REACTOR_COOLANT_CELL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                    SlimefunItems.REACTOR_COOLANT_CELL, Resource.POTASSIUM_INGOT, Resource.SODIUM_INGOT
+                c,
+                Radioactivity.HIGH,
+                ENRICHED_FUSED_SALT_REACTOR_FUEL,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{
+                        FLUORIDE_URANIUM_FLUID_CELL, FLUORIDE_BERYLLIUM_FLUID_CELL, FLUORIDE_LITHIUM_FLUID_CELL
                 }))
                 .register(Laboratory.instance);
 
-        (new AdvancedAContainer(c, MELTING_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                    SlimefunItems.LEAD_INGOT, SlimefunItems.ELECTRIC_FURNACE_2, SlimefunItems.LEAD_INGOT,
-                    SlimefunItems.ADVANCED_CIRCUIT_BOARD, Tech.HEAT_CONDUCTOR, SlimefunItems.ADVANCED_CIRCUIT_BOARD,
-                    Tech.SUPER_HEATING_COIL, Tech.SUPER_HEATING_COIL, Tech.SUPER_HEATING_COIL
-                }) {
-
-                    public void registerDefaultRecipes() {
-                        int time = Variables.cfg.getInt("items.melting-machine.time");
-
-                        for (ItemStack[] iti : Nuclear.meltingm_r.keySet()) {
-                            registerRecipe(time, iti, Nuclear.meltingm_r.get(iti));
-                        }
-                    }
-
-                    public int getSpeed() {
-                        return 1;
-                    }
-
-                    public ItemStack getProgressBar() {
-                        return U.mat(Material.LAVA_BUCKET);
-                    }
-
-                    public String getMachineIdentifier() {
-                        return getId();
-                    }
-
-                    public String getInventoryTitle() {
-                        return getItemName();
-                    }
-
-                    public int getEnergyConsumption() {
-                        return 32;
-                    }
-
-                    public int getCapacity() {
-                        return 512;
-                    }
-                })
+        (new RadioactiveItem(
+                c,
+                Radioactivity.HIGH,
+                ENRICHED_BOOSTED_FUSED_SALT_REACTOR_FUEL,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{
+                        FLUORIDE_BOOSTED_URANIUM_FLUID_CELL,
+                        FLUORIDE_BERYLLIUM_FLUID_CELL,
+                        FLUORIDE_LITHIUM_FLUID_CELL
+                }))
                 .register(Laboratory.instance);
 
-        (new AdvancedAContainer(c, FLUORIDE_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                    SlimefunItems.BASIC_CIRCUIT_BOARD, SlimefunItems.MEDIUM_CAPACITOR,
-                            SlimefunItems.BASIC_CIRCUIT_BOARD,
-                    Tech.ALUMAG_ALLOY, SlimefunItems.ELECTRIC_FURNACE_2, SlimefunItems.PLASTIC_SHEET,
-                    SlimefunItems.HEATING_COIL, SlimefunItems.ELECTRIC_MOTOR, SlimefunItems.HEATING_COIL
-                }) {
-
-                    public void registerDefaultRecipes() {
-                        int time = Variables.cfg.getInt("items.fluoride-machine.time");
-
-                        for (ItemStack[] iti : Nuclear.fluoridem_r.keySet()) {
-                            registerRecipe(time, iti, Nuclear.fluoridem_r.get(iti));
-                        }
-                    }
-
-                    public int getSpeed() {
-                        return 1;
-                    }
-
-                    public ItemStack getProgressBar() {
-                        return new ItemStack(Material.ORANGE_STAINED_GLASS_PANE);
-                    }
-
-                    public String getMachineIdentifier() {
-                        return getId();
-                    }
-
-                    public String getInventoryTitle() {
-                        return getItemName();
-                    }
-
-                    public int getEnergyConsumption() {
-                        return 16;
-                    }
-
-                    public int getCapacity() {
-                        return 512;
-                    }
-                })
+        (new SlimefunItem(c, FUSED_SALT_REACTOR_COOLANT_CELL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                SlimefunItems.REACTOR_COOLANT_CELL, Resource.POTASSIUM_INGOT, Resource.SODIUM_INGOT
+        }))
                 .register(Laboratory.instance);
 
-        (new SlimefunItem(c, DEPLETED_URANIUM_CELL, fusedSaltReactor_r, new ItemStack[] {Nuclear.ENRICHED_FUSED_SALT_REACTOR_FUEL})).register(Laboratory.instance);
-        (new SlimefunItem(c, DEPLETED_BOOSTED_URANIUM_CELL, fusedSaltReactor_r, new ItemStack[] {Nuclear.ENRICHED_BOOSTED_FUSED_SALT_REACTOR_FUEL})).register(Laboratory.instance);
+        (new AdvancedAContainer(c, MELTING_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                SlimefunItems.LEAD_INGOT, SlimefunItems.ELECTRIC_FURNACE_2, SlimefunItems.LEAD_INGOT,
+                SlimefunItems.ADVANCED_CIRCUIT_BOARD, Tech.HEAT_CONDUCTOR, SlimefunItems.ADVANCED_CIRCUIT_BOARD,
+                Tech.SUPER_HEATING_COIL, Tech.SUPER_HEATING_COIL, Tech.SUPER_HEATING_COIL
+        }) {
 
-        (new AdvancedAContainer(c, THERMAL_CENTRIFUGE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                    SlimefunItems.REINFORCED_ALLOY_INGOT, SlimefunItems.REINFORCED_ALLOY_INGOT,
-                            SlimefunItems.REINFORCED_ALLOY_INGOT,
-                    SlimefunItems.ADVANCED_CIRCUIT_BOARD, Tech.SUPER_ELECTRO_MOTOR,
-                            SlimefunItems.ADVANCED_CIRCUIT_BOARD,
-                    Tech.SUPER_HEATING_COIL, SlimefunItems.BIG_CAPACITOR, Tech.SUPER_HEATING_COIL
-                }) {
+            public void registerDefaultRecipes() {
+                int time = Variables.cfg.getInt("items.melting-machine.time");
 
-                    public void registerDefaultRecipes() {
-                        registerRecipe(300, new ItemStack[] {Nuclear.DEPLETED_URANIUM_CELL}, new ItemStack[] {
-                            SlimefunItems.NEPTUNIUM
-                        });
-                        registerRecipe(300, new ItemStack[] {Nuclear.DEPLETED_BOOSTED_URANIUM_CELL}, new ItemStack[] {
-                            SlimefunItems.PLUTONIUM
-                        });
+                for (ItemStack[] iti : Nuclear.meltingm_r.keySet()) {
+                    registerRecipe(time, iti, Nuclear.meltingm_r.get(iti));
+                }
+            }
 
-                        registerRecipe(
-                                10,
-                                new ItemStack[] {
-                                    Nuclear.FLUORIDE_BERYLLIUM_FLUID_CELL, Nuclear.FLUORIDE_LITHIUM_FLUID_CELL
-                                },
-                                new ItemStack[] {Nuclear.FUSED_SALT_REACTOR_COOLANT_CELL});
-                    }
+            public int getSpeed() {
+                return 1;
+            }
 
-                    public int getSpeed() {
-                        return 1;
-                    }
+            public ItemStack getProgressBar() {
+                return U.mat(Material.LAVA_BUCKET);
+            }
 
-                    public ItemStack getProgressBar() {
-                        return SlimefunItems.HEATING_COIL;
-                    }
+            public String getMachineIdentifier() {
+                return getId();
+            }
 
-                    public String getMachineIdentifier() {
-                        return getId();
-                    }
+            public String getInventoryTitle() {
+                return getItemName();
+            }
 
-                    public String getInventoryTitle() {
-                        return getItemName();
-                    }
+            public int getEnergyConsumption() {
+                return 32;
+            }
 
-                    public int getEnergyConsumption() {
-                        return 32;
-                    }
-
-                    public int getCapacity() {
-                        return 768;
-                    }
-                })
+            public int getCapacity() {
+                return 512;
+            }
+        })
                 .register(Laboratory.instance);
 
-        (new Reactor(c, FUSED_SALT_REACTOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                    Tech.ULTIMATE_CIRCUIT_BOARD, SlimefunItems.CARBONADO_EDGED_CAPACITOR, SlimefunItems.FLUID_PUMP,
-                    SlimefunItems.REINFORCED_PLATE, GRAPHITE_CORE, SlimefunItems.REINFORCED_PLATE,
-                    Tech.LEAD_IRON_ALLOY, Tech.REINFORCED_IRIDIUM_IRON_PLATE, Tech.LEAD_IRON_ALLOY
-                }) {
+        (new AdvancedAContainer(c, FLUORIDE_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                SlimefunItems.BASIC_CIRCUIT_BOARD, SlimefunItems.MEDIUM_CAPACITOR,
+                SlimefunItems.BASIC_CIRCUIT_BOARD,
+                Tech.ALUMAG_ALLOY, SlimefunItems.ELECTRIC_FURNACE_2, SlimefunItems.PLASTIC_SHEET,
+                SlimefunItems.HEATING_COIL, SlimefunItems.ELECTRIC_MOTOR, SlimefunItems.HEATING_COIL
+        }) {
 
-                    public void registerDefaultFuelTypes() {
-                        registerFuel(new MachineFuel(
-                                1400, Nuclear.ENRICHED_FUSED_SALT_REACTOR_FUEL, Nuclear.DEPLETED_URANIUM_CELL));
-                        registerFuel(new MachineFuel(
-                                1700,
-                                Nuclear.ENRICHED_BOOSTED_FUSED_SALT_REACTOR_FUEL,
-                                Nuclear.DEPLETED_BOOSTED_URANIUM_CELL));
-                    }
+            public void registerDefaultRecipes() {
+                int time = Variables.cfg.getInt("items.fluoride-machine.time");
 
-                    public ItemStack getProgressBar() {
-                        return U.mat(Material.SUGAR);
-                    }
+                for (ItemStack[] iti : Nuclear.fluoridem_r.keySet()) {
+                    registerRecipe(time, iti, Nuclear.fluoridem_r.get(iti));
+                }
+            }
 
-                    public String getInventoryTitle() {
-                        return getItemName();
-                    }
+            public int getSpeed() {
+                return 1;
+            }
 
-                    public int getEnergyProduction() {
-                        return 448;
-                    }
+            public ItemStack getProgressBar() {
+                return new ItemStack(Material.ORANGE_STAINED_GLASS_PANE);
+            }
 
-                    public ItemStack getCoolant() {
-                        return Nuclear.FUSED_SALT_REACTOR_COOLANT_CELL;
-                    }
+            public String getMachineIdentifier() {
+                return getId();
+            }
 
-                    @NotNull @Override
-                    public ItemStack getFuelIcon() {
-                        return Nuclear.ENRICHED_FUSED_SALT_REACTOR_FUEL;
-                    }
+            public String getInventoryTitle() {
+                return getItemName();
+            }
 
-                    @Override
-                    public void updateInventory(@Nonnull BlockMenu menu, @Nonnull Block b) {
-                        super.updateInventory(menu, b);
-                        menu.replaceExistingItem(1, this.getFuelIcon());
-                    }
+            public int getEnergyConsumption() {
+                return 16;
+            }
 
-                    public void extraTick(final @NotNull Location l) {
-                        Bukkit.getScheduler().runTaskLater(Variables.plug,
-                                () -> {
-                                    if (U.chance(100, 5)) {
+            public int getCapacity() {
+                return 512;
+            }
+        })
+                .register(Laboratory.instance);
 
-                                        try {
-                                            l.getWorld()
-                                                    .spawnParticle(
-                                                            Particle.BLOCK_CRACK,
-                                                            l.getBlock()
-                                                                    .getLocation(),
-                                                            1,
-                                                            0.5F,
-                                                            0.0F,
-                                                            1.0F,
-                                                            particleData);
-                                        } catch (Exception e) {
-                                            Laboratory.debugException(e);
+        (new SlimefunItem(c, DEPLETED_URANIUM_CELL, fusedSaltReactor_r, new ItemStack[]{Nuclear.ENRICHED_FUSED_SALT_REACTOR_FUEL})).register(Laboratory.instance);
+        (new SlimefunItem(c, DEPLETED_BOOSTED_URANIUM_CELL, fusedSaltReactor_r, new ItemStack[]{Nuclear.ENRICHED_BOOSTED_FUSED_SALT_REACTOR_FUEL})).register(Laboratory.instance);
+
+        (new AdvancedAContainer(c, THERMAL_CENTRIFUGE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                SlimefunItems.REINFORCED_ALLOY_INGOT, SlimefunItems.REINFORCED_ALLOY_INGOT,
+                SlimefunItems.REINFORCED_ALLOY_INGOT,
+                SlimefunItems.ADVANCED_CIRCUIT_BOARD, Tech.SUPER_ELECTRO_MOTOR,
+                SlimefunItems.ADVANCED_CIRCUIT_BOARD,
+                Tech.SUPER_HEATING_COIL, SlimefunItems.BIG_CAPACITOR, Tech.SUPER_HEATING_COIL
+        }) {
+
+            public void registerDefaultRecipes() {
+                registerRecipe(300, new ItemStack[]{Nuclear.DEPLETED_URANIUM_CELL}, new ItemStack[]{
+                        SlimefunItems.NEPTUNIUM
+                });
+                registerRecipe(300, new ItemStack[]{Nuclear.DEPLETED_BOOSTED_URANIUM_CELL}, new ItemStack[]{
+                        SlimefunItems.PLUTONIUM
+                });
+
+                registerRecipe(
+                        10,
+                        new ItemStack[]{
+                                Nuclear.FLUORIDE_BERYLLIUM_FLUID_CELL, Nuclear.FLUORIDE_LITHIUM_FLUID_CELL
+                        },
+                        new ItemStack[]{Nuclear.FUSED_SALT_REACTOR_COOLANT_CELL});
+            }
+
+            public int getSpeed() {
+                return 1;
+            }
+
+            public ItemStack getProgressBar() {
+                return SlimefunItems.HEATING_COIL;
+            }
+
+            public String getMachineIdentifier() {
+                return getId();
+            }
+
+            public String getInventoryTitle() {
+                return getItemName();
+            }
+
+            public int getEnergyConsumption() {
+                return 32;
+            }
+
+            public int getCapacity() {
+                return 768;
+            }
+        })
+                .register(Laboratory.instance);
+
+        (new Reactor(c, FUSED_SALT_REACTOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                Tech.ULTIMATE_CIRCUIT_BOARD, SlimefunItems.CARBONADO_EDGED_CAPACITOR, SlimefunItems.FLUID_PUMP,
+                SlimefunItems.REINFORCED_PLATE, GRAPHITE_CORE, SlimefunItems.REINFORCED_PLATE,
+                Tech.LEAD_IRON_ALLOY, Tech.REINFORCED_IRIDIUM_IRON_PLATE, Tech.LEAD_IRON_ALLOY
+        }) {
+
+            public void registerDefaultFuelTypes() {
+                registerFuel(new MachineFuel(
+                        1400, Nuclear.ENRICHED_FUSED_SALT_REACTOR_FUEL, Nuclear.DEPLETED_URANIUM_CELL));
+                registerFuel(new MachineFuel(
+                        1700,
+                        Nuclear.ENRICHED_BOOSTED_FUSED_SALT_REACTOR_FUEL,
+                        Nuclear.DEPLETED_BOOSTED_URANIUM_CELL));
+            }
+
+            public ItemStack getProgressBar() {
+                return U.mat(Material.SUGAR);
+            }
+
+            public String getInventoryTitle() {
+                return getItemName();
+            }
+
+            public int getEnergyProduction() {
+                return 448;
+            }
+
+            public ItemStack getCoolant() {
+                return Nuclear.FUSED_SALT_REACTOR_COOLANT_CELL;
+            }
+
+            @NotNull
+            @Override
+            public ItemStack getFuelIcon() {
+                return Nuclear.ENRICHED_FUSED_SALT_REACTOR_FUEL;
+            }
+
+            @Override
+            public void updateInventory(@Nonnull BlockMenu menu, @Nonnull Block b) {
+                super.updateInventory(menu, b);
+                menu.replaceExistingItem(1, this.getFuelIcon());
+            }
+
+            public void extraTick(final @NotNull Location l) {
+                Bukkit.getScheduler().runTaskLater(Variables.plug,
+                        () -> {
+                            if (U.chance(100, 5)) {
+
+                                try {
+                                    l.getWorld()
+                                            .spawnParticle(
+                                                    Particle.BLOCK_CRACK,
+                                                    l.getBlock()
+                                                            .getLocation(),
+                                                    1,
+                                                    0.5F,
+                                                    0.0F,
+                                                    1.0F,
+                                                    particleData);
+                                } catch (Exception e) {
+                                    Laboratory.debugException(e);
+                                }
+                            }
+                            for (Entity entity : l.getNearbyEntities(5.0D, 5.0D, 5.0D)) {
+                                if (entity instanceof LivingEntity) {
+                                    if (entity instanceof Player p) {
+                                        if (SlimefunUtils.isItemSimilar(
+                                                SlimefunItems.SCUBA_HELMET,
+                                                p.getInventory()
+                                                        .getHelmet(),
+                                                true)
+                                                && SlimefunUtils.isItemSimilar(
+                                                SlimefunItems.HAZMAT_CHESTPLATE,
+                                                p.getInventory()
+                                                        .getChestplate(),
+                                                true)
+                                                && SlimefunUtils.isItemSimilar(
+                                                SlimefunItems.HAZMAT_LEGGINGS,
+                                                p.getInventory()
+                                                        .getLeggings(),
+                                                true)
+                                                && SlimefunUtils.isItemSimilar(
+                                                SlimefunItems.HAZMAT_BOOTS,
+                                                p.getInventory()
+                                                        .getBoots(),
+                                                true)) {
+                                            return;
+                                        }
+
+                                        if (SlimefunUtils.isItemSimilar(
+                                                ArmorWeapon.REINFORCED_SCUBA_HELMET,
+                                                p.getInventory()
+                                                        .getHelmet(),
+                                                true)
+                                                && SlimefunUtils.isItemSimilar(
+                                                ArmorWeapon
+                                                        .REINFORCED_HAZMATSUIT_CHESTPLATE,
+                                                p.getInventory()
+                                                        .getChestplate(),
+                                                true)
+                                                && SlimefunUtils.isItemSimilar(
+                                                ArmorWeapon.REINFORCED_HAZMATSUIT_LEGGINGS,
+                                                p.getInventory()
+                                                        .getLeggings(),
+                                                true)
+                                                && SlimefunUtils.isItemSimilar(
+                                                SlimefunItems.HAZMAT_BOOTS,
+                                                p.getInventory()
+                                                        .getBoots(),
+                                                true)) {
+                                            return;
                                         }
                                     }
-                                    for (Entity entity : l.getNearbyEntities(5.0D, 5.0D, 5.0D)) {
-                                        if (entity instanceof LivingEntity) {
-                                            if (entity instanceof Player p) {
-                                                if (SlimefunUtils.isItemSimilar(
-                                                                SlimefunItems.SCUBA_HELMET,
-                                                                p.getInventory()
-                                                                        .getHelmet(),
-                                                                true)
-                                                        && SlimefunUtils.isItemSimilar(
-                                                                SlimefunItems.HAZMAT_CHESTPLATE,
-                                                                p.getInventory()
-                                                                        .getChestplate(),
-                                                                true)
-                                                        && SlimefunUtils.isItemSimilar(
-                                                                SlimefunItems.HAZMAT_LEGGINGS,
-                                                                p.getInventory()
-                                                                        .getLeggings(),
-                                                                true)
-                                                        && SlimefunUtils.isItemSimilar(
-                                                                SlimefunItems.HAZMAT_BOOTS,
-                                                                p.getInventory()
-                                                                        .getBoots(),
-                                                                true)) {
-                                                    return;
-                                                }
 
-                                                if (SlimefunUtils.isItemSimilar(
-                                                                ArmorWeapon.REINFORCED_SCUBA_HELMET,
-                                                                p.getInventory()
-                                                                        .getHelmet(),
-                                                                true)
-                                                        && SlimefunUtils.isItemSimilar(
-                                                                ArmorWeapon
-                                                                        .REINFORCED_HAZMATSUIT_CHESTPLATE,
-                                                                p.getInventory()
-                                                                        .getChestplate(),
-                                                                true)
-                                                        && SlimefunUtils.isItemSimilar(
-                                                                ArmorWeapon.REINFORCED_HAZMATSUIT_LEGGINGS,
-                                                                p.getInventory()
-                                                                        .getLeggings(),
-                                                                true)
-                                                        && SlimefunUtils.isItemSimilar(
-                                                                SlimefunItems.HAZMAT_BOOTS,
-                                                                p.getInventory()
-                                                                        .getBoots(),
-                                                                true)) {
-                                                    return;
-                                                }
-                                            }
-
-                                            if (entity instanceof ArmorStand) {
-                                                return;
-                                            }
-
-                                            entity.setFireTicks(Variables.cfg.getInt("items.fused-salt-reactor.fire-ticks"));
-                                        }
+                                    if (entity instanceof ArmorStand) {
+                                        return;
                                     }
-                                }, 1L);
-                    }
 
-                    public int getCapacity() {
-                        return 16384;
-                    }
-                })
+                                    entity.setFireTicks(Variables.cfg.getInt("items.fused-salt-reactor.fire-ticks"));
+                                }
+                            }
+                        }, 1L);
+            }
+
+            public int getCapacity() {
+                return 16384;
+            }
+        })
                 .register(Laboratory.instance);
     }
 
     private void registerCell(SlimefunItemStack item, ItemStack inside) {
-        (new RadioactiveItem(c, Radioactivity.HIGH, item, MELTINGM, new ItemStack[] {inside, LEAD_CELL_EMPTY}))
+        (new RadioactiveItem(c, Radioactivity.HIGH, item, MELTINGM, new ItemStack[]{inside, LEAD_CELL_EMPTY}))
                 .register(Laboratory.instance);
-        meltingm_r.put(new ItemStack[] {inside, LEAD_CELL_EMPTY}, new ItemStack[] {item});
+        meltingm_r.put(new ItemStack[]{inside, LEAD_CELL_EMPTY}, new ItemStack[]{item});
     }
 
     private void registerFluorideCell(SlimefunItemStack item, ItemStack origin) {
-        (new RadioactiveItem(c, Radioactivity.VERY_HIGH, item, FLUORIDEM, new ItemStack[] {origin, Resource.CAROBBIITE}))
+        (new RadioactiveItem(c, Radioactivity.VERY_HIGH, item, FLUORIDEM, new ItemStack[]{origin, Resource.CAROBBIITE}))
                 .register(Laboratory.instance);
-        fluoridem_r.put(new ItemStack[] {origin, Resource.CAROBBIITE}, new ItemStack[] {item});
+        fluoridem_r.put(new ItemStack[]{origin, Resource.CAROBBIITE}, new ItemStack[]{item});
     }
 }

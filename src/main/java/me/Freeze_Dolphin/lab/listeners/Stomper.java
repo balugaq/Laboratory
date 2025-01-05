@@ -35,8 +35,8 @@ public final class Stomper implements Listener {
                         for (Entity n : p.getNearbyEntities(4.0D, 4.0D, 4.0D)) {
                             if (n instanceof LivingEntity
                                     && !n.getUniqueId()
-                                            .toString()
-                                            .equalsIgnoreCase(p.getUniqueId().toString())) {
+                                    .toString()
+                                    .equalsIgnoreCase(p.getUniqueId().toString())) {
                                 n.setVelocity(n.getLocation()
                                         .toVector()
                                         .subtract(p.getLocation().toVector())

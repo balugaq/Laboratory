@@ -10,8 +10,6 @@ import me.Freeze_Dolphin.lab.BlockMenuUtil;
 import me.Freeze_Dolphin.lab.ChargeableBlock;
 import me.Freeze_Dolphin.lab.ItemEnergy;
 import me.Freeze_Dolphin.lab.Variables;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
@@ -31,7 +29,8 @@ public class BatteryEnergyExtractor extends AdvancedAContainer {
             }
 
             @Override
-            public void newInstance(BlockMenu menu, Block b) {}
+            public void newInstance(BlockMenu menu, Block b) {
+            }
 
             @Override
             public boolean canOpen(Block b, Player p) {
@@ -57,7 +56,8 @@ public class BatteryEnergyExtractor extends AdvancedAContainer {
     }
 
     @Override
-    public void registerDefaultRecipes() {}
+    public void registerDefaultRecipes() {
+    }
 
     protected void tick(Block b) {
         // getEnergy - ChargableBlock.getCharge(b)
@@ -79,8 +79,8 @@ public class BatteryEnergyExtractor extends AdvancedAContainer {
                     int charged = ChargeableBlock.addCharge(b, 10);
                     ItemEnergy.chargeItem(stack, -charged);
                     StorageCacheUtils.getMenu(b.getLocation()).replaceExistingItem(slot, stack);
-                } else if (BlockMenuUtil.fits(b, new ItemStack[] {stack})) {
-                    BlockMenuUtil.pushItem(b, new ItemStack[] {stack});
+                } else if (BlockMenuUtil.fits(b, new ItemStack[]{stack})) {
+                    BlockMenuUtil.pushItem(b, new ItemStack[]{stack});
                     StorageCacheUtils.getMenu(b.getLocation()).replaceExistingItem(slot, null);
                 } else {
                     StorageCacheUtils.getMenu(b.getLocation()).replaceExistingItem(slot, stack);

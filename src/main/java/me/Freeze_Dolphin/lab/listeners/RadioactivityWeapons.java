@@ -26,21 +26,21 @@ public class RadioactivityWeapons implements Listener {
 
                     if (e.getEntity() instanceof Player dp) {
                         if (SlimefunUtils.isItemSimilar(
-                                        SlimefunItems.SCUBA_HELMET,
-                                        dp.getInventory().getHelmet(),
-                                        true)
+                                SlimefunItems.SCUBA_HELMET,
+                                dp.getInventory().getHelmet(),
+                                true)
                                 && SlimefunUtils.isItemSimilar(
-                                        SlimefunItems.HAZMAT_CHESTPLATE,
-                                        dp.getInventory().getChestplate(),
-                                        true)
+                                SlimefunItems.HAZMAT_CHESTPLATE,
+                                dp.getInventory().getChestplate(),
+                                true)
                                 && SlimefunUtils.isItemSimilar(
-                                        SlimefunItems.HAZMAT_LEGGINGS,
-                                        dp.getInventory().getLeggings(),
-                                        true)
+                                SlimefunItems.HAZMAT_LEGGINGS,
+                                dp.getInventory().getLeggings(),
+                                true)
                                 && SlimefunUtils.isItemSimilar(
-                                        SlimefunItems.HAZMAT_BOOTS,
-                                        dp.getInventory().getBoots(),
-                                        true)) {
+                                SlimefunItems.HAZMAT_BOOTS,
+                                dp.getInventory().getBoots(),
+                                true)) {
                             return;
                         }
                     }
@@ -61,21 +61,21 @@ public class RadioactivityWeapons implements Listener {
 
                     if (e.getEntity() instanceof Player dp) {
                         if (SlimefunUtils.isItemSimilar(
-                                        ArmorWeapon.REINFORCED_SCUBA_HELMET,
-                                        dp.getInventory().getHelmet(),
-                                        true)
+                                ArmorWeapon.REINFORCED_SCUBA_HELMET,
+                                dp.getInventory().getHelmet(),
+                                true)
                                 && SlimefunUtils.isItemSimilar(
-                                        ArmorWeapon.REINFORCED_HAZMATSUIT_CHESTPLATE,
-                                        dp.getInventory().getChestplate(),
-                                        true)
+                                ArmorWeapon.REINFORCED_HAZMATSUIT_CHESTPLATE,
+                                dp.getInventory().getChestplate(),
+                                true)
                                 && SlimefunUtils.isItemSimilar(
-                                        ArmorWeapon.REINFORCED_HAZMATSUIT_LEGGINGS,
-                                        dp.getInventory().getLeggings(),
-                                        true)
+                                ArmorWeapon.REINFORCED_HAZMATSUIT_LEGGINGS,
+                                dp.getInventory().getLeggings(),
+                                true)
                                 && SlimefunUtils.isItemSimilar(
-                                        SlimefunItems.HAZMAT_BOOTS,
-                                        dp.getInventory().getBoots(),
-                                        true)) {
+                                SlimefunItems.HAZMAT_BOOTS,
+                                dp.getInventory().getBoots(),
+                                true)) {
                             return;
                         }
                     }

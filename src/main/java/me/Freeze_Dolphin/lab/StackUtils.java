@@ -1,10 +1,6 @@
 package me.Freeze_Dolphin.lab;
 
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
-import java.util.Objects;
-import java.util.Optional;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Material;
 import org.bukkit.Tag;
@@ -30,6 +26,11 @@ import org.bukkit.inventory.meta.Repairable;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.inventory.meta.SuspiciousStewMeta;
 import org.bukkit.inventory.meta.TropicalFishBucketMeta;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.Objects;
+import java.util.Optional;
 
 @UtilityClass
 @SuppressWarnings("deprecation")
@@ -164,7 +165,7 @@ public class StackUtils {
         // Check the lore
         if (checkLore
                 || itemStack.getType()
-                        == Material.PLAYER_HEAD // Fix Soul jars in SoulJars & Number Components in MomoTech
+                == Material.PLAYER_HEAD // Fix Soul jars in SoulJars & Number Components in MomoTech
                 || itemStack.getType() == Material.SPAWNER // Fix Reinforced Spawner in Slimefun4
                 || itemStack.getType() == Material.SUGAR // Fix Symbols in MomoTech
         ) {

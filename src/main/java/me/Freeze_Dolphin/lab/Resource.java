@@ -61,18 +61,18 @@ public class Resource implements Listener {
         (new SlimefunItem(c, POTASSIUM_DUST, Tech.ELYZER, U.midr(new CustomItemStack(Material.ANDESITE))))
                 .register(Laboratory.instance);
         Variables.electrolyzer_r.put(
-                new ItemStack[] {new CustomItemStack(Material.ANDESITE)}, new ItemStack[] {POTASSIUM_DUST});
+                new ItemStack[]{new CustomItemStack(Material.ANDESITE)}, new ItemStack[]{POTASSIUM_DUST});
         (new SlimefunItem(c, SODIUM_DUST, Tech.ELYZER, U.midr(new CustomItemStack(Material.DARK_PRISMARINE))))
                 .register(Laboratory.instance);
         Variables.electrolyzer_r.put(
-                new ItemStack[] {(new CustomItemStack(Material.DARK_PRISMARINE))}, new ItemStack[] {SODIUM_DUST});
-        (new SlimefunItem(c, BERYLLIUM_INGOT, RecipeType.SMELTERY, new ItemStack[] {BERYLLIUM_DUST}))
+                new ItemStack[]{(new CustomItemStack(Material.DARK_PRISMARINE))}, new ItemStack[]{SODIUM_DUST});
+        (new SlimefunItem(c, BERYLLIUM_INGOT, RecipeType.SMELTERY, new ItemStack[]{BERYLLIUM_DUST}))
                 .register(Laboratory.instance);
-        (new SlimefunItem(c, LITHIUM_INGOT, RecipeType.SMELTERY, new ItemStack[] {LITHIUM_DUST}))
+        (new SlimefunItem(c, LITHIUM_INGOT, RecipeType.SMELTERY, new ItemStack[]{LITHIUM_DUST}))
                 .register(Laboratory.instance);
-        (new SlimefunItem(c, POTASSIUM_INGOT, RecipeType.SMELTERY, new ItemStack[] {POTASSIUM_DUST}))
+        (new SlimefunItem(c, POTASSIUM_INGOT, RecipeType.SMELTERY, new ItemStack[]{POTASSIUM_DUST}))
                 .register(Laboratory.instance);
-        (new SlimefunItem(c, SODIUM_INGOT, RecipeType.SMELTERY, new ItemStack[] {SODIUM_DUST})).register(Laboratory.instance);
+        (new SlimefunItem(c, SODIUM_INGOT, RecipeType.SMELTERY, new ItemStack[]{SODIUM_DUST})).register(Laboratory.instance);
 
         Variables.plug.getServer().getPluginManager().registerEvents(this, Variables.plug);
     }

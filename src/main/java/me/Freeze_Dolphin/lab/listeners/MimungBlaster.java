@@ -2,9 +2,6 @@ package me.Freeze_Dolphin.lab.listeners;
 
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 import me.Freeze_Dolphin.lab.ItemEnergy;
 import me.Freeze_Dolphin.lab.Lab;
 import me.Freeze_Dolphin.lab.U;
@@ -23,6 +20,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class MimungBlaster implements Listener {
     private static int getCoolingPercent(ItemStack mb) {
@@ -83,16 +84,16 @@ public class MimungBlaster implements Listener {
 
     public static Object[] isBulletItem(Item i) {
         ItemStack it = i.getItemStack();
-        if (!it.hasItemMeta()) return new Object[] {false, null};
-        if (it.getItemMeta().hasDisplayName()) return new Object[] {false, null};
-        if (!it.getItemMeta().hasLore()) return new Object[] {false, null};
+        if (!it.hasItemMeta()) return new Object[]{false, null};
+        if (it.getItemMeta().hasDisplayName()) return new Object[]{false, null};
+        if (!it.getItemMeta().hasLore()) return new Object[]{false, null};
         List<String> l = it.getItemMeta().getLore();
         if (l.size() == 3) {
             if (l.get(1).equals(U.color("&ftag: &o&m&l&rmimung-blaster-bullet"))) {
-                return new Object[] {true, l.get(2)};
+                return new Object[]{true, l.get(2)};
             }
         }
-        return new Object[] {false, null};
+        return new Object[]{false, null};
     }
 
     @SuppressWarnings("deprecation")

@@ -17,7 +17,8 @@ public class RadioactiveAlloyIngot extends AlloyIngot implements Radioactive {
         this.radioactivity = radioactivity;
     }
 
-    @NotNull @Override
+    @NotNull
+    @Override
     public Radioactivity getRadioactivity() {
         return this.radioactivity;
     }

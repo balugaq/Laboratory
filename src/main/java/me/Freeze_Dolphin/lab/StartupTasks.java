@@ -30,24 +30,24 @@ public class StartupTasks {
                                     for (ItemStack radioactive : Variables.penetratingRadioactive) {
                                         if (p.getInventory().containsAtLeast(radioactive, 1)
                                                 || SlimefunUtils.isItemSimilar(
-                                                        p.getInventory().getItemInOffHand(), radioactive, true)) {
+                                                p.getInventory().getItemInOffHand(), radioactive, true)) {
 
                                             if (SlimefunUtils.isItemSimilar(
-                                                            ArmorWeapon.REINFORCED_SCUBA_HELMET,
-                                                            p.getInventory().getHelmet(),
-                                                            true)
+                                                    ArmorWeapon.REINFORCED_SCUBA_HELMET,
+                                                    p.getInventory().getHelmet(),
+                                                    true)
                                                     && SlimefunUtils.isItemSimilar(
-                                                            ArmorWeapon.REINFORCED_HAZMATSUIT_CHESTPLATE,
-                                                            p.getInventory().getChestplate(),
-                                                            true)
+                                                    ArmorWeapon.REINFORCED_HAZMATSUIT_CHESTPLATE,
+                                                    p.getInventory().getChestplate(),
+                                                    true)
                                                     && SlimefunUtils.isItemSimilar(
-                                                            ArmorWeapon.REINFORCED_HAZMATSUIT_LEGGINGS,
-                                                            p.getInventory().getLeggings(),
-                                                            true)
+                                                    ArmorWeapon.REINFORCED_HAZMATSUIT_LEGGINGS,
+                                                    p.getInventory().getLeggings(),
+                                                    true)
                                                     && SlimefunUtils.isItemSimilar(
-                                                            SlimefunItems.HAZMAT_BOOTS,
-                                                            p.getInventory().getBoots(),
-                                                            true)) {
+                                                    SlimefunItems.HAZMAT_BOOTS,
+                                                    p.getInventory().getBoots(),
+                                                    true)) {
                                                 break;
                                             }
 
@@ -84,28 +84,28 @@ public class StartupTasks {
                                         int i;
                                         ItemStack[] arrayOfItemStack;
                                         for (i = (arrayOfItemStack = p.getInventory()
-                                                                        .getContents())
-                                                                .length,
-                                                        b = 0;
-                                                b < i; ) {
+                                                .getContents())
+                                                .length,
+                                                     b = 0;
+                                             b < i; ) {
                                             ItemStack itemStack = arrayOfItemStack[b];
                                             if (SlimefunUtils.isItemSimilar(itemStack, radioactive, true)) {
                                                 if (SlimefunUtils.isItemSimilar(
-                                                                ArmorWeapon.REINFORCED_SCUBA_HELMET,
-                                                                p.getInventory().getHelmet(),
-                                                                true)
+                                                        ArmorWeapon.REINFORCED_SCUBA_HELMET,
+                                                        p.getInventory().getHelmet(),
+                                                        true)
                                                         && SlimefunUtils.isItemSimilar(
-                                                                ArmorWeapon.REINFORCED_HAZMATSUIT_CHESTPLATE,
-                                                                p.getInventory().getChestplate(),
-                                                                true)
+                                                        ArmorWeapon.REINFORCED_HAZMATSUIT_CHESTPLATE,
+                                                        p.getInventory().getChestplate(),
+                                                        true)
                                                         && SlimefunUtils.isItemSimilar(
-                                                                ArmorWeapon.REINFORCED_HAZMATSUIT_LEGGINGS,
-                                                                p.getInventory().getLeggings(),
-                                                                true)
+                                                        ArmorWeapon.REINFORCED_HAZMATSUIT_LEGGINGS,
+                                                        p.getInventory().getLeggings(),
+                                                        true)
                                                         && SlimefunUtils.isItemSimilar(
-                                                                SlimefunItems.HAZMAT_BOOTS,
-                                                                p.getInventory().getBoots(),
-                                                                true)) {
+                                                        SlimefunItems.HAZMAT_BOOTS,
+                                                        p.getInventory().getBoots(),
+                                                        true)) {
                                                     break;
                                                 }
 

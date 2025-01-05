@@ -2,10 +2,6 @@ package me.Freeze_Dolphin.lab;
 
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
@@ -23,6 +19,10 @@ import org.bukkit.potion.PotionType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class U {
     public static final String prefix = "&b[&9Laboratory&b]";
     public static final String cprefix = color("&b[&9Laboratory&b]");
@@ -39,6 +39,7 @@ public class U {
         });
         return cis;
     }
+
     public static ItemStack mat(Material material) {
         return new ItemStack(material);
     }
@@ -64,23 +65,23 @@ public class U {
     }
 
     public static ItemStack[] midr(ItemStack item) {
-        return new ItemStack[] {null, null, null, null, item};
+        return new ItemStack[]{null, null, null, null, item};
     }
 
     public static ItemStack[] allr(ItemStack item) {
-        return new ItemStack[] {item, item, item, item, item, item, item, item, item};
+        return new ItemStack[]{item, item, item, item, item, item, item, item, item};
     }
 
     public static ItemStack[] halfr2(ItemStack item1, ItemStack item2) {
-        return new ItemStack[] {item1, item2, item1, item2, item1, item2, item1, item2, item1};
+        return new ItemStack[]{item1, item2, item1, item2, item1, item2, item1, item2, item1};
     }
 
     public static ItemStack[] halfr3(ItemStack item1, ItemStack item2, ItemStack item3) {
-        return new ItemStack[] {item1, item2, item1, item2, item3, item2, item1, item2, item1};
+        return new ItemStack[]{item1, item2, item1, item2, item3, item2, item1, item2, item1};
     }
 
     public static ItemStack[] firsts(ItemStack item) {
-        return new ItemStack[] {item};
+        return new ItemStack[]{item};
     }
 
     public static void scolor(String msg) {

@@ -35,15 +35,15 @@ public final class ElectricDigger implements Listener {
 
             } else if (e.getPlayer().hasPotionEffect(PotionEffectType.FAST_DIGGING)
                     && !e.getPlayer()
-                            .getPotionEffect(PotionEffectType.FAST_DIGGING)
-                            .isAmbient()
+                    .getPotionEffect(PotionEffectType.FAST_DIGGING)
+                    .isAmbient()
                     && !e.getPlayer()
-                            .getPotionEffect(PotionEffectType.FAST_DIGGING)
-                            .hasParticles()
+                    .getPotionEffect(PotionEffectType.FAST_DIGGING)
+                    .hasParticles()
                     && e.getPlayer()
-                                    .getPotionEffect(PotionEffectType.FAST_DIGGING)
-                                    .getAmplifier()
-                            == amplifier) {
+                    .getPotionEffect(PotionEffectType.FAST_DIGGING)
+                    .getAmplifier()
+                    == amplifier) {
                 e.getPlayer().removePotionEffect(PotionEffectType.FAST_DIGGING);
             }
         }
@@ -61,15 +61,15 @@ public final class ElectricDigger implements Listener {
 
             if (e.getPlayer().hasPotionEffect(PotionEffectType.FAST_DIGGING)
                     && !e.getPlayer()
-                            .getPotionEffect(PotionEffectType.FAST_DIGGING)
-                            .isAmbient()
+                    .getPotionEffect(PotionEffectType.FAST_DIGGING)
+                    .isAmbient()
                     && !e.getPlayer()
-                            .getPotionEffect(PotionEffectType.FAST_DIGGING)
-                            .hasParticles()
+                    .getPotionEffect(PotionEffectType.FAST_DIGGING)
+                    .hasParticles()
                     && e.getPlayer()
-                                    .getPotionEffect(PotionEffectType.FAST_DIGGING)
-                                    .getAmplifier()
-                            == amplifier) {
+                    .getPotionEffect(PotionEffectType.FAST_DIGGING)
+                    .getAmplifier()
+                    == amplifier) {
                 if (SlimefunUtils.isItemSimilar(
                         e.getPlayer().getInventory().getItemInMainHand(), Lab.ELECTRIC_DIGGER, false)) {
                     return;

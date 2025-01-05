@@ -17,7 +17,7 @@ public class NoArmorableHorse implements Listener {
         if ((inv instanceof HorseInventory)
                 // || (inv instanceof AbstractHorseInventory)
                 || (invo instanceof HorseInventory)
-        // || (invo instanceof AbstractHorseInventory)
+            // || (invo instanceof AbstractHorseInventory)
         ) {
             for (ItemStack it : Variables.UnequippedBardings) {
                 if (SlimefunUtils.isItemSimilar(e.getCurrentItem(), it, true)) {

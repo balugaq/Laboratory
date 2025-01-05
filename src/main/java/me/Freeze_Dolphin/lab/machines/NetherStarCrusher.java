@@ -7,7 +7,6 @@ import me.Freeze_Dolphin.lab.AdvancedAContainer;
 import me.Freeze_Dolphin.lab.Tech;
 import me.Freeze_Dolphin.lab.U;
 import me.Freeze_Dolphin.lab.Variables;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -47,7 +46,7 @@ public abstract class NetherStarCrusher extends AdvancedAContainer {
         pieces_of_star.setAmount(Variables.plug.getConfig().getInt("machines.nether-star-crusher.amount"));
         registerRecipe(
                 Variables.plug.getConfig().getInt("machines.nether-star-crusher.time"),
-                new ItemStack[] {U.mat(Material.NETHER_STAR)},
-                new ItemStack[] {pieces_of_star});
+                new ItemStack[]{U.mat(Material.NETHER_STAR)},
+                new ItemStack[]{pieces_of_star});
     }
 }

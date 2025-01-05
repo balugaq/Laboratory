@@ -18,15 +18,15 @@ public class ChargeableItem extends SlimefunItem implements Rechargeable {
         this.maxCharge = maxItemCharge;
     }
 
-    @Override
-    public float getMaxItemCharge(ItemStack itemStack) {
-        return this.maxCharge;
-    }
-
     public static void chargeItem(ItemStack itemStack, float charge) {
         SlimefunItem item = SlimefunItem.getByItem(itemStack);
         if (item instanceof Rechargeable rechargeable) {
             rechargeable.addItemCharge(itemStack, charge);
         }
+    }
+
+    @Override
+    public float getMaxItemCharge(ItemStack itemStack) {
+        return this.maxCharge;
     }
 }

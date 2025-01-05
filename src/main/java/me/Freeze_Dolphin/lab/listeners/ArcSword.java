@@ -1,7 +1,6 @@
 package me.Freeze_Dolphin.lab.listeners;
 
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import java.util.List;
 import me.Freeze_Dolphin.lab.ItemEnergy;
 import me.Freeze_Dolphin.lab.Lab;
 import me.Freeze_Dolphin.lab.Laboratory;
@@ -17,6 +16,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.List;
 
 public class ArcSword implements Listener {
     public static boolean isEnabled(ItemStack it) {

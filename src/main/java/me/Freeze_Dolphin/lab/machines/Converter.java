@@ -5,16 +5,15 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import java.util.List;
-
 import me.Freeze_Dolphin.lab.AdvancedAContainer;
 import me.Freeze_Dolphin.lab.Laboratory;
 import me.Freeze_Dolphin.lab.Tech;
 import me.Freeze_Dolphin.lab.U;
 import me.Freeze_Dolphin.lab.Variables;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.List;
 
 public abstract class Converter extends AdvancedAContainer {
     public Converter(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -136,14 +135,14 @@ public abstract class Converter extends AdvancedAContainer {
         if (!Variables.Nar || Variables.plug.getConfig().getBoolean("items.mt.iridium-recipe")) {
             registerRecipe(
                     Variables.plug.getConfig().getInt("items.mt.recipe-time.iridium"),
-                    new ItemStack[] {new ItemStack(Material.IRON_BLOCK)},
-                    new ItemStack[] {Tech.IRIDIUM});
+                    new ItemStack[]{new ItemStack(Material.IRON_BLOCK)},
+                    new ItemStack[]{Tech.IRIDIUM});
         }
 
         registerRecipe(
                 Variables.cfg.getInt("items.mt.recipe-time.radium"),
-                new ItemStack[] {SlimefunItems.PLUTONIUM},
-                new ItemStack[] {Tech.RADIUM});
+                new ItemStack[]{SlimefunItems.PLUTONIUM},
+                new ItemStack[]{Tech.RADIUM});
 
         for (List<String> ls : Tech.MT_RECIPES) {
             int time;
@@ -177,17 +176,17 @@ public abstract class Converter extends AdvancedAContainer {
 
             if (ait2 == null) {
                 if (bit2 == null) {
-                    registerRecipe(time, new ItemStack[] {ait1}, new ItemStack[] {bit1});
+                    registerRecipe(time, new ItemStack[]{ait1}, new ItemStack[]{bit1});
                     continue;
                 }
-                registerRecipe(time, new ItemStack[] {ait1}, new ItemStack[] {bit1, bit2});
+                registerRecipe(time, new ItemStack[]{ait1}, new ItemStack[]{bit1, bit2});
                 continue;
             }
             if (bit2 == null) {
-                registerRecipe(time, new ItemStack[] {ait1, ait2}, new ItemStack[] {bit1});
+                registerRecipe(time, new ItemStack[]{ait1, ait2}, new ItemStack[]{bit1});
                 continue;
             }
-            registerRecipe(time, new ItemStack[] {ait1, ait2}, new ItemStack[] {bit1, bit2});
+            registerRecipe(time, new ItemStack[]{ait1, ait2}, new ItemStack[]{bit1, bit2});
         }
     }
 }

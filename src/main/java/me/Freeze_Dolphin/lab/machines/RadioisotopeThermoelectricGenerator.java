@@ -11,7 +11,6 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerHead;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.skins.PlayerSkin;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import java.util.List;
 import me.Freeze_Dolphin.lab.Laboratory;
 import me.Freeze_Dolphin.lab.Tech;
 import me.Freeze_Dolphin.lab.U;
@@ -31,11 +30,13 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 public abstract class RadioisotopeThermoelectricGenerator extends AGenerator {
     private static final int[] border =
-            new int[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 50, 51, 52, 53};
+            new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 50, 51, 52, 53};
     private static final int[] border_in =
-            new int[] {9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35};
+            new int[]{9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35};
 
     public RadioisotopeThermoelectricGenerator(
             ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -69,7 +70,7 @@ public abstract class RadioisotopeThermoelectricGenerator extends AGenerator {
                     int i;
                     int[] arrayOfInt;
                     for (i = (arrayOfInt = RadioisotopeThermoelectricGenerator.this.getInputSlots()).length, b1 = 0;
-                            b1 < i; ) {
+                         b1 < i; ) {
                         int slot = arrayOfInt[b1];
                         if (inv.getItemInSlot(slot) != null) {
                             b.getWorld().dropItemNaturally(b.getLocation(), inv.getItemInSlot(slot));
@@ -79,7 +80,7 @@ public abstract class RadioisotopeThermoelectricGenerator extends AGenerator {
                     }
 
                     for (i = (arrayOfInt = RadioisotopeThermoelectricGenerator.this.getOutputSlots()).length, b1 = 0;
-                            b1 < i; ) {
+                         b1 < i; ) {
                         int slot = arrayOfInt[b1];
                         if (inv.getItemInSlot(slot) != null) {
                             b.getWorld().dropItemNaturally(b.getLocation(), inv.getItemInSlot(slot));
@@ -151,7 +152,7 @@ public abstract class RadioisotopeThermoelectricGenerator extends AGenerator {
     }
 
     public int[] getInputSlots() {
-        return new int[] {19, 20, 21, 22, 23, 24, 25};
+        return new int[]{19, 20, 21, 22, 23, 24, 25};
     }
 
     public int[] getOutputSlots() {

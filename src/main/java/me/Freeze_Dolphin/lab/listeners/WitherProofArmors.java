@@ -12,39 +12,39 @@ public class WitherProofArmors implements Listener {
     public void onWither(EntityDamageEvent e) {
         if (e.getCause().equals(EntityDamageEvent.DamageCause.WITHER) && e.getEntity() instanceof Player p) {
             if (SlimefunUtils.isItemSimilar(
-                            ArmorWeapon.WITHER_PROOF_GLASS_HELMET,
-                            p.getInventory().getHelmet(),
-                            true)
+                    ArmorWeapon.WITHER_PROOF_GLASS_HELMET,
+                    p.getInventory().getHelmet(),
+                    true)
                     && SlimefunUtils.isItemSimilar(
-                            ArmorWeapon.WITHER_PROOF_GLASS_CHESTPLATE,
-                            p.getInventory().getChestplate(),
-                            true)
+                    ArmorWeapon.WITHER_PROOF_GLASS_CHESTPLATE,
+                    p.getInventory().getChestplate(),
+                    true)
                     && SlimefunUtils.isItemSimilar(
-                            ArmorWeapon.WITHER_PROOF_GLASS_LEGGINGS,
-                            p.getInventory().getLeggings(),
-                            true)
+                    ArmorWeapon.WITHER_PROOF_GLASS_LEGGINGS,
+                    p.getInventory().getLeggings(),
+                    true)
                     && SlimefunUtils.isItemSimilar(
-                            ArmorWeapon.WITHER_PROOF_GLASS_BOOTS,
-                            p.getInventory().getBoots(),
-                            true)) {
+                    ArmorWeapon.WITHER_PROOF_GLASS_BOOTS,
+                    p.getInventory().getBoots(),
+                    true)) {
 
                 e.setCancelled(true);
             } else if (SlimefunUtils.isItemSimilar(
-                            ArmorWeapon.WITHER_PROOF_OBSIDIAN_HELMET,
-                            p.getInventory().getHelmet(),
-                            true)
+                    ArmorWeapon.WITHER_PROOF_OBSIDIAN_HELMET,
+                    p.getInventory().getHelmet(),
+                    true)
                     && SlimefunUtils.isItemSimilar(
-                            ArmorWeapon.WITHER_PROOF_OBSIDIAN_CHESTPLATE,
-                            p.getInventory().getChestplate(),
-                            true)
+                    ArmorWeapon.WITHER_PROOF_OBSIDIAN_CHESTPLATE,
+                    p.getInventory().getChestplate(),
+                    true)
                     && SlimefunUtils.isItemSimilar(
-                            ArmorWeapon.WITHER_PROOF_OBSIDIAN_LEGGINGS,
-                            p.getInventory().getLeggings(),
-                            true)
+                    ArmorWeapon.WITHER_PROOF_OBSIDIAN_LEGGINGS,
+                    p.getInventory().getLeggings(),
+                    true)
                     && SlimefunUtils.isItemSimilar(
-                            ArmorWeapon.WITHER_PROOF_OBSIDIAN_BOOTS,
-                            p.getInventory().getBoots(),
-                            true)) {
+                    ArmorWeapon.WITHER_PROOF_OBSIDIAN_BOOTS,
+                    p.getInventory().getBoots(),
+                    true)) {
 
                 e.setCancelled(true);
             }

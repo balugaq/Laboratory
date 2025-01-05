@@ -10,22 +10,16 @@ import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import me.Freeze_Dolphin.lab.AdvancedAContainer;
 import me.Freeze_Dolphin.lab.BlockMenuUtil;
 import me.Freeze_Dolphin.lab.ChargeableBlock;
-import me.Freeze_Dolphin.lab.MachineHelper;
 import me.Freeze_Dolphin.lab.Laboratory;
+import me.Freeze_Dolphin.lab.MachineHelper;
 import me.Freeze_Dolphin.lab.Tech;
 import me.Freeze_Dolphin.lab.U;
 import me.Freeze_Dolphin.lab.Variables;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.AdvancedMenuClickHandler;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
@@ -41,6 +35,11 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public abstract class ChemicalReactor extends AdvancedAContainer {
     public static final Map<Block, MachineRecipe> processing = new HashMap<>();
@@ -59,7 +58,8 @@ public abstract class ChemicalReactor extends AdvancedAContainer {
             }
 
             @Override
-            public void newInstance(BlockMenu menu, Block b) {}
+            public void newInstance(BlockMenu menu, Block b) {
+            }
 
             @Override
             public boolean canOpen(Block b, Player p) {
@@ -119,14 +119,14 @@ public abstract class ChemicalReactor extends AdvancedAContainer {
         int time = Variables.cfg.getInt("items.chemical-reator.time");
         registerRecipe(
                 6 * time,
-                new ItemStack[] {
-                    SlimefunItems.URANIUM,
-                    SlimefunItems.SMALL_URANIUM,
-                    SlimefunItems.SULFATE,
-                    SlimefunItems.SULFATE,
-                    SlimefunItems.SULFATE
+                new ItemStack[]{
+                        SlimefunItems.URANIUM,
+                        SlimefunItems.SMALL_URANIUM,
+                        SlimefunItems.SULFATE,
+                        SlimefunItems.SULFATE,
+                        SlimefunItems.SULFATE
                 },
-                new ItemStack[] {Tech.RADIUM});
+                new ItemStack[]{Tech.RADIUM});
     }
 
     @SuppressWarnings("deprecation")
@@ -175,12 +175,12 @@ public abstract class ChemicalReactor extends AdvancedAContainer {
 
     @Override
     public int[] getInputSlots() {
-        return new int[] {10, 11, 19, 20, 28, 29};
+        return new int[]{10, 11, 19, 20, 28, 29};
     }
 
     @Override
     public int[] getOutputSlots() {
-        return new int[] {24, 25};
+        return new int[]{24, 25};
     }
 
     @Override
@@ -197,7 +197,8 @@ public abstract class ChemicalReactor extends AdvancedAContainer {
             }
 
             @Override
-            public void uniqueTick() {}
+            public void uniqueTick() {
+            }
 
             @Override
             public boolean isSynchronized() {

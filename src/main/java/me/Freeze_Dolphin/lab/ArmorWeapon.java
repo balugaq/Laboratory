@@ -22,7 +22,7 @@ public class ArmorWeapon {
     private static final ItemGroup c = new SubItemGroup(
             new NamespacedKey(Laboratory.instance, "armor_weapon"),
             Laboratory.nest,
-            new CustomItemStack(Material.DIAMOND_CHESTPLATE, "&7Consider 实验室装甲 & 武器", new String[] {"", "&a> 点击打开"}),
+            new CustomItemStack(Material.DIAMOND_CHESTPLATE, "&7Consider 实验室装甲 & 武器", new String[]{"", "&a> 点击打开"}),
             4);
     public static SlimefunItemStack REINFORCED_SCUBA_HELMET;
     public static SlimefunItemStack REINFORCED_HAZMATSUIT_CHESTPLATE;
@@ -70,9 +70,9 @@ public class ArmorWeapon {
         URANIUM_SWORD.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 3);
         URANIUM_SWORD.addUnsafeEnchantment(Enchantment.DURABILITY, 5);
 
-        (new RadioactiveItem(c, Radioactivity.HIGH, URANIUM_SWORD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                    null, SlimefunItems.URANIUM, SlimefunItems.URANIUM, SlimefunItems.REINFORCED_PLATE
-                }))
+        (new RadioactiveItem(c, Radioactivity.HIGH, URANIUM_SWORD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                null, SlimefunItems.URANIUM, SlimefunItems.URANIUM, SlimefunItems.REINFORCED_PLATE
+        }))
                 .register(Laboratory.instance);
 
         IRRADIANT_URANIUM_SWORD = new SlimefunItemStack("LAB_IRRADIANT_URANIUM_SWORD",
@@ -88,9 +88,9 @@ public class ArmorWeapon {
         IRRADIANT_URANIUM_SWORD.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 5);
         IRRADIANT_URANIUM_SWORD.addUnsafeEnchantment(Enchantment.DURABILITY, 5);
 
-        (new RadioactiveItem(c, Radioactivity.HIGH, IRRADIANT_URANIUM_SWORD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                    null, Tech.IRRADIANT_URANIUM, Tech.IRRADIANT_URANIUM, SlimefunItems.REINFORCED_PLATE
-                }))
+        (new RadioactiveItem(c, Radioactivity.HIGH, IRRADIANT_URANIUM_SWORD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                null, Tech.IRRADIANT_URANIUM, Tech.IRRADIANT_URANIUM, SlimefunItems.REINFORCED_PLATE
+        }))
                 .register(Laboratory.instance);
 
         RADIUM_SWORD = new SlimefunItemStack("LAB_RADIUM_SWORD",
@@ -106,9 +106,9 @@ public class ArmorWeapon {
         RADIUM_SWORD.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 2);
         RADIUM_SWORD.addUnsafeEnchantment(Enchantment.DURABILITY, 3);
 
-        (new RadioactiveItem(c, Radioactivity.VERY_HIGH, RADIUM_SWORD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                    null, Tech.RADIUM, Tech.RADIUM, Tech.REINFORCED_IRIDIUM_IRON_PLATE
-                }))
+        (new RadioactiveItem(c, Radioactivity.VERY_HIGH, RADIUM_SWORD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                null, Tech.RADIUM, Tech.RADIUM, Tech.REINFORCED_IRIDIUM_IRON_PLATE
+        }))
                 .register(Laboratory.instance);
 
         IRRADIANT_RADIUM_SWORD = new SlimefunItemStack("LAB_IRRADIANT_RADIUM_SWORD",
@@ -125,16 +125,16 @@ public class ArmorWeapon {
         IRRADIANT_RADIUM_SWORD.addUnsafeEnchantment(Enchantment.DURABILITY, 3);
 
         (new RadioactiveItem(
-                        c,
-                        Radioactivity.VERY_HIGH,
-                        IRRADIANT_RADIUM_SWORD,
-                        RecipeType.ENHANCED_CRAFTING_TABLE,
-                        new ItemStack[] {
-                            null,
-                            Tech.IRRADIANT_RADIUM,
-                            Tech.IRRADIANT_RADIUM,
-                            Tech.IRRADIANT_REINFORCED_IRIDIUM_IRON_PLATE
-                        }))
+                c,
+                Radioactivity.VERY_HIGH,
+                IRRADIANT_RADIUM_SWORD,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{
+                        null,
+                        Tech.IRRADIANT_RADIUM,
+                        Tech.IRRADIANT_RADIUM,
+                        Tech.IRRADIANT_REINFORCED_IRIDIUM_IRON_PLATE
+                }))
                 .register(Laboratory.instance);
 
         U.setPenetratingRadioactive(RADIUM_SWORD);
@@ -151,47 +151,47 @@ public class ArmorWeapon {
         WITHER_PROOF_OBSIDIAN_BOOTS = new SlimefunItemStack("LAB_WITHER_PROOF_OBSIDIAN_BOOTS",
                 new CustomArmor(new CustomItemStack(Material.LEATHER_BOOTS, "&5抗凋零黑耀石靴子"), Color.BLACK));
 
-        (new SlimefunItem(c, WITHER_PROOF_OBSIDIAN_HELMET, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN
-                }))
+        (new SlimefunItem(c, WITHER_PROOF_OBSIDIAN_HELMET, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN
+        }))
                 .register(Laboratory.instance);
 
-        (new SlimefunItem(c, WITHER_PROOF_OBSIDIAN_CHESTPLATE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN
-                }))
+        (new SlimefunItem(c, WITHER_PROOF_OBSIDIAN_CHESTPLATE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN
+        }))
                 .register(Laboratory.instance);
 
-        (new SlimefunItem(c, WITHER_PROOF_OBSIDIAN_LEGGINGS, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN
-                }))
+        (new SlimefunItem(c, WITHER_PROOF_OBSIDIAN_LEGGINGS, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN
+        }))
                 .register(Laboratory.instance);
 
-        (new SlimefunItem(c, WITHER_PROOF_OBSIDIAN_BOOTS, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                    null,
-                    null,
-                    null,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                    SlimefunItems.WITHER_PROOF_OBSIDIAN
-                }))
+        (new SlimefunItem(c, WITHER_PROOF_OBSIDIAN_BOOTS, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                null,
+                null,
+                null,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN
+        }))
                 .register(Laboratory.instance);
     }
 
@@ -211,39 +211,39 @@ public class ArmorWeapon {
         ItemStack o = SlimefunItems.WITHER_PROOF_GLASS;
 
         (new SlimefunArmorPiece(
-                        c,
-                        WITHER_PROOF_GLASS_HELMET,
-                        RecipeType.ENHANCED_CRAFTING_TABLE,
-                        new ItemStack[] {o, Tech.RUBBER_BALL, o, si, WITHER_PROOF_OBSIDIAN_HELMET, si},
-                        new PotionEffect[] {new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 300, 1)}))
+                c,
+                WITHER_PROOF_GLASS_HELMET,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{o, Tech.RUBBER_BALL, o, si, WITHER_PROOF_OBSIDIAN_HELMET, si},
+                new PotionEffect[]{new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 300, 1)}))
                 .register(Laboratory.instance);
 
         (new SlimefunArmorPiece(
-                        c,
-                        WITHER_PROOF_GLASS_CHESTPLATE,
-                        RecipeType.ENHANCED_CRAFTING_TABLE,
-                        new ItemStack[] {
-                            o, sp, o,
-                            o, WITHER_PROOF_OBSIDIAN_CHESTPLATE, o,
-                            o, o, o
-                        },
-                        new PotionEffect[] {new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 300, 1)}))
+                c,
+                WITHER_PROOF_GLASS_CHESTPLATE,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{
+                        o, sp, o,
+                        o, WITHER_PROOF_OBSIDIAN_CHESTPLATE, o,
+                        o, o, o
+                },
+                new PotionEffect[]{new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 300, 1)}))
                 .register(Laboratory.instance);
 
         (new SlimefunArmorPiece(
-                        c,
-                        WITHER_PROOF_GLASS_LEGGINGS,
-                        RecipeType.ENHANCED_CRAFTING_TABLE,
-                        new ItemStack[] {o, WITHER_PROOF_OBSIDIAN_LEGGINGS, o, o, o, o, o},
-                        new PotionEffect[] {new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 300, 1)}))
+                c,
+                WITHER_PROOF_GLASS_LEGGINGS,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{o, WITHER_PROOF_OBSIDIAN_LEGGINGS, o, o, o, o, o},
+                new PotionEffect[]{new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 300, 1)}))
                 .register(Laboratory.instance);
 
         (new SlimefunArmorPiece(
-                        c,
-                        WITHER_PROOF_GLASS_BOOTS,
-                        RecipeType.ENHANCED_CRAFTING_TABLE,
-                        new ItemStack[] {null, WITHER_PROOF_OBSIDIAN_BOOTS, o, Tech.RUBBER_BALL, o, o, sp, o},
-                        new PotionEffect[] {new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 300, 1)}))
+                c,
+                WITHER_PROOF_GLASS_BOOTS,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{null, WITHER_PROOF_OBSIDIAN_BOOTS, o, Tech.RUBBER_BALL, o, o, sp, o},
+                new PotionEffect[]{new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 300, 1)}))
                 .register(Laboratory.instance);
     }
 
@@ -288,41 +288,41 @@ public class ArmorWeapon {
         ItemStack pc = SlimefunItems.POWER_CRYSTAL;
 
         (new SlimefunArmorPiece(
-                        c,
-                        REINFORCED_SCUBA_HELMET,
-                        RecipeType.ENHANCED_CRAFTING_TABLE,
-                        new ItemStack[] {rag, rag, rag, rag, SlimefunItems.SCUBA_HELMET, rag, pc},
-                        new PotionEffect[] {
-                            new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 300, 1),
-                            new PotionEffect(PotionEffectType.SLOW, 300, 1)
-                        }))
+                c,
+                REINFORCED_SCUBA_HELMET,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{rag, rag, rag, rag, SlimefunItems.SCUBA_HELMET, rag, pc},
+                new PotionEffect[]{
+                        new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 300, 1),
+                        new PotionEffect(PotionEffectType.SLOW, 300, 1)
+                }))
                 .register(Laboratory.instance);
 
         (new SlimefunArmorPiece(
-                        c,
-                        REINFORCED_HAZMATSUIT_CHESTPLATE,
-                        RecipeType.ENHANCED_CRAFTING_TABLE,
-                        new ItemStack[] {
-                            rag, pc, rag,
-                            rag, SlimefunItems.HAZMAT_CHESTPLATE, rag,
-                            rag, rag, rag
-                        },
-                        new PotionEffect[] {
-                            new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 300, 1),
-                            new PotionEffect(PotionEffectType.SLOW, 300, 1)
-                        }))
+                c,
+                REINFORCED_HAZMATSUIT_CHESTPLATE,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{
+                        rag, pc, rag,
+                        rag, SlimefunItems.HAZMAT_CHESTPLATE, rag,
+                        rag, rag, rag
+                },
+                new PotionEffect[]{
+                        new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 300, 1),
+                        new PotionEffect(PotionEffectType.SLOW, 300, 1)
+                }))
                 .register(Laboratory.instance);
 
         (new SlimefunArmorPiece(
-                        c,
-                        REINFORCED_HAZMATSUIT_LEGGINGS,
-                        RecipeType.ENHANCED_CRAFTING_TABLE,
-                        new ItemStack[] {
-                            rag, rag, rag,
-                            rag, SlimefunItems.HAZMAT_LEGGINGS, rag,
-                            rag, pc, rag
-                        },
-                        new PotionEffect[] {new PotionEffect(PotionEffectType.SLOW, 300, 1)}))
+                c,
+                REINFORCED_HAZMATSUIT_LEGGINGS,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{
+                        rag, rag, rag,
+                        rag, SlimefunItems.HAZMAT_LEGGINGS, rag,
+                        rag, pc, rag
+                },
+                new PotionEffect[]{new PotionEffect(PotionEffectType.SLOW, 300, 1)}))
                 .register(Laboratory.instance);
     }
 }

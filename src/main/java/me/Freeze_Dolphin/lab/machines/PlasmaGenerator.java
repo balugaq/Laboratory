@@ -9,12 +9,6 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import me.Freeze_Dolphin.lab.AdvancedAContainer;
 import me.Freeze_Dolphin.lab.ChargeableBlock;
 import me.Freeze_Dolphin.lab.MachineHelper;
@@ -23,11 +17,8 @@ import me.Freeze_Dolphin.lab.U;
 import me.Freeze_Dolphin.lab.Variables;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AGenerator;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import org.bukkit.Bukkit;
@@ -42,13 +33,19 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public abstract class PlasmaGenerator extends AdvancedAContainer {
     public static final Map<Block, MachineRecipe> processing = new HashMap<>();
     public static final Map<Block, Integer> progress = new HashMap<>();
     private static final int[] border =
-            new int[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 13, 31, 36, 37, 38, 39, 40, 41, 42, 43, 44};
-    private static final int[] border_in = new int[] {9, 10, 11, 12, 18, 21, 27, 28, 29, 30};
-    private static final int[] border_out = new int[] {14, 15, 16, 17, 23, 26, 32, 33, 34, 35};
+            new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 13, 31, 36, 37, 38, 39, 40, 41, 42, 43, 44};
+    private static final int[] border_in = new int[]{9, 10, 11, 12, 18, 21, 27, 28, 29, 30};
+    private static final int[] border_out = new int[]{14, 15, 16, 17, 23, 26, 32, 33, 34, 35};
     protected final List<MachineRecipe> recipes = new ArrayList<>();
 
     public PlasmaGenerator(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
@@ -144,8 +141,8 @@ public abstract class PlasmaGenerator extends AdvancedAContainer {
     public void registerDefaultRecipes() {
         registerRecipe(
                 Variables.cfg.getInt("items.plasma-generator.time"),
-                new ItemStack[] {new ItemStack(Material.GLASS_BOTTLE)},
-                new ItemStack[] {Tech.PLASMA_CELL});
+                new ItemStack[]{new ItemStack(Material.GLASS_BOTTLE)},
+                new ItemStack[]{Tech.PLASMA_CELL});
     }
 
     public abstract int getEnergyConsumption();
@@ -157,11 +154,11 @@ public abstract class PlasmaGenerator extends AdvancedAContainer {
     }
 
     public int[] getInputSlots() {
-        return new int[] {19, 20};
+        return new int[]{19, 20};
     }
 
     public int[] getOutputSlots() {
-        return new int[] {24, 25};
+        return new int[]{24, 25};
     }
 
     public MachineRecipe getProcessing(Block b) {
@@ -221,7 +218,8 @@ public abstract class PlasmaGenerator extends AdvancedAContainer {
                 PlasmaGenerator.this.tick(b);
             }
 
-            public void uniqueTick() {}
+            public void uniqueTick() {
+            }
 
             public boolean isSynchronized() {
                 return false;
