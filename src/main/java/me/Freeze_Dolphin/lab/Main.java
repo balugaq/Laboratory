@@ -85,7 +85,7 @@ public class Main extends JavaPlugin implements SlimefunAddon {
 
     public void onEnable() {
         getLogger().info("Enabling Laboratory...");
-        instance = this;
+        instance = this; 
         Variables.plug = this;
         Variables.cfg = Variables.plug.getConfig();
         Variables.Non = RecipeType.NULL;
