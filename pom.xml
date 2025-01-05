@@ -62,7 +62,7 @@
 		</plugins>
 		<resources>
 			<resource>
-				<directory>src/main/resources</directory>
+				<directory>src/laboratory/resources</directory>
 				<filtering>true</filtering>
 				<excludes>
 					<exclude>/**/*.zip</exclude>

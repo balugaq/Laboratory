@@ -6,7 +6,8 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import java.util.List;
-import me.Freeze_Dolphin.lab.Main;
+
+import me.Freeze_Dolphin.lab.Laboratory;
 import me.Freeze_Dolphin.lab.Tech;
 import me.Freeze_Dolphin.lab.U;
 import me.Freeze_Dolphin.lab.Variables;
@@ -26,7 +27,7 @@ public abstract class Converter extends AContainer {
     public static ItemStack cfg2it(String cfg) {
         ItemStack rt = new ItemStack(Material.AIR);
 
-        Main.debug(cfg);
+        Laboratory.debug(cfg);
 
         if (cfg.contains("SF")) {
             String id = cfg.split("SF\\{")[1].split("\\}")[0];
@@ -34,7 +35,7 @@ public abstract class Converter extends AContainer {
             if (item != null) {
                 rt = item.getItem();
             } else {
-                Main.debug("Slimefun Item not found: " + id);
+                Laboratory.debug("Slimefun Item not found: " + id);
             }
         } else {
             String mat = cfg.split("MC\\{")[1].split("\\}")[0];
@@ -43,11 +44,11 @@ public abstract class Converter extends AContainer {
         }
 
         try {
-            Main.debug("=---------------------------=" + rt + "=---------------------------=");
+            Laboratory.debug("=---------------------------=" + rt + "=---------------------------=");
         } catch (Exception ex) {
-            Main.debug("=---------------------------= An Error Happened Here=---------------------------=");
+            Laboratory.debug("=---------------------------= An Error Happened Here=---------------------------=");
             U.scolor("&c&l=-E-R-R-O-R-_-H-E-R-E--------=");
-            Main.debug("");
+            Laboratory.debug("");
         }
 
         return rt;
@@ -65,24 +66,24 @@ public abstract class Converter extends AContainer {
         try {
             Material mat = Material.getMaterial(string);
             if (mat == null) {
-                Main.debug("Material not found: " + string);
+                Laboratory.debug("Material not found: " + string);
                 for (Material m : Material.values()) {
                     if (m.name().toLowerCase().contains(string.toLowerCase())) {
-                        Main.debug("Did you mean: " + m.name() + "?");
+                        Laboratory.debug("Did you mean: " + m.name() + "?");
                         break;
                     }
                 }
 
                 for (Material m : Material.values()) {
                     if (m.name().toLowerCase().startsWith(string.toLowerCase())) {
-                        Main.debug("Did you mean: " + m.name() + "?");
+                        Laboratory.debug("Did you mean: " + m.name() + "?");
                         break;
                     }
                 }
 
                 for (Material m : Material.values()) {
                     if (m.name().toLowerCase().endsWith(string.toLowerCase())) {
-                        Main.debug("Did you mean: " + m.name() + "?");
+                        Laboratory.debug("Did you mean: " + m.name() + "?");
                         break;
                     }
                 }
@@ -98,7 +99,7 @@ public abstract class Converter extends AContainer {
                 }
 
                 if (mostLiked != null) {
-                    Main.debug("Did you mean: " + mostLiked.name() + "?");
+                    Laboratory.debug("Did you mean: " + mostLiked.name() + "?");
                 }
             }
         } catch (Exception ex) {

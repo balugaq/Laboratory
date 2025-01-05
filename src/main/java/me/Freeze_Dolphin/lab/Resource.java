@@ -47,32 +47,32 @@ public class Resource implements Listener {
                                     "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzEyNTExZTllOWUxYWFkOTI3NTI1NmZkNDIyMDc0YzUyNzczMzkxZTM3YzNjNTU2OTY5NjY3ZjA5N2Y5OTczZSJ9fX0="),
                             "&e方氟钾石"));
         } catch (Exception e) {
-            Main.debugException(e);
+            Laboratory.debugException(e);
         }
     }
 
     public Resource() {
-        (new SlimefunItem(c, GRAPHITE, Tech.DIG, U.midr(U.mat(Material.COAL_ORE)))).register(Main.instance);
+        (new SlimefunItem(c, GRAPHITE, Tech.DIG, U.midr(U.mat(Material.COAL_ORE)))).register(Laboratory.instance);
         (new SlimefunItem(c, CAROBBIITE, Tech.DIG, U.midr(new CustomItemStack(Material.DIORITE))))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
-        (new SlimefunItem(c, BERYLLIUM_DUST, Tech.DIG, U.midr(U.mat(Material.EMERALD_ORE)))).register(Main.instance);
-        (new SlimefunItem(c, LITHIUM_DUST, Tech.DIG, U.midr(U.mat(Material.IRON_ORE)))).register(Main.instance);
+        (new SlimefunItem(c, BERYLLIUM_DUST, Tech.DIG, U.midr(U.mat(Material.EMERALD_ORE)))).register(Laboratory.instance);
+        (new SlimefunItem(c, LITHIUM_DUST, Tech.DIG, U.midr(U.mat(Material.IRON_ORE)))).register(Laboratory.instance);
         (new SlimefunItem(c, POTASSIUM_DUST, Tech.ELYZER, U.midr(new CustomItemStack(Material.ANDESITE))))
-                .register(Main.instance);
+                .register(Laboratory.instance);
         Variables.electrolyzer_r.put(
                 new ItemStack[] {new CustomItemStack(Material.ANDESITE)}, new ItemStack[] {POTASSIUM_DUST});
         (new SlimefunItem(c, SODIUM_DUST, Tech.ELYZER, U.midr(new CustomItemStack(Material.DARK_PRISMARINE))))
-                .register(Main.instance);
+                .register(Laboratory.instance);
         Variables.electrolyzer_r.put(
                 new ItemStack[] {(new CustomItemStack(Material.DARK_PRISMARINE))}, new ItemStack[] {SODIUM_DUST});
         (new SlimefunItem(c, BERYLLIUM_INGOT, RecipeType.SMELTERY, new ItemStack[] {BERYLLIUM_DUST}))
-                .register(Main.instance);
+                .register(Laboratory.instance);
         (new SlimefunItem(c, LITHIUM_INGOT, RecipeType.SMELTERY, new ItemStack[] {LITHIUM_DUST}))
-                .register(Main.instance);
+                .register(Laboratory.instance);
         (new SlimefunItem(c, POTASSIUM_INGOT, RecipeType.SMELTERY, new ItemStack[] {POTASSIUM_DUST}))
-                .register(Main.instance);
-        (new SlimefunItem(c, SODIUM_INGOT, RecipeType.SMELTERY, new ItemStack[] {SODIUM_DUST})).register(Main.instance);
+                .register(Laboratory.instance);
+        (new SlimefunItem(c, SODIUM_INGOT, RecipeType.SMELTERY, new ItemStack[] {SODIUM_DUST})).register(Laboratory.instance);
 
         Variables.plug.getServer().getPluginManager().registerEvents(this, Variables.plug);
     }

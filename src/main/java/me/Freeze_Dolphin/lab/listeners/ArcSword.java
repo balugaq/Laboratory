@@ -4,7 +4,7 @@ import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.List;
 import me.Freeze_Dolphin.lab.ItemEnergy;
 import me.Freeze_Dolphin.lab.Lab;
-import me.Freeze_Dolphin.lab.Main;
+import me.Freeze_Dolphin.lab.Laboratory;
 import me.Freeze_Dolphin.lab.U;
 import me.Freeze_Dolphin.lab.Variables;
 import org.bukkit.Material;
@@ -84,7 +84,7 @@ public class ArcSword implements Listener {
                 }
             }
         } catch (Exception ex) {
-            Main.debugException(ex);
+            Laboratory.debugException(ex);
         }
     }
 
@@ -139,7 +139,7 @@ public class ArcSword implements Listener {
                     }
                 }
             } catch (Exception ex) {
-                Main.debugException(ex);
+                Laboratory.debugException(ex);
             }
         }
     }
@@ -150,7 +150,7 @@ public class ArcSword implements Listener {
 
             ItemStack it = e.getItem();
             if (e.getPlayer().isSneaking()) {
-                Main.debug("change mode");
+                Laboratory.debug("change mode");
                 switchMode(it, true, e.getPlayer());
             }
         }

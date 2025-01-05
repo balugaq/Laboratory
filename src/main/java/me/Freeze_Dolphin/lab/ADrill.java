@@ -16,7 +16,6 @@ import java.util.OptionalInt;
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
@@ -85,11 +84,11 @@ public abstract class ADrill extends AContainer {
 
             public boolean canOpen(@NotNull Block b, @NotNull Player p) {
                 if (!p.hasPermission("slimefun.inventory.bypass") && !canUse(p, true)) {
-                    Main.debug("Player " + p.getName() + " does not have permission to use " + ADrill.this.getId() + " at " + b.getLocation());
+                    Laboratory.debug("Player " + p.getName() + " does not have permission to use " + ADrill.this.getId() + " at " + b.getLocation());
                     return false;
                 }
 
-                Main.debug("Player " + p.getName() + " can use " + ADrill.this.getId() + " at " + b.getLocation());
+                Laboratory.debug("Player " + p.getName() + " can use " + ADrill.this.getId() + " at " + b.getLocation());
                 if (hasGeneratedResources(ADrill.this.getOreGenResource(), b)) {
                     return true;
                 } else {
@@ -148,10 +147,10 @@ public abstract class ADrill extends AContainer {
             if (current <= 0) {
                 return;
             }
-            Main.debug("Generating resources for " + this.getId() + " at " + b.getLocation());
+            Laboratory.debug("Generating resources for " + this.getId() + " at " + b.getLocation());
             MachineRecipe r = new MachineRecipe(getProcessingTime() / getSpeed(), new ItemStack[0], getOutputItems());
             if (!BlockMenuUtil.fits(b, r.getOutput(), getOutputSlots())) return;
-            Main.debug("Generated resources for " + this.getId() + " at " + b.getLocation());
+            Laboratory.debug("Generated resources for " + this.getId() + " at " + b.getLocation());
             processing.put(b, r);
             progress.put(b, r.getTicks());
             setResource(getOreGenResource(), b, current - 1);

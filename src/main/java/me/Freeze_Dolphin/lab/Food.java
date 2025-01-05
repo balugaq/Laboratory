@@ -6,7 +6,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.SubItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -21,8 +20,8 @@ public class Food {
 
     static {
         ItemGroup c = new SubItemGroup(
-                new NamespacedKey(Main.instance, "food"),
-                Main.nest,
+                new NamespacedKey(Laboratory.instance, "food"),
+                Laboratory.nest,
                 new CustomItemStack(Material.COOKED_BEEF, "&7Consider 实验室食物", ""),
                 3);
 
@@ -39,15 +38,15 @@ public class Food {
                 U.mat(Material.MILK_BUCKET), U.mat(Material.GLASS_BOTTLE), null,
                 null, null, null,
                 null, null, null
-        })).register(Main.instance);
+        })).register(Laboratory.instance);
 
         (new SlimefunItem(c, COLA, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 U.bottle(), U.mat(Material.SUGAR), U.mat(Material.SUGAR),
                 null, null, null,
                 null, null, null
-        })).register(Main.instance);
+        })).register(Laboratory.instance);
 
-        ShapelessRecipe MILK_BOTTLE_R = new ShapelessRecipe(new NamespacedKey(Main.instance, "milk_bottle_recipe"), MILK_BOTTLE);
+        ShapelessRecipe MILK_BOTTLE_R = new ShapelessRecipe(new NamespacedKey(Laboratory.instance, "milk_bottle_recipe"), MILK_BOTTLE);
         MILK_BOTTLE_R.addIngredient(Material.MILK_BUCKET);
         MILK_BOTTLE_R.addIngredient(Material.GLASS_BOTTLE);
         Variables.plug.getServer().addRecipe(MILK_BOTTLE_R);

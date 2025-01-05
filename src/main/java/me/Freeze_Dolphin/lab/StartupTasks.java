@@ -16,7 +16,7 @@ public class StartupTasks {
 
     private static void radioactivityTask() {
         Config config = io.github.thebusybiscuit.slimefun4.implementation.Slimefun.getCfg();
-        Main.debug(config.getBoolean("options.enable-armor-effects") + " , "
+        Laboratory.debug(config.getBoolean("options.enable-armor-effects") + " , "
                 + config.getInt("options.armor-update-interval"));
 
         if (config.getBoolean("options.enable-armor-effects"))
@@ -24,7 +24,7 @@ public class StartupTasks {
                     .getServer()
                     .getScheduler()
                     .runTaskTimer(
-                            Main.getPlugin(Main.class),
+                            Laboratory.getPlugin(Laboratory.class),
                             () -> {
                                 for (Player p : Variables.plug.getServer().getOnlinePlayers()) {
                                     for (ItemStack radioactive : Variables.penetratingRadioactive) {

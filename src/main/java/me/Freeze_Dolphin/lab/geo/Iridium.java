@@ -1,9 +1,10 @@
 package me.Freeze_Dolphin.lab.geo;
 
 import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+
 import java.util.Random;
-import me.Freeze_Dolphin.lab.Main;
+
+import me.Freeze_Dolphin.lab.Laboratory;
 import me.Freeze_Dolphin.lab.Tech;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World;
@@ -45,6 +46,6 @@ public class Iridium implements GEOResource {
 
     @Override
     public @NotNull NamespacedKey getKey() {
-        return new NamespacedKey(Main.instance, "iridium");
+        return new NamespacedKey(Laboratory.instance, "iridium");
     }
 }

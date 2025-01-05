@@ -20,8 +20,8 @@ import org.bukkit.potion.PotionEffectType;
 
 public class ArmorWeapon {
     private static final ItemGroup c = new SubItemGroup(
-            new NamespacedKey(Main.instance, "armor_weapon"),
-            Main.nest,
+            new NamespacedKey(Laboratory.instance, "armor_weapon"),
+            Laboratory.nest,
             new CustomItemStack(Material.DIAMOND_CHESTPLATE, "&7Consider 实验室装甲 & 武器", new String[] {"", "&a> 点击打开"}),
             4);
     public static SlimefunItemStack REINFORCED_SCUBA_HELMET;
@@ -73,7 +73,7 @@ public class ArmorWeapon {
         (new RadioactiveItem(c, Radioactivity.HIGH, URANIUM_SWORD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     null, SlimefunItems.URANIUM, SlimefunItems.URANIUM, SlimefunItems.REINFORCED_PLATE
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         IRRADIANT_URANIUM_SWORD = new SlimefunItemStack("LAB_IRRADIANT_URANIUM_SWORD",
                 new CustomItemStack(
@@ -91,7 +91,7 @@ public class ArmorWeapon {
         (new RadioactiveItem(c, Radioactivity.HIGH, IRRADIANT_URANIUM_SWORD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     null, Tech.IRRADIANT_URANIUM, Tech.IRRADIANT_URANIUM, SlimefunItems.REINFORCED_PLATE
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         RADIUM_SWORD = new SlimefunItemStack("LAB_RADIUM_SWORD",
                 new CustomItemStack(
@@ -109,7 +109,7 @@ public class ArmorWeapon {
         (new RadioactiveItem(c, Radioactivity.VERY_HIGH, RADIUM_SWORD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     null, Tech.RADIUM, Tech.RADIUM, Tech.REINFORCED_IRIDIUM_IRON_PLATE
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         IRRADIANT_RADIUM_SWORD = new SlimefunItemStack("LAB_IRRADIANT_RADIUM_SWORD",
                 new CustomItemStack(
@@ -135,7 +135,7 @@ public class ArmorWeapon {
                             Tech.IRRADIANT_RADIUM,
                             Tech.IRRADIANT_REINFORCED_IRIDIUM_IRON_PLATE
                         }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         U.setPenetratingRadioactive(RADIUM_SWORD);
         U.setPenetratingRadioactive(IRRADIANT_RADIUM_SWORD);
@@ -158,7 +158,7 @@ public class ArmorWeapon {
                     SlimefunItems.WITHER_PROOF_OBSIDIAN,
                     SlimefunItems.WITHER_PROOF_OBSIDIAN
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(c, WITHER_PROOF_OBSIDIAN_CHESTPLATE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.WITHER_PROOF_OBSIDIAN,
@@ -170,7 +170,7 @@ public class ArmorWeapon {
                     SlimefunItems.WITHER_PROOF_OBSIDIAN,
                     SlimefunItems.WITHER_PROOF_OBSIDIAN
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(c, WITHER_PROOF_OBSIDIAN_LEGGINGS, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.WITHER_PROOF_OBSIDIAN,
@@ -181,7 +181,7 @@ public class ArmorWeapon {
                     SlimefunItems.WITHER_PROOF_OBSIDIAN,
                     SlimefunItems.WITHER_PROOF_OBSIDIAN
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(c, WITHER_PROOF_OBSIDIAN_BOOTS, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     null,
@@ -192,7 +192,7 @@ public class ArmorWeapon {
                     SlimefunItems.WITHER_PROOF_OBSIDIAN,
                     SlimefunItems.WITHER_PROOF_OBSIDIAN
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
     }
 
     private static void WitherProofGlassArmors() {
@@ -216,7 +216,7 @@ public class ArmorWeapon {
                         RecipeType.ENHANCED_CRAFTING_TABLE,
                         new ItemStack[] {o, Tech.RUBBER_BALL, o, si, WITHER_PROOF_OBSIDIAN_HELMET, si},
                         new PotionEffect[] {new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 300, 1)}))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunArmorPiece(
                         c,
@@ -228,7 +228,7 @@ public class ArmorWeapon {
                             o, o, o
                         },
                         new PotionEffect[] {new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 300, 1)}))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunArmorPiece(
                         c,
@@ -236,7 +236,7 @@ public class ArmorWeapon {
                         RecipeType.ENHANCED_CRAFTING_TABLE,
                         new ItemStack[] {o, WITHER_PROOF_OBSIDIAN_LEGGINGS, o, o, o, o, o},
                         new PotionEffect[] {new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 300, 1)}))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunArmorPiece(
                         c,
@@ -244,7 +244,7 @@ public class ArmorWeapon {
                         RecipeType.ENHANCED_CRAFTING_TABLE,
                         new ItemStack[] {null, WITHER_PROOF_OBSIDIAN_BOOTS, o, Tech.RUBBER_BALL, o, o, sp, o},
                         new PotionEffect[] {new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 300, 1)}))
-                .register(Main.instance);
+                .register(Laboratory.instance);
     }
 
     private static void AdvancedScubaArmors() {
@@ -296,7 +296,7 @@ public class ArmorWeapon {
                             new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 300, 1),
                             new PotionEffect(PotionEffectType.SLOW, 300, 1)
                         }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunArmorPiece(
                         c,
@@ -311,7 +311,7 @@ public class ArmorWeapon {
                             new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 300, 1),
                             new PotionEffect(PotionEffectType.SLOW, 300, 1)
                         }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunArmorPiece(
                         c,
@@ -323,6 +323,6 @@ public class ArmorWeapon {
                             rag, pc, rag
                         },
                         new PotionEffect[] {new PotionEffect(PotionEffectType.SLOW, 300, 1)}))
-                .register(Main.instance);
+                .register(Laboratory.instance);
     }
 }

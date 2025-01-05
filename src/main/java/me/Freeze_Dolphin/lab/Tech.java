@@ -31,7 +31,6 @@ import me.Freeze_Dolphin.lab.machines.NetherStarCrusher;
 import me.Freeze_Dolphin.lab.machines.PlasmaGenerator;
 import me.Freeze_Dolphin.lab.machines.QuartzDrill;
 import me.Freeze_Dolphin.lab.machines.RadioisotopeThermoelectricGenerator;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AGenerator;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import org.bukkit.Color;
@@ -50,38 +49,38 @@ public class Tech {
     public static final List<List<String>> MT_RECIPES = new ArrayList<>();
     public static final RecipeType NON = Variables.Non;
     public static final RecipeType QDRILL = new RecipeType(
-            new NamespacedKey(Main.instance, "qdrill"),
+            new NamespacedKey(Laboratory.instance, "qdrill"),
             new CustomItemStack(Material.WHITE_STAINED_GLASS, "&f石英钻机", "", "&a赛特斯石英需要利用石英钻机挖取"));
     public static final RecipeType MZER = new RecipeType(
-            new NamespacedKey(Main.instance, "mzer"),
+            new NamespacedKey(Laboratory.instance, "mzer"),
             new CustomItemStack(Material.IRON_BLOCK, "&b磁化机", "", "&a通过磁化机磁化其他物品获得"));
     public static final RecipeType ELYZER = new RecipeType(
-            new NamespacedKey(Main.instance, "elyzer"),
+            new NamespacedKey(Laboratory.instance, "elyzer"),
             new CustomItemStack(Material.IRON_BLOCK, "&b电解机", "", "&a通过电解机电解其他物品获得"));
     public static final RecipeType MT = new RecipeType(
-            new NamespacedKey(Main.instance, "mt"),
+            new NamespacedKey(Laboratory.instance, "mt"),
             new CustomItemStack(Material.BEACON, "&b分子重组仪", "", "&a使用分子重组仪将某些物质转化为另一种物质"));
     public static final RecipeType DIG = new RecipeType(
-            new NamespacedKey(Main.instance, "dig"),
+            new NamespacedKey(Laboratory.instance, "dig"),
             new CustomItemStack(Material.IRON_PICKAXE, "&7采掘", "", "&a在挖掘特定方块时有几率掉落"));
     public static final RecipeType PLASMAG = new RecipeType(
-            new NamespacedKey(Main.instance, "plasmag"),
+            new NamespacedKey(Laboratory.instance, "plasmag"),
             new CustomItemStack(Material.PURPLE_STAINED_GLASS, "&d等离子生成机", "", "&a使用等离子生成机产生等离子体"));
     public static final ItemGroup c = new SubItemGroup(
-            new NamespacedKey(Main.instance, "tech_misc"),
-            Main.nest,
+            new NamespacedKey(Laboratory.instance, "tech_misc"),
+            Laboratory.nest,
             new CustomItemStack(Material.DETECTOR_RAIL, "&7Consider 实验室科技材料"));
     public static final ItemGroup cr = new SubItemGroup(
-            new NamespacedKey(Main.instance, "resources"),
-            Main.nest,
+            new NamespacedKey(Laboratory.instance, "resources"),
+            Laboratory.nest,
             new CustomItemStack(Material.IRON_INGOT, "&7Consider 实验室资源"));
     public static final LockedItemGroup lockedCategory = new LockedItemGroup(
-            new NamespacedKey(Main.instance, "tech_machines"),
+            new NamespacedKey(Laboratory.instance, "tech_machines"),
             new CustomItemStack(Material.BLACK_STAINED_GLASS, "&7Consider 实验室机器"),
             new NamespacedKey(Slimefun.instance(), "basic_machines"));
     public static final ItemGroup cm = new SubItemGroup(
-            new NamespacedKey(Main.instance, "misc"),
-            Main.nest,
+            new NamespacedKey(Laboratory.instance, "misc"),
+            Laboratory.nest,
             new CustomItemStack(Material.PAPER, "&7Consider 实验室杂项"));
     public static SlimefunItemStack MAGNETIC_IRON_INGOT;
     public static SlimefunItemStack RUSTY_MECHANICAL_PARTS;
@@ -177,24 +176,24 @@ public class Tech {
             MT_RECIPES.add(cs.getStringList(key));
         }
 
-        Main.debug(MT_RECIPES.toString());
+        Laboratory.debug(MT_RECIPES.toString());
 
         MAGNETIC_IRON_INGOT = new SlimefunItemStack("LAB_MAGNETIC_IRON_INGOT", new CustomItemStack(Material.IRON_INGOT, "&b磁铁铁矿", "", "&a磁铁铁矿可以制造磁铁"));
         (new SlimefunItem(
                         c,
                         MAGNETIC_IRON_INGOT,
                         new RecipeType(
-                                new NamespacedKey(Main.instance, "break_iron_ore"),
+                                new NamespacedKey(Laboratory.instance, "break_iron_ore"),
                                 new CustomItemStack(Material.IRON_PICKAXE, "&7采掘", "", "&a在挖掘铁块时有几率掉落")),
                         U.midr(new ItemStack(Material.IRON_INGOT))))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         STARC = new RecipeType(
-                new NamespacedKey(Main.instance, "starc"),
+                new NamespacedKey(Laboratory.instance, "starc"),
                 new CustomItemStack(Material.DIAMOND_BLOCK, "&f下界之星粉碎机", "", "&a使用此粉碎机将下界之星粉碎获得"));
 
         LOGS = new RecipeType(
-                new NamespacedKey(Main.instance, "logs"),
+                new NamespacedKey(Laboratory.instance, "logs"),
                 new CustomItemStack(Material.IRON_AXE, "&e伐木", "", "&a砍伐橡木和深色橡木时有几率掉落"));
 
         SlimefunItem iridium = SlimefunItem.getById("IRIDIUM");
@@ -213,7 +212,7 @@ public class Tech {
                             "&f一种稀有的贵重金属",
                             "&f其质地硬而脆"));
 
-            (new SlimefunItem(cr, IRIDIUM, MT, U.midr(new ItemStack(Material.IRON_BLOCK)))).register(Main.instance);
+            (new SlimefunItem(cr, IRIDIUM, MT, U.midr(new ItemStack(Material.IRON_BLOCK)))).register(Laboratory.instance);
         }
 
         CertusQuartz.instance.register();
@@ -462,37 +461,37 @@ public class Tech {
         ItemStack ferrosiliconIngots = SlimefunItems.FERROSILICON.clone();
         ferrosiliconIngots.setAmount(Variables.plug.getConfig().getInt("items.reinforced-silicon-alloy.count"));
         (new SlimefunItem(cr, REINFORCED_SILICON_ALLOY, RecipeType.COMPRESSOR, U.firsts(ferrosiliconIngots)))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new AlloyIngot(cr, ALUMAG_INGOT, new ItemStack[] {
                     SlimefunItems.ALUMINUM_DUST, SlimefunItems.MAGNESIUM_DUST, SlimefunItems.ALUMINUM_INGOT
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         ItemStack alumagIngots = ALUMAG_INGOT.clone();
         alumagIngots.setAmount(Variables.cfg.getInt("items.alumag-alloy.count"));
-        (new SlimefunItem(cm, ALUMAG_ALLOY, RecipeType.COMPRESSOR, U.firsts(alumagIngots))).register(Main.instance);
+        (new SlimefunItem(cm, ALUMAG_ALLOY, RecipeType.COMPRESSOR, U.firsts(alumagIngots))).register(Laboratory.instance);
 
         ItemStack alumagAlloys = ALUMAG_ALLOY.clone();
         alumagAlloys.setAmount(Variables.cfg.getInt("items.alumag-alloy.block.count"));
-        (new SlimefunItem(cm, ALUMAG_BLOCK, RecipeType.COMPRESSOR, U.firsts(alumagAlloys))).register(Main.instance);
+        (new SlimefunItem(cm, ALUMAG_BLOCK, RecipeType.COMPRESSOR, U.firsts(alumagAlloys))).register(Laboratory.instance);
 
         (new AlloyIngot(cr, LEAD_IRON_ALLOY, new ItemStack[] {
                     SlimefunItems.IRON_DUST, SlimefunItems.LEAD_INGOT, U.mat(Material.IRON_INGOT)
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
-        (new SlimefunItem(cm, RAW_RUBBER, LOGS, U.midr(null))).register(Main.instance);
+        (new SlimefunItem(cm, RAW_RUBBER, LOGS, U.midr(null))).register(Laboratory.instance);
 
-        (new SlimefunItem(cm, RUBBER_BALL, RecipeType.SMELTERY, U.midr(RAW_RUBBER))).register(Main.instance);
+        (new SlimefunItem(cm, RUBBER_BALL, RecipeType.SMELTERY, U.midr(RAW_RUBBER))).register(Laboratory.instance);
 
         (new SlimefunItem(cm, A_PIECE_OF_NETHER_STAR, STARC, U.midr(U.mat(Material.NETHER_STAR))))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(cm, IRIDIUM_BLOCK, RecipeType.ENHANCED_CRAFTING_TABLE, U.allr(IRIDIUM)))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
-        (new SlimefunItem(cr, CERTUS_QUARTZ, QDRILL, U.midr(null))).register(Main.instance);
+        (new SlimefunItem(cr, CERTUS_QUARTZ, QDRILL, U.midr(null))).register(Laboratory.instance);
 
         ItemStack[] charged_certus_quartz_recipe = U.halfr2(SlimefunItems.URANIUM, SlimefunItems.ENRICHED_NETHER_ICE);
         charged_certus_quartz_recipe[4] = CERTUS_QUARTZ.clone();
@@ -502,7 +501,7 @@ public class Tech {
                         CHARGED_CERTUS_QUARTZ,
                         RecipeType.ENHANCED_CRAFTING_TABLE,
                         charged_certus_quartz_recipe))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(cm, REINFORCED_IRIDIUM_PLATE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     IRIDIUM,
@@ -515,12 +514,12 @@ public class Tech {
                     U.mat(Material.DIAMOND),
                     IRIDIUM
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         ItemStack[] lama_power_crystal_recipe = U.halfr2(SlimefunItems.POWER_CRYSTAL, A_PIECE_OF_NETHER_STAR);
         lama_power_crystal_recipe[4] = SUPER_CIRCUIT_BOARD;
         (new SlimefunItem(c, LAMA_POWER_CRYSTAL, RecipeType.ENHANCED_CRAFTING_TABLE, lama_power_crystal_recipe))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new RadioactiveItem(
                         c,
@@ -528,7 +527,7 @@ public class Tech {
                         GRENCO_POWER_CRYSTAL,
                         RecipeType.ENHANCED_CRAFTING_TABLE,
                         U.halfr3(LAMA_POWER_CRYSTAL, IRRADIANT_GLASS, SlimefunItems.BOOSTED_URANIUM)))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(c, VECTOR_THRUSTER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     null,
@@ -540,21 +539,21 @@ public class Tech {
                     LAMA_POWER_CRYSTAL,
                     CHARGED_CERTUS_QUARTZ
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(c, NEUTRON_REFLECTOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.COPPER_INGOT, SlimefunItems.CARBON, SlimefunItems.COPPER_INGOT,
                     SlimefunItems.CARBON, SlimefunItems.REINFORCED_PLATE, SlimefunItems.CARBON,
                     SlimefunItems.COPPER_INGOT, SlimefunItems.CARBON, SlimefunItems.COPPER_INGOT
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(c, MT_CORE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.WITHER_PROOF_GLASS, NEUTRON_REFLECTOR, SlimefunItems.WITHER_PROOF_GLASS,
                     SlimefunItems.WITHER_PROOF_GLASS, U.mat(Material.NETHER_STAR), SlimefunItems.WITHER_PROOF_GLASS,
                     SlimefunItems.WITHER_PROOF_GLASS, NEUTRON_REFLECTOR, SlimefunItems.WITHER_PROOF_GLASS
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(c, QUANTUM_CORE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     ENRICHED_SUNNARIUM_ALLOY,
@@ -567,28 +566,28 @@ public class Tech {
                     U.mat(Material.NETHER_STAR),
                     ENRICHED_SUNNARIUM_ALLOY
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(c, VECTOR_CORE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SUPER_ELECTRO_MAGNET, VECTOR_THRUSTER, SUPER_ELECTRO_MAGNET,
                     VECTOR_THRUSTER, LAMA_POWER_CRYSTAL, VECTOR_THRUSTER,
                     IRIDIUM, IRIDIUM, IRIDIUM
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
-        (new SlimefunItem(c, SUPER_MAGNET, MZER, new ItemStack[] {SlimefunItems.MAGNET})).register(Main.instance);
+        (new SlimefunItem(c, SUPER_MAGNET, MZER, new ItemStack[] {SlimefunItems.MAGNET})).register(Laboratory.instance);
 
         (new SlimefunItem(c, SUPER_ELECTRO_MAGNET, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.NICKEL_INGOT, SUPER_MAGNET, SlimefunItems.COBALT_INGOT, SlimefunItems.BATTERY
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(c, SUPER_CIRCUIT_BOARD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.SOLDER_INGOT, SlimefunItems.ADVANCED_CIRCUIT_BOARD, SlimefunItems.SOLDER_INGOT,
                     SlimefunItems.REDSTONE_ALLOY, SUPER_ELECTRO_MAGNET, SlimefunItems.REDSTONE_ALLOY,
                     SlimefunItems.SOLDER_INGOT, SlimefunItems.ADVANCED_CIRCUIT_BOARD, SlimefunItems.SOLDER_INGOT
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(c, ULTIMATE_CIRCUIT_BOARD, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.FERROSILICON,
@@ -601,10 +600,10 @@ public class Tech {
                     SUPER_CIRCUIT_BOARD,
                     SlimefunItems.FERROSILICON
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(cm, MAGNETIZED_REINFORCED_PLATE, MZER, new ItemStack[] {SlimefunItems.REINFORCED_PLATE}))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(c, SUPER_HEATING_COIL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.HEATING_COIL,
@@ -617,7 +616,7 @@ public class Tech {
                     SlimefunItems.HEATING_COIL,
                     SlimefunItems.HEATING_COIL
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new RadioactiveAlloyIngot(cr, Radioactivity.HIGH, SPEED_INGOT, new ItemStack[] {
                     SlimefunItems.CARBONADO,
@@ -626,7 +625,7 @@ public class Tech {
                     SlimefunItems.SILVER_INGOT,
                     SlimefunItems.REINFORCED_ALLOY_INGOT
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(c, SPECTRUM_FILTER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.HARDENED_GLASS,
@@ -639,7 +638,7 @@ public class Tech {
                     SlimefunItems.REINFORCED_PLATE,
                     SlimefunItems.WITHER_PROOF_GLASS
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(c, OPTICAL_COMPONENT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.REINFORCED_ALLOY_INGOT,
@@ -652,7 +651,7 @@ public class Tech {
                     SlimefunItems.POWER_CRYSTAL,
                     SUPER_CIRCUIT_BOARD
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(c, REDSTONE_ELEMENT, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.SILVER_INGOT,
@@ -665,7 +664,7 @@ public class Tech {
                     U.mat(Material.REDSTONE),
                     SlimefunItems.SILVER_INGOT
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(cm, HEAT_CONDUCTOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     RUBBER_BALL,
@@ -678,16 +677,16 @@ public class Tech {
                     RUBBER_BALL,
                     RUBBER_BALL
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
-        (new SlimefunItem(cm, SUNNARIUM_PIECE, MT, U.midr(U.mat(Material.GLOWSTONE_DUST)))).register(Main.instance);
-        (new SlimefunItem(cm, SUNNARIUM, MT, U.midr(U.mat(Material.GLOWSTONE)))).register(Main.instance);
+        (new SlimefunItem(cm, SUNNARIUM_PIECE, MT, U.midr(U.mat(Material.GLOWSTONE_DUST)))).register(Laboratory.instance);
+        (new SlimefunItem(cm, SUNNARIUM, MT, U.midr(U.mat(Material.GLOWSTONE)))).register(Laboratory.instance);
         (new SlimefunItem(cm, SUNNARIUM_ALLOY, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     IRIDIUM, IRIDIUM, IRIDIUM,
                     IRIDIUM, SUNNARIUM, IRIDIUM,
                     IRIDIUM, IRIDIUM, IRIDIUM
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
         (new RadioactiveItem(
                         cr, Radioactivity.HIGH, IRRADIANT_URANIUM, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                             U.mat(Material.GLOWSTONE_DUST), U.mat(Material.GLOWSTONE_DUST),
@@ -696,14 +695,14 @@ public class Tech {
                             U.mat(Material.GLOWSTONE_DUST), U.mat(Material.GLOWSTONE_DUST),
                                     U.mat(Material.GLOWSTONE_DUST)
                         }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
         (new RadioactiveItem(
                         cm, Radioactivity.HIGH, ENRICHED_SUNNARIUM, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                             IRRADIANT_URANIUM, IRRADIANT_URANIUM, IRRADIANT_URANIUM,
                             IRRADIANT_URANIUM, SUNNARIUM, IRRADIANT_URANIUM,
                             IRRADIANT_URANIUM, IRRADIANT_URANIUM, IRRADIANT_URANIUM
                         }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
         (new RadioactiveItem(
                         cm,
                         Radioactivity.HIGH,
@@ -717,7 +716,7 @@ public class Tech {
                             ENRICHED_SUNNARIUM,
                             ENRICHED_SUNNARIUM
                         }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
         (new SlimefunItem(cm, IRRADIANT_GLASS, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.HARDENED_GLASS,
                     U.mat(Material.GLASS),
@@ -729,13 +728,13 @@ public class Tech {
                     U.mat(Material.GLASS),
                     SlimefunItems.HARDENED_GLASS
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
         (new SlimefunItem(cm, IRIDIUM_IRON_PLATE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     U.mat(Material.IRON_INGOT), U.mat(Material.IRON_INGOT), U.mat(Material.IRON_INGOT),
                     U.mat(Material.IRON_INGOT), IRIDIUM, U.mat(Material.IRON_INGOT),
                     U.mat(Material.IRON_INGOT), U.mat(Material.IRON_INGOT), U.mat(Material.IRON_INGOT)
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
         (new SlimefunItem(cm, REINFORCED_IRIDIUM_IRON_PLATE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.REINFORCED_ALLOY_INGOT, SlimefunItems.CARBON_CHUNK,
                             SlimefunItems.REINFORCED_ALLOY_INGOT,
@@ -743,7 +742,7 @@ public class Tech {
                     SlimefunItems.REINFORCED_ALLOY_INGOT, SlimefunItems.CARBON_CHUNK,
                             SlimefunItems.REINFORCED_ALLOY_INGOT
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
         (new SlimefunItem(
                         cm,
                         IRRADIANT_REINFORCED_IRIDIUM_IRON_PLATE,
@@ -753,7 +752,7 @@ public class Tech {
                             U.mat(Material.LAPIS_BLOCK), REINFORCED_IRIDIUM_IRON_PLATE, U.mat(Material.LAPIS_BLOCK),
                             U.mat(Material.REDSTONE), SlimefunItems.SYNTHETIC_DIAMOND, U.mat(Material.REDSTONE)
                         }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         ItemStack rtg_core = IRRADIANT_URANIUM;
         if (Variables.plug.getConfig().getBoolean("items.rtg.easy-recipe")) {
@@ -770,9 +769,9 @@ public class Tech {
                     SlimefunItems.BOOSTED_URANIUM,
                     SlimefunItems.BOOSTED_URANIUM
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
-        (new SlimefunItem(cm, RUSTY_MECHANICAL_PARTS, RecipeType.NULL, new ItemStack[0])).register(Main.instance);
+        (new SlimefunItem(cm, RUSTY_MECHANICAL_PARTS, RecipeType.NULL, new ItemStack[0])).register(Laboratory.instance);
 
         (new SlimefunItem(c, MV_TRANSFORMER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     RUBBER_BALL,
@@ -785,7 +784,7 @@ public class Tech {
                     SlimefunItems.COPPER_INGOT,
                     RUBBER_BALL
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(c, HV_TRANSFORMER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     null,
@@ -795,7 +794,7 @@ public class Tech {
                     SlimefunItems.BATTERY,
                     U.mat(Material.GOLD_INGOT)
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(c, EV_TRANSFORMER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     null,
@@ -805,32 +804,32 @@ public class Tech {
                     SlimefunItems.POWER_CRYSTAL,
                     SlimefunItems.STEEL_INGOT
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(c, ARC_REACTOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.ALUMINUM_BRASS_INGOT, EV_TRANSFORMER, SlimefunItems.ALUMINUM_BRASS_INGOT,
                     Resource.GRAPHITE, U.mat(Material.GLASS), Resource.GRAPHITE,
                     SlimefunItems.ADVANCED_CIRCUIT_BOARD, EV_TRANSFORMER, SlimefunItems.ADVANCED_CIRCUIT_BOARD
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
-        (new SlimefunItem(cm, PLASMA_CELL, PLASMAG, U.midr(U.mat(Material.GLASS_BOTTLE)))).register(Main.instance);
+        (new SlimefunItem(cm, PLASMA_CELL, PLASMAG, U.midr(U.mat(Material.GLASS_BOTTLE)))).register(Laboratory.instance);
 
         (new SlimefunItem(c, PLASMA_BALL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     U.mat(Material.GLASS), U.mat(Material.GLASS), U.mat(Material.GLASS),
                     U.mat(Material.GLASS), PLASMA_CELL, U.mat(Material.GLASS),
                     U.mat(Material.GLASS), U.mat(Material.GLASS), U.mat(Material.GLASS)
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
-        (new RadioactiveItem(cr, Radioactivity.VERY_HIGH, RADIUM, MT, U.midr(SlimefunItems.PLUTONIUM))).register(Main.instance);
+        (new RadioactiveItem(cr, Radioactivity.VERY_HIGH, RADIUM, MT, U.midr(SlimefunItems.PLUTONIUM))).register(Laboratory.instance);
 
         (new RadioactiveItem(cr, Radioactivity.VERY_HIGH, IRRADIANT_RADIUM, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SUNNARIUM_PIECE, SUNNARIUM_PIECE, SUNNARIUM_PIECE,
                     SUNNARIUM_PIECE, RADIUM, SUNNARIUM_PIECE,
                     SUNNARIUM_PIECE, SUNNARIUM_PIECE, SUNNARIUM_PIECE
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         if (Variables.plug.getConfig().getBoolean("items.circuit.new-recipe")) {
             SlimefunItem.getById("BASIC_CIRCUIT_BOARD").setRecipeType(RecipeType.ENHANCED_CRAFTING_TABLE);
@@ -955,7 +954,7 @@ public class Tech {
                     SlimefunItems.REDSTONE_ALLOY,
                     REINFORCED_IRIDIUM_PLATE
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         CREATOR_GENERATOR = new SlimefunItemStack("LAB_CREATOR_GENERATOR",
                 new CustomItemStack(
@@ -982,7 +981,7 @@ public class Tech {
                         return new ItemStack(Material.FLINT_AND_STEEL);
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         CARBONADO_EGDED_COAL_GENERATOR = new SlimefunItemStack("LAB_CARBONADO_EGDED_COAL_GENERATOR",
                 new CustomItemStack(
@@ -1029,7 +1028,7 @@ public class Tech {
                         return 1024;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         EGG_GENERATOR = new SlimefunItemStack("LAB_EGG_GENERATOR",
                 new CustomItemStack(
@@ -1080,7 +1079,7 @@ public class Tech {
             public int getEnergyProduction() {
                 return 768;
             }
-        }.register(Main.instance);
+        }.register(Laboratory.instance);
 
         ENDER_GENERATOR = new SlimefunItemStack("LAB_ENDER_GENERATOR",
                 new CustomItemStack(
@@ -1125,7 +1124,7 @@ public class Tech {
                         return 64;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         RADIOISOTOPE_THERMOELECTRIC_GENERATOR = new SlimefunItemStack("LAB_RADIOISOTOPE_THERMOELECTRIC_GENERATOR",
                 new CustomItemStack(
@@ -1158,7 +1157,7 @@ public class Tech {
             public int getEnergyProduction() {
                 return 64;
             }
-        }).register(Main.instance);
+        }).register(Laboratory.instance);
 
         REDSTONE_GENERATOR = new SlimefunItemStack("LAB_REDSTONE_GENERATOR",
                 new CustomItemStack(
@@ -1191,7 +1190,7 @@ public class Tech {
                         return 128;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         ADVANCED_BIO_REACTOR = new SlimefunItemStack("LAB_ADVANCED_BIO_REACTOR",
                 new CustomItemStack(
@@ -1245,7 +1244,7 @@ public class Tech {
                         return 256;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         ALLOY_REACTOR = new SlimefunItemStack("LAB_ALLOY_REACTOR",
                 new CustomItemStack(
@@ -1282,7 +1281,7 @@ public class Tech {
                             return SkullUtil.getByBase64(
                                     "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTM0M2NlNThkYTU0Yzc5OTI0YTJjOTMzMWNmYzQxN2ZlOGNjYmJlYTliZTQ1YTdhYzg1ODYwYTZjNzMwIn19fQ==");
                         } catch (Exception e) {
-                            Main.debugException(e);
+                            Laboratory.debugException(e);
                             return U.mat(Material.FIRE);
                         }
                     }
@@ -1299,7 +1298,7 @@ public class Tech {
                         return 16384;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         MAGNETIZER_1 = new SlimefunItemStack("LAB_MAGNETIZER_1",
                 new CustomItemStack(
@@ -1322,7 +1321,7 @@ public class Tech {
                         return 64;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         MAGNETIZER_2 = new SlimefunItemStack("LAB_MAGNETIZER_2",
                 new CustomItemStack(
@@ -1352,7 +1351,7 @@ public class Tech {
                         return 64;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         CONVERTER_1 = new SlimefunItemStack("LAB_CONVERTER_1",
                 new CustomItemStack(
@@ -1393,7 +1392,7 @@ public class Tech {
                         return 2048;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         CONVERTER_2 = new SlimefunItemStack("LAB_CONVERTER_2",
                 new CustomItemStack(
@@ -1434,7 +1433,7 @@ public class Tech {
                         return 2048;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         CONVERTER_3 = new SlimefunItemStack("LAB_CONVERTER_3",
                 new CustomItemStack(
@@ -1469,7 +1468,7 @@ public class Tech {
                         return 2048;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         CONVERTER_4 = new SlimefunItemStack("LAB_CONVERTER_4",
                 new CustomItemStack(
@@ -1503,7 +1502,7 @@ public class Tech {
                         return 2048;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         QUARTZ_DRILL = new SlimefunItemStack("LAB_QUARTZ_DRILL",
                 new CustomItemStack(
@@ -1535,7 +1534,7 @@ public class Tech {
                         return 4096;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         IRIDIUM_DRILL = new SlimefunItemStack("LAB_IRIDIUM_DRILL",
                 new CustomItemStack(
@@ -1566,7 +1565,7 @@ public class Tech {
                         return 4096;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         ADVANCED_CHARGING_BENCH = new SlimefunItemStack("LAB_ADVANCED_CHARGING_BENCH",
                 new CustomItemStack(
@@ -1597,7 +1596,7 @@ public class Tech {
                         return 256;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         ITEM_FREEZER = new SlimefunItemStack("LAB_ITEM_FREEZER",
                 new CustomItemStack(
@@ -1635,7 +1634,7 @@ public class Tech {
                         return 128;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         ADVANCED_ELECTRIC_INGOT_PULVERIZER = new SlimefunItemStack("LAB_ADVANCED_ELECTRIC_INGOT_PULVERIZER",
                 new CustomItemStack(
@@ -1711,7 +1710,7 @@ public class Tech {
                         return 256;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         ELECTROLYZER_1 = new SlimefunItemStack("LAB_ELECTROLYZER_1",
                 new CustomItemStack(
@@ -1768,7 +1767,7 @@ public class Tech {
                         return 256;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         ELECTROLYZER_2 = new SlimefunItemStack("LAB_ELECTROLYZER_2",
                 new CustomItemStack(
@@ -1825,7 +1824,7 @@ public class Tech {
                         return 512;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         NETHER_STAR_CRUSHER = new SlimefunItemStack("LAB_NETHER_STAR_CRUSHER",
                 new CustomItemStack(
@@ -1865,7 +1864,7 @@ public class Tech {
                         return 1024;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         PLASMA_GENERATOR = new SlimefunItemStack("LAB_PLASMA_GENERATOR",
                 new CustomItemStack(
@@ -1904,7 +1903,7 @@ public class Tech {
                         return 1024;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         PROGRAMMABLE_ENDER_ANDROID_FISHERMAN = new SlimefunItemStack("LAB_PROGRAMMABLE_ENDER_ANDROID_FISHERMAN",
                 new CustomItemStack(
@@ -1954,7 +1953,7 @@ public class Tech {
                         this.registerFuelType(new MachineFuel(32, U.mat(Material.ENDER_EYE)));
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         PROGRAMMABLE_ENDER_ANDROID_MINER = new SlimefunItemStack("LAB_PROGRAMMABLE_ENDER_ANDROID_MINER",
                 new CustomItemStack(
@@ -2003,7 +2002,7 @@ public class Tech {
                 this.registerFuelType(new MachineFuel(32, U.mat(Material.ENDER_EYE)));
             }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         PROGRAMMABLE_ENDER_ANDROID_BUTCHER = new SlimefunItemStack("LAB_PROGRAMMABLE_ENDER_ANDROID_BUTCHER",
                 new CustomItemStack(
@@ -2052,7 +2051,7 @@ public class Tech {
                 this.registerFuelType(new MachineFuel(32, U.mat(Material.ENDER_EYE)));
             }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         Research grenco_power_crystal =
                 U.newResearch("Grenco Power Crystal", Variables.cfg.getInt("researches.grenco-power-crystal.level"));

@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Map;
 import me.Freeze_Dolphin.lab.ADrill;
 import me.Freeze_Dolphin.lab.ChargeableBlock;
+import me.Freeze_Dolphin.lab.Laboratory;
 import me.Freeze_Dolphin.lab.MachineHelper;
-import me.Freeze_Dolphin.lab.Main;
 import me.Freeze_Dolphin.lab.U;
 import me.Freeze_Dolphin.lab.Variables;
 import me.Freeze_Dolphin.lab.api.Str2Item;
@@ -24,7 +24,6 @@ import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ChestMenu.AdvancedMenu
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
@@ -218,7 +217,7 @@ public abstract class LaserDrill extends ADrill {
             int timeleft = progress.get(b);
             if (timeleft > 0) {
                 List<Double> d = new ArrayList<>();
-                for (double keys : Main.lo.keySet()) {
+                for (double keys : Laboratory.lo.keySet()) {
                     if (U.random(100, 0) <= keys) {
                         d.add(keys);
                     }
@@ -227,7 +226,7 @@ public abstract class LaserDrill extends ADrill {
                 if (d.isEmpty()) {
                     processBar = Str2Item.str2item(Variables.cfg.getString("items.laser-drill.failure"));
                 } else {
-                    processBar = Main.lo.get(d.get(U.random(d.size(), 0)));
+                    processBar = Laboratory.lo.get(d.get(U.random(d.size(), 0)));
                 }
 
                 ItemStack item = processBar.clone();

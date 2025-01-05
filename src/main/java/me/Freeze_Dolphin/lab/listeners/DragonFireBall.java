@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.UUID;
 import me.Freeze_Dolphin.lab.ItemEnergy;
 import me.Freeze_Dolphin.lab.Lab;
-import me.Freeze_Dolphin.lab.Main;
+import me.Freeze_Dolphin.lab.Laboratory;
 import me.Freeze_Dolphin.lab.Tech;
 import me.Freeze_Dolphin.lab.U;
 import me.Freeze_Dolphin.lab.Variables;
@@ -63,14 +63,14 @@ public class DragonFireBall implements Listener {
                 if (as.getCustomName() == null) return;
                 if (as.getCustomName().isEmpty()) return;
             } catch (NullPointerException ex) {
-                Main.debugException(ex);
+                Laboratory.debugException(ex);
             }
 
             if (as.getCustomName().split(",")[0].equals("DFBDMGMDR")
                     && !as.hasGravity()
                     && !as.isInvulnerable()
                     && !as.isVisible()) {
-                Main.debug("cleaned a dragon fire ball damage modifier(armor_stand) at: " + as.getLocation());
+                Laboratory.debug("cleaned a dragon fire ball damage modifier(armor_stand) at: " + as.getLocation());
                 as.remove();
             }
         }
@@ -86,7 +86,7 @@ public class DragonFireBall implements Listener {
                     && !as.hasGravity()
                     && !as.isInvulnerable()
                     && !as.isVisible()) {
-                Main.debug("cleaned a dragon fire ball damage modifier(armor_stand) at: " + as.getLocation() + " , by "
+                Laboratory.debug("cleaned a dragon fire ball damage modifier(armor_stand) at: " + as.getLocation() + " , by "
                         + e.getPlayer().getName());
                 as.remove();
             }
@@ -128,7 +128,7 @@ public class DragonFireBall implements Listener {
                             }
                             int plasma = Integer.parseInt(lore.get(plasmaLine).split(U.color(": &e"))[1]);
 
-                            Main.debug("plasma loader: " + plasma);
+                            Laboratory.debug("plasma loader: " + plasma);
 
                             int i = 0;
                             while (i < plasma) {
@@ -168,7 +168,7 @@ public class DragonFireBall implements Listener {
                                     break;
                                 }
                             }
-                            Main.debug("plasma: " + plasmaC);
+                            Laboratory.debug("plasma: " + plasmaC);
 
                             lore.set(plasmaLine, U.color("&f当前装载的等离子单元: &e") + plasmaC);
                             im.setLore(lore);
@@ -274,7 +274,7 @@ public class DragonFireBall implements Listener {
                         as = (ArmorStand) e.getHitEntity().getWorld().spawnEntity(loc, EntityType.ARMOR_STAND);
                     }
 
-                    Main.debug(loc.toString());
+                    Laboratory.debug(loc.toString());
 
                     as.setVisible(false);
                     as.setCustomNameVisible(false);
@@ -282,12 +282,12 @@ public class DragonFireBall implements Listener {
                     as.setInvulnerable(true);
                     as.setGravity(false);
 
-                    Main.debug(as + "[name]: " + as.getCustomName());
+                    Laboratory.debug(as + "[name]: " + as.getCustomName());
 
                     try {
                         loc.getWorld().spawnParticle(Particle.END_ROD, loc, 0, 0, 0, 0.05, 5);
                     } catch (Exception ex) {
-                        Main.debugException(ex);
+                        Laboratory.debugException(ex);
                     }
                 }
             }
@@ -296,35 +296,35 @@ public class DragonFireBall implements Listener {
 
     @EventHandler
     public void onDamage(EntityDamageEvent e) {
-        Main.debug("damage_cause: " + e.getCause().name());
+        Laboratory.debug("damage_cause: " + e.getCause().name());
         if (e.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_ATTACK)) {
-            Main.debugBreakpoint(1, getClass());
+            Laboratory.debugBreakpoint(1, getClass());
             for (Entity ety : e.getEntity().getNearbyEntities(5.0D, 5.0D, 5.0D)) {
                 if (ety.getType().equals(EntityType.ARMOR_STAND)) {
-                    Main.debugBreakpoint(2, getClass());
+                    Laboratory.debugBreakpoint(2, getClass());
                     if (!ety.isCustomNameVisible()) {
-                        Main.debugBreakpoint(3, getClass());
+                        Laboratory.debugBreakpoint(3, getClass());
                         String cn = ety.getCustomName();
 
                         try {
                             if (cn == null) return;
                             if (cn.isEmpty()) return;
                         } catch (NullPointerException ex) {
-                            Main.debugException(ex);
+                            Laboratory.debugException(ex);
                         }
 
                         if (cn.matches("(.*),(.*)")) {
-                            Main.debugBreakpoint(4, getClass());
+                            Laboratory.debugBreakpoint(4, getClass());
                             String[] cnsp = cn.split(",");
                             if (cnsp[0].equals("DFBDMGMDR")) {
 
-                                Main.debug("dfb dmg mdr");
+                                Laboratory.debug("dfb dmg mdr");
 
                                 if (e.getEntity() instanceof Player) {
                                     if (!Variables.cfg.getBoolean("items.dragon-breath-generator.ignore-pvp")
                                             && !ety.getWorld().getPVP()) {
                                         e.setCancelled(true);
-                                        Main.debug("pvp is not allowed so cancelled");
+                                        Laboratory.debug("pvp is not allowed so cancelled");
 
                                         return;
                                     }
@@ -340,10 +340,10 @@ public class DragonFireBall implements Listener {
                                             .getWorld()
                                             .spawnParticle(Particle.END_ROD, ety.getLocation(), 0, 0, 0, 0.05, 5);
                                 } catch (Exception ex) {
-                                    Main.debugException(ex);
+                                    Laboratory.debugException(ex);
                                 }
 
-                                Main.debug("original-dmg: " + orig_dmg + " , new-dmg: " + dmg);
+                                Laboratory.debug("original-dmg: " + orig_dmg + " , new-dmg: " + dmg);
                                 ety.remove();
                             }
                         }

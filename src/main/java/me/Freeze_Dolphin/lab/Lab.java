@@ -25,6 +25,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class Lab {
+    public static SlimefunItemStack SAPPHIRE_CAPACITY;
     public static SlimefunItemStack MIMUNG_BLASTER;
     public static SlimefunItemStack CONFIG_RELOADER;
     public static SlimefunItemStack REINFORCED_STOMPER;
@@ -52,8 +53,8 @@ public class Lab {
                 "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2Y1OWY4MjM0Yzk5OGQ5NjM3YWYxMmU4ZTM1NmRmYzFhZjJkODZkYWQwYjE5MWQ5MzU1ZjgyMmE1Y2I2ZTEifX19";
 
         ItemGroup c = new SubItemGroup(
-                new NamespacedKey(Main.instance, "lab"),
-                Main.nest,
+                new NamespacedKey(Laboratory.instance, "lab"),
+                Laboratory.nest,
                 new CustomItemStack(
                         SkullUtil.getByBase64(category_icon), "&7Consider 实验室科技产品"),
                 4);
@@ -62,7 +63,7 @@ public class Lab {
         CONFIG_RELOADER = new SlimefunItemStack("LAB_CONFIG_RELOADER",
                 new CustomItemStack(Material.APPLE, "&9配置文件重载器", "", "&f用于重载配置文件", "&f无法重载分子重组仪的配置文件"));
 
-        (new SlimefunItem(c, CONFIG_RELOADER, non, new ItemStack[9])).register(Main.instance);
+        (new SlimefunItem(c, CONFIG_RELOADER, non, new ItemStack[9])).register(Laboratory.instance);
 
         REINFORCED_STOMPER = new SlimefunItemStack("LAB_REINFORCED_STOMPER",
                 new CustomItemStack(
@@ -88,7 +89,7 @@ public class Lab {
                     mat(Material.STICKY_PISTON)
                 });
 
-        reinforcedstomper_sf.register(Main.instance);
+        reinforcedstomper_sf.register(Laboratory.instance);
 
         ELECTRIC_AXE_1 = new SlimefunItemStack("LAB_ELECTRIC_AXE_1",
                 new CustomItemStack(
@@ -121,7 +122,7 @@ public class Lab {
                             SlimefunItems.REDSTONE_ALLOY
                         },
                         1024))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         ELECTRIC_AXE_2 = new SlimefunItemStack("LAB_ELECTRIC_AXE_2",
                 new CustomItemStack(
@@ -148,7 +149,7 @@ public class Lab {
                             SlimefunItems.CARBONADO_EDGED_CAPACITOR, Tech.LAMA_POWER_CRYSTAL, Tech.SUPER_ELECTRO_MAGNET
                         },
                         1024))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         VANISHER = new SlimefunItemStack("LAB_VANISHER",
                 new CustomArmor(
@@ -191,7 +192,7 @@ public class Lab {
                             SlimefunItems.CARBONADO_EDGED_CAPACITOR
                         },
                         2048))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new ChargeableItem(
                         c,
@@ -199,7 +200,7 @@ public class Lab {
                         RecipeType.ENHANCED_CRAFTING_TABLE,
                         new ItemStack[] {null, null, null, null, VANISHER, new CustomItemStack(Material.BONE_MEAL)},
                         2048))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         EMERALD_CAPACITY_1 = new SlimefunItemStack("LAB_EMERALD_CAPACITY_1",
                         Color.LIME,
@@ -224,7 +225,7 @@ public class Lab {
                                     SlimefunItems.REINFORCED_PLATE
                         },
                         2048))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         EMERALD_CAPACITY_2 = new SlimefunItemStack("LAB_EMERALD_CAPACITY_2",
                         Color.LIME,
@@ -250,7 +251,32 @@ public class Lab {
                                     Tech.REINFORCED_IRIDIUM_PLATE
                         },
                         8192))
-                .register(Main.instance);
+                .register(Laboratory.instance);
+
+        SAPPHIRE_CAPACITY = new SlimefunItemStack("LAB_SAPPHIRE_CAPACITY",
+                new CustomArmor(
+                        new CustomItemStack(Material.LEATHER_BOOTS, "&b蓝宝石电容", new String[] {
+                            "", "&f使用电容技术", "&f在蓝宝石中有电时使你隐身", "", "&8⇨ &7每次移动消耗少量能量", "", "&c&o&8⇨ &e⚡ &70 / 2048 J"
+                        }),
+                        Color.BLUE));
+
+        SAPPHIRE_CAPACITY.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 10);
+
+        (new ChargeableItem(
+                        c,
+                        SAPPHIRE_CAPACITY,
+                        RecipeType.ENHANCED_CRAFTING_TABLE,
+                        new ItemStack[] {
+                            Tech.REINFORCED_IRIDIUM_PLATE, SlimefunItems.CARBONADO_EDGED_CAPACITOR,
+                                    Tech.REINFORCED_IRIDIUM_PLATE,
+                            Tech.SUPER_CIRCUIT_BOARD, SlimefunItems.SYNTHETIC_SAPPHIRE, Tech.SUPER_CIRCUIT_BOARD,
+                            SlimefunItems.REINFORCED_PLATE, SlimefunItems.CARBONADO_EDGED_CAPACITOR,
+                                    SlimefunItems.REINFORCED_PLATE
+                        },
+                        2048))
+                .register(Laboratory.instance);
+
+
 
         ELECTRIC_DIGGER = new SlimefunItemStack("LAB_ELECTRIC_DIGGER",
                 new CustomItemStack(
@@ -277,7 +303,7 @@ public class Lab {
                             Tech.SPEED_INGOT, SlimefunItems.CARBONADO_EDGED_CAPACITOR, Tech.SPEED_INGOT
                         },
                         1024))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         BASIC_MOBILE_BATTERY = new SlimefunItemStack("LAB_BASIC_MOBILE_BATTERY",
                 new CustomItemStack(
@@ -295,7 +321,7 @@ public class Lab {
                         RecipeType.ENHANCED_CRAFTING_TABLE,
                         U.halfr3(SlimefunItems.REDSTONE_ALLOY, SlimefunItems.BATTERY, null),
                         64))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         U.addUnplaceableItem(BASIC_MOBILE_BATTERY);
 
@@ -315,7 +341,7 @@ public class Lab {
                         RecipeType.ENHANCED_CRAFTING_TABLE,
                         U.halfr3(SlimefunItems.BASIC_CIRCUIT_BOARD, BASIC_MOBILE_BATTERY, null),
                         256))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         U.addUnplaceableItem(ADVANCED_MOBILE_BATTERY);
 
@@ -335,7 +361,7 @@ public class Lab {
                         RecipeType.ENHANCED_CRAFTING_TABLE,
                         U.halfr3(SlimefunItems.ADVANCED_CIRCUIT_BOARD, ADVANCED_MOBILE_BATTERY, null),
                         1024))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         U.addUnplaceableItem(ULTIMATE_MOBILE_BATTERY);
 
@@ -355,7 +381,7 @@ public class Lab {
                         RecipeType.ENHANCED_CRAFTING_TABLE,
                         U.halfr3(Tech.SUPER_CIRCUIT_BOARD, ULTIMATE_MOBILE_BATTERY, null),
                         8192))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         U.addUnplaceableItem(QUANTUM_MOBILE_BATTERY);
 
@@ -379,7 +405,7 @@ public class Lab {
                     new CustomItemStack(Material.MAGENTA_STAINED_GLASS),
                     new CustomItemStack(Material.MAGENTA_STAINED_GLASS)
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         VECTOR_MANIPULATOR = new SlimefunItemStack("LAB_VECTOR_MANIPULATOR", new CustomItemStack(Material.GOLDEN_HORSE_ARMOR, "&c矢量操纵器", new String[] {
                     "", "&r消耗电量来操纵矢量", "&r仅对使用者有效", "", "&c&o&8⇨ &7每次传送消耗: &e2.0 J", "&c&o&8⇨ &e⚡ &70 / 128 J"
@@ -422,7 +448,7 @@ public class Lab {
                         });
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         ARC_SWORD = new SlimefunItemStack("LAB_ARC_SWORD", new CustomItemStack(Material.DIAMOND_SWORD, "&b电弧剑", new String[] {
                     "",
@@ -450,7 +476,7 @@ public class Lab {
                             Tech.SUPER_CIRCUIT_BOARD, SlimefunItems.CARBONADO_EDGED_CAPACITOR, Tech.SUPER_CIRCUIT_BOARD
                         },
                         1024))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         IRIDIUM_ARMORED_JETPACK = new SlimefunItemStack("LAB_IRIDIUM_ARMORED_JETPACK", new CustomItemStack(Material.DIAMOND_CHESTPLATE, "&9防护型喷气背包", new String[] {
                     "&8⇨ &7材质: &b铱", "", "&c&o&8⇨ &e⚡ &70 / 300 J", "&8⇨ &7推进力: &c0.9", "", "&7按住 &eShift&7 以使用"
@@ -473,7 +499,7 @@ public class Lab {
                         },
                         0.9D,
                         300))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         IRIDIUM_ARMORED_JETBOOTS = new SlimefunItemStack("LAB_IRIDIUM_ARMORED_JETBOOTS", new CustomItemStack(Material.DIAMOND_BOOTS, "&9防护型喷气靴", new String[] {
                     "",
@@ -501,7 +527,7 @@ public class Lab {
                         },
                         0.9D,
                         300))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         DRAGON_BREATH_GENERATOR = new SlimefunItemStack("LAB_DRAGON_BREATH_GENERATOR", new CustomItemStack(Material.MUSIC_DISC_STAL, "&5龙息生成器", new String[] {
                     "",
@@ -528,7 +554,7 @@ public class Lab {
                             Tech.LAMA_POWER_CRYSTAL, SlimefunItems.LARGE_CAPACITOR, Tech.LAMA_POWER_CRYSTAL
                         },
                         1024))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         Research iridium_jettool =
                 U.newResearch("Iridium Jetpack & Iridium Jetboots", U.getResearchLevelCost("iridium-jettools"));
@@ -560,7 +586,7 @@ public class Lab {
                                     SlimefunItems.ADVANCED_CIRCUIT_BOARD
                         },
                         1024))
-                .register(Main.instance);
+                .register(Laboratory.instance);
     }
 
     public static ItemStack mat(Material material) {

@@ -11,14 +11,12 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.RadioactiveItem;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.reactors.Reactor;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.HashMap;
 import java.util.Map;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
+
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
-import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -31,7 +29,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
@@ -39,7 +36,7 @@ import javax.annotation.Nonnull;
 public class Nuclear {
     public static final BlockData particleData = Material.ORANGE_TERRACOTTA.createBlockData();
     public static final RecipeType fusedSaltReactor_r = new RecipeType(
-            new NamespacedKey(Main.instance, "fused_salt_reactor_recipe"),
+            new NamespacedKey(Laboratory.instance, "fused_salt_reactor_recipe"),
             new CustomItemStack(
                     Material.ORANGE_STAINED_GLASS,
                     "&6合金反应堆"
@@ -70,7 +67,7 @@ public class Nuclear {
     public static final SlimefunItemStack GRAPHITE_CORE =
             new SlimefunItemStack("LAB_GRAPHITE_CORE", new CustomItemStack(Material.OBSIDIAN, "&8石墨堆芯"));
     public static final RecipeType FLUORIDEM = new RecipeType(
-            new NamespacedKey(Main.instance, "fluoridem"),
+            new NamespacedKey(Laboratory.instance, "fluoridem"),
             new CustomItemStack(Material.ORANGE_STAINED_GLASS, "&e氟化机", new String[] {"", "&a使用氟化机将物质氟化制取"}));
     private static final Map<ItemStack[], ItemStack[]> meltingm_r = new HashMap<>();
     private static final Map<ItemStack[], ItemStack[]> fluoridem_r = new HashMap<>();
@@ -93,13 +90,13 @@ public class Nuclear {
     public static SlimefunItemStack FUSED_SALT_REACTOR;
     public static RecipeType MELTINGM;
     public static RecipeType CENTRIFUGEM = new RecipeType(
-            new NamespacedKey(Main.instance, "centrifugem"),
+            new NamespacedKey(Laboratory.instance, "centrifugem"),
             new CustomItemStack(Material.ORANGE_TERRACOTTA, "&c热能离心机", new String[] {"", "&a使用热能离心机处理物质"}));
 
     static {
         try {
             c = new LockedItemGroup(
-                    new NamespacedKey(Main.instance, "nuclear"),
+                    new NamespacedKey(Laboratory.instance, "nuclear"),
                     new CustomItemStack(
                             SkullUtil.getByBase64(
                                     "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODI5NmYwOTI1MjRhZTljMmEyZTg3ODgxY2I0MTVhZGIzNThkNmNiNzczYzg1ZGM5NzIwMmZlZmI3NTRjMSJ9fX0="),
@@ -226,21 +223,21 @@ public class Nuclear {
                             "&8⇨ &4会使周围未身着防护服的生物遭受火焰伤害"));
 
             MELTINGM = new RecipeType(
-                    new NamespacedKey(Main.instance, "meltingm"),
+                    new NamespacedKey(Laboratory.instance, "meltingm"),
                     new CustomItemStack(
                             SkullUtil.getByBase64(
                                     "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODI5NmYwOTI1MjRhZTljMmEyZTg3ODgxY2I0MTVhZGIzNThkNmNiNzczYzg1ZGM5NzIwMmZlZmI3NTRjMSJ9fX0="),
                             "&c熔炼机",
                             new String[] {"", "&a通过熔炼机将固体融为流体"}));
         } catch (Exception e) {
-            Main.debugException(e);
+            Laboratory.debugException(e);
         }
     }
 
     public Nuclear() {
         ItemStack graphites = Resource.GRAPHITE.clone();
         graphites.setAmount(Variables.cfg.getInt("items.graphite-core.graphite-number"));
-        (new SlimefunItem(c, GRAPHITE_CORE, RecipeType.COMPRESSOR, U.firsts(graphites))).register(Main.instance);
+        (new SlimefunItem(c, GRAPHITE_CORE, RecipeType.COMPRESSOR, U.firsts(graphites))).register(Laboratory.instance);
 
         Variables.UnplaceableItems.add(GRAPHITE_CORE);
 
@@ -249,7 +246,7 @@ public class Nuclear {
                     SlimefunItems.LEAD_INGOT, U.mat(Material.GLASS_PANE), SlimefunItems.LEAD_INGOT,
                     SlimefunItems.LEAD_INGOT, SlimefunItems.LEAD_INGOT, SlimefunItems.LEAD_INGOT
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         registerCell(URANIUM_FLUID_CELL, SlimefunItems.URANIUM);
         registerCell(BOOSTED_URANIUM_FLUID_CELL, SlimefunItems.BOOSTED_URANIUM);
@@ -271,7 +268,7 @@ public class Nuclear {
                         new ItemStack[] {
                             FLUORIDE_URANIUM_FLUID_CELL, FLUORIDE_BERYLLIUM_FLUID_CELL, FLUORIDE_LITHIUM_FLUID_CELL
                         }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new RadioactiveItem(
                         c,
@@ -283,12 +280,12 @@ public class Nuclear {
                             FLUORIDE_BERYLLIUM_FLUID_CELL,
                             FLUORIDE_LITHIUM_FLUID_CELL
                         }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new SlimefunItem(c, FUSED_SALT_REACTOR_COOLANT_CELL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.REACTOR_COOLANT_CELL, Resource.POTASSIUM_INGOT, Resource.SODIUM_INGOT
                 }))
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new AdvancedAContainer(c, MELTING_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.LEAD_INGOT, SlimefunItems.ELECTRIC_FURNACE_2, SlimefunItems.LEAD_INGOT,
@@ -328,7 +325,7 @@ public class Nuclear {
                         return 512;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new AdvancedAContainer(c, FLUORIDE_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.BASIC_CIRCUIT_BOARD, SlimefunItems.MEDIUM_CAPACITOR,
@@ -369,10 +366,10 @@ public class Nuclear {
                         return 512;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
-        (new SlimefunItem(c, DEPLETED_URANIUM_CELL, fusedSaltReactor_r, new ItemStack[] {Nuclear.ENRICHED_FUSED_SALT_REACTOR_FUEL})).register(Main.instance);
-        (new SlimefunItem(c, DEPLETED_BOOSTED_URANIUM_CELL, fusedSaltReactor_r, new ItemStack[] {Nuclear.ENRICHED_BOOSTED_FUSED_SALT_REACTOR_FUEL})).register(Main.instance);
+        (new SlimefunItem(c, DEPLETED_URANIUM_CELL, fusedSaltReactor_r, new ItemStack[] {Nuclear.ENRICHED_FUSED_SALT_REACTOR_FUEL})).register(Laboratory.instance);
+        (new SlimefunItem(c, DEPLETED_BOOSTED_URANIUM_CELL, fusedSaltReactor_r, new ItemStack[] {Nuclear.ENRICHED_BOOSTED_FUSED_SALT_REACTOR_FUEL})).register(Laboratory.instance);
 
         (new AdvancedAContainer(c, THERMAL_CENTRIFUGE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.REINFORCED_ALLOY_INGOT, SlimefunItems.REINFORCED_ALLOY_INGOT,
@@ -422,7 +419,7 @@ public class Nuclear {
                         return 768;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
 
         (new Reactor(c, FUSED_SALT_REACTOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     Tech.ULTIMATE_CIRCUIT_BOARD, SlimefunItems.CARBONADO_EDGED_CAPACITOR, SlimefunItems.FLUID_PUMP,
@@ -483,7 +480,7 @@ public class Nuclear {
                                                             1.0F,
                                                             particleData);
                                         } catch (Exception e) {
-                                            Main.debugException(e);
+                                            Laboratory.debugException(e);
                                         }
                                     }
                                     for (Entity entity : l.getNearbyEntities(5.0D, 5.0D, 5.0D)) {
@@ -551,18 +548,18 @@ public class Nuclear {
                         return 16384;
                     }
                 })
-                .register(Main.instance);
+                .register(Laboratory.instance);
     }
 
     private void registerCell(SlimefunItemStack item, ItemStack inside) {
         (new RadioactiveItem(c, Radioactivity.HIGH, item, MELTINGM, new ItemStack[] {inside, LEAD_CELL_EMPTY}))
-                .register(Main.instance);
+                .register(Laboratory.instance);
         meltingm_r.put(new ItemStack[] {inside, LEAD_CELL_EMPTY}, new ItemStack[] {item});
     }
 
     private void registerFluorideCell(SlimefunItemStack item, ItemStack origin) {
         (new RadioactiveItem(c, Radioactivity.VERY_HIGH, item, FLUORIDEM, new ItemStack[] {origin, Resource.CAROBBIITE}))
-                .register(Main.instance);
+                .register(Laboratory.instance);
         fluoridem_r.put(new ItemStack[] {origin, Resource.CAROBBIITE}, new ItemStack[] {item});
     }
 }

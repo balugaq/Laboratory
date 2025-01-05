@@ -7,6 +7,9 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
+
+import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import me.Freeze_Dolphin.lab.bugrepair.ElevatorBook;
 import me.Freeze_Dolphin.lab.bugrepair.Me;
 import me.Freeze_Dolphin.lab.bugrepair.ScrollOfDimensionalTelepositionConsumption;
@@ -31,17 +34,21 @@ import me.Freeze_Dolphin.lab.listeners.UnplaceableItems;
 import me.Freeze_Dolphin.lab.listeners.Vanisher;
 import me.Freeze_Dolphin.lab.listeners.WitherProofArmors;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class Main extends JavaPlugin implements SlimefunAddon {
+public class Laboratory extends JavaPlugin implements SlimefunAddon {
+    public static final Map<ItemStack, Float> capacities = new HashMap<>();
     public static NestedItemGroup nest;
     public static final Map<Double, ItemStack> lo = new HashMap<>();
-    public static Main instance;
+    public static Laboratory instance;
 
     static {
         lo.put(10d, new ItemStack(Material.WOODEN_PICKAXE));
@@ -82,6 +89,8 @@ public class Main extends JavaPlugin implements SlimefunAddon {
                                     "&c&l[&4&lDEBUG&c&l] &7" + c.getName() + ": &cBreakpoint &f[" + breakpointOrder
                                             + "]"));
     }
+
+    public static final Map<UUID, Location> locations = new HashMap<>();
 
     public void onEnable() {
         getLogger().info("Enabling Laboratory...");
@@ -170,6 +179,38 @@ public class Main extends JavaPlugin implements SlimefunAddon {
         new Lab();
         new Nuclear();
         new ArmorWeapon();
+
+        capacities.put(Lab.EMERALD_CAPACITY_1, 0.01f);
+        capacities.put(Lab.EMERALD_CAPACITY_2, 1f);
+
+        Bukkit.getScheduler().runTaskTimer(this, () -> {
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                if (p == null) {
+                    continue;
+                }
+
+                UUID key = p.getUniqueId();
+                Location current = p.getLocation();
+                Location last = locations.get(key);
+
+                if (last == null) {
+                    locations.put(key, current);
+                    continue;
+                }
+
+                if (current.getBlockX() != last.getBlockX() || current.getBlockY() != last.getBlockY() || current.getBlockZ() != last.getBlockZ() || !current.getWorld().getUID().equals(last.getWorld().getUID())) {
+                    locations.put(key, current);
+                    for (ItemStack itemStack : p.getInventory().getStorageContents()) {
+                        for (Map.Entry<ItemStack, Float> capacity : capacities.entrySet()) {
+                            if (SlimefunUtils.isItemSimilar(itemStack, capacity.getKey(), false, false)) {
+                                float capacityValue = capacity.getValue();
+                                ChargeableItem.chargeItem(itemStack, capacityValue);
+                            }
+                        }
+                    }
+                }
+            }
+        }, 20L, 1L);
 
         getLogger().info("Laboratory enabled.");
     }

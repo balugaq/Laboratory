@@ -1,7 +1,7 @@
 package me.Freeze_Dolphin.lab.commands;
 
 import me.Freeze_Dolphin.lab.ItemEnergy;
-import me.Freeze_Dolphin.lab.Main;
+import me.Freeze_Dolphin.lab.Laboratory;
 import me.Freeze_Dolphin.lab.U;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,9 +10,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class Charge implements CommandExecutor {
-    private final Main plugin;
+    private final Laboratory plugin;
 
-    public Charge(Main plugin) {
+    public Charge(Laboratory plugin) {
         this.plugin = plugin;
     }
 

@@ -19,7 +19,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionData;
-import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
@@ -122,11 +121,11 @@ public class U {
             id++;
         }
 
-        Main.debug("registing research: " + name + "; level: " + level + "; id: " + Variables.ResearchIdentify + id);
+        Laboratory.debug("registing research: " + name + "; level: " + level + "; id: " + Variables.ResearchIdentify + id);
 
         Variables.ResearchIdentifyDesigner.add(Boolean.TRUE);
 
-        return new Research(new NamespacedKey(Main.instance, String.valueOf(Variables.ResearchIdentify + id)), Variables.ResearchIdentify + id, name, level);
+        return new Research(new NamespacedKey(Laboratory.instance, String.valueOf(Variables.ResearchIdentify + id)), Variables.ResearchIdentify + id, name, level);
     }
 
     public static void newDelayedTask(BukkitRunnable br, Long tick) {

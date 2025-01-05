@@ -1,7 +1,7 @@
 package me.Freeze_Dolphin.lab.geo;
 
 import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
-import me.Freeze_Dolphin.lab.Main;
+import me.Freeze_Dolphin.lab.Laboratory;
 import me.Freeze_Dolphin.lab.Tech;
 import org.bukkit.NamespacedKey;
 import org.bukkit.World;
@@ -42,6 +42,6 @@ public class CertusQuartz implements GEOResource {
 
     @Override
     public @NotNull NamespacedKey getKey() {
-        return new NamespacedKey(Main.instance, "certus_quartz");
+        return new NamespacedKey(Laboratory.instance, "certus_quartz");
     }
 }

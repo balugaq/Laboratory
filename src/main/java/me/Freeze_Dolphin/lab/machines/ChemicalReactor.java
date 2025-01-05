@@ -17,7 +17,7 @@ import java.util.Map;
 import me.Freeze_Dolphin.lab.BlockMenuUtil;
 import me.Freeze_Dolphin.lab.ChargeableBlock;
 import me.Freeze_Dolphin.lab.MachineHelper;
-import me.Freeze_Dolphin.lab.Main;
+import me.Freeze_Dolphin.lab.Laboratory;
 import me.Freeze_Dolphin.lab.Tech;
 import me.Freeze_Dolphin.lab.U;
 import me.Freeze_Dolphin.lab.Variables;
@@ -26,7 +26,6 @@ import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import me.mrCookieSlime.Slimefun.Objects.handlers.BlockTicker;
-import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.inventory.DirtyChestMenu;
@@ -216,7 +215,7 @@ public abstract class ChemicalReactor extends AContainer {
                             .getWorld()
                             .spawnParticle(Particle.SMOKE_NORMAL, b.getLocation(), 0, 1, 0.5, 0.5, U.random(15, 3));
                 } catch (Exception ex) {
-                    Main.debugException(ex);
+                    Laboratory.debugException(ex);
                 }
                 ItemStack item = getProgressBar().clone();
                 item.setDurability(MachineHelper.getDurability(
