@@ -22,6 +22,7 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AGenerator;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
+import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -29,6 +30,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class RadioisotopeThermoelectricGenerator extends AGenerator {
     private static final int[] border =
@@ -40,9 +42,27 @@ public abstract class RadioisotopeThermoelectricGenerator extends AGenerator {
             ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
 
+        new BlockMenuPreset(getId(), getInventoryTitle()) {
+
+            @Override
+            public void init() {
+                constructMenu(this);
+            }
+
+            @Override
+            public boolean canOpen(@NotNull Block block, @NotNull Player player) {
+                return player.hasPermission("slimefun.inventory.bypass") || canUse(player, true);
+            }
+
+            @Override
+            public int[] getSlotsAccessedByItemTransport(ItemTransportFlow itemTransportFlow) {
+                return getInputSlots();
+            }
+        };
+
         addItemHandler(new BlockBreakHandler(false, false) {
             @Override
-            public void onPlayerBreak(BlockBreakEvent blockBreakEvent, ItemStack itemStack, List<ItemStack> list) {
+            public void onPlayerBreak(@NotNull BlockBreakEvent blockBreakEvent, @NotNull ItemStack itemStack, @NotNull List<ItemStack> list) {
                 Block b = blockBreakEvent.getBlock();
                 BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
                 if (inv != null) {
@@ -119,11 +139,11 @@ public abstract class RadioisotopeThermoelectricGenerator extends AGenerator {
                 (arg0, arg1, arg2, arg3) -> false);
     }
 
-    public String getInventoryTitle() {
+    public @NotNull String getInventoryTitle() {
         return getItemName();
     }
 
-    public ItemStack getProgressBar() {
+    public @NotNull ItemStack getProgressBar() {
         try {
             return new ItemStack(SlimefunItems.URANIUM);
         } catch (Exception e) {
@@ -143,6 +163,9 @@ public abstract class RadioisotopeThermoelectricGenerator extends AGenerator {
         int rt;
         int rtg_counter = 0;
         BlockMenu bm = StorageCacheUtils.getMenu(l);
+        if (bm == null) {
+            return 0;
+        }
         byte b;
         int i;
         int[] arrayOfInt;
