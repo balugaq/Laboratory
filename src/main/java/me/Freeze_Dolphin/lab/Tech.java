@@ -1943,6 +1943,16 @@ public class Tech {
                     public AndroidType getAndroidType() {
                         return AndroidType.FISHERMAN;
                     }
+
+                    {
+                        this.fuelTypes.clear();
+                        this.registerFuelType(new MachineFuel(2500, SlimefunItems.URANIUM));
+                        this.registerFuelType(new MachineFuel(1200, SlimefunItems.NEPTUNIUM));
+                        this.registerFuelType(new MachineFuel(3000, SlimefunItems.BOOSTED_URANIUM));
+
+                        this.registerFuelType(new MachineFuel(12, U.mat(Material.ENDER_PEARL)));
+                        this.registerFuelType(new MachineFuel(32, U.mat(Material.ENDER_EYE)));
+                    }
                 })
                 .register(Main.instance);
 
@@ -1982,6 +1992,16 @@ public class Tech {
                     public AndroidType getAndroidType() {
                         return AndroidType.MINER;
                     }
+
+            {
+                this.fuelTypes.clear();
+                this.registerFuelType(new MachineFuel(2500, SlimefunItems.URANIUM));
+                this.registerFuelType(new MachineFuel(1200, SlimefunItems.NEPTUNIUM));
+                this.registerFuelType(new MachineFuel(3000, SlimefunItems.BOOSTED_URANIUM));
+
+                this.registerFuelType(new MachineFuel(12, U.mat(Material.ENDER_PEARL)));
+                this.registerFuelType(new MachineFuel(32, U.mat(Material.ENDER_EYE)));
+            }
                 })
                 .register(Main.instance);
 
@@ -2021,6 +2041,16 @@ public class Tech {
                     public AndroidType getAndroidType() {
                         return AndroidType.FIGHTER;
                     }
+
+            {
+                this.fuelTypes.clear();
+                this.registerFuelType(new MachineFuel(2500, SlimefunItems.URANIUM));
+                this.registerFuelType(new MachineFuel(1200, SlimefunItems.NEPTUNIUM));
+                this.registerFuelType(new MachineFuel(3000, SlimefunItems.BOOSTED_URANIUM));
+
+                this.registerFuelType(new MachineFuel(12, U.mat(Material.ENDER_PEARL)));
+                this.registerFuelType(new MachineFuel(32, U.mat(Material.ENDER_EYE)));
+            }
                 })
                 .register(Main.instance);
 
