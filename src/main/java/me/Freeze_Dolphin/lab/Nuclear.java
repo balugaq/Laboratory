@@ -29,6 +29,13 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
 public class Nuclear {
+    public static final RecipeType fusedSaltReactor_r = new RecipeType(
+            new NamespacedKey(Main.instance, "fused_salt_reactor_recipe"),
+            new CustomItemStack(
+                    Material.ORANGE_STAINED_GLASS,
+                    "&6合金反应堆"
+            )
+    );
     public static final SlimefunItemStack FLUORIDE_MACHINE = new SlimefunItemStack("LAB_FLUORIDE_MACHINE",
             new CustomItemStack(
                     Material.ORANGE_STAINED_GLASS,
@@ -274,7 +281,7 @@ public class Nuclear {
                 }))
                 .register(Main.instance);
 
-        (new AContainer(c, MELTING_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+        (new AdvancedAContainer(c, MELTING_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.LEAD_INGOT, SlimefunItems.ELECTRIC_FURNACE_2, SlimefunItems.LEAD_INGOT,
                     SlimefunItems.ADVANCED_CIRCUIT_BOARD, Tech.HEAT_CONDUCTOR, SlimefunItems.ADVANCED_CIRCUIT_BOARD,
                     Tech.SUPER_HEATING_COIL, Tech.SUPER_HEATING_COIL, Tech.SUPER_HEATING_COIL
@@ -314,7 +321,7 @@ public class Nuclear {
                 })
                 .register(Main.instance);
 
-        (new AContainer(c, FLUORIDE_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+        (new AdvancedAContainer(c, FLUORIDE_MACHINE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.BASIC_CIRCUIT_BOARD, SlimefunItems.MEDIUM_CAPACITOR,
                             SlimefunItems.BASIC_CIRCUIT_BOARD,
                     Tech.ALUMAG_ALLOY, SlimefunItems.ELECTRIC_FURNACE_2, SlimefunItems.PLASTIC_SHEET,
@@ -355,7 +362,10 @@ public class Nuclear {
                 })
                 .register(Main.instance);
 
-        (new AContainer(c, THERMAL_CENTRIFUGE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+        (new SlimefunItem(c, DEPLETED_URANIUM_CELL, fusedSaltReactor_r, new ItemStack[] {Nuclear.ENRICHED_FUSED_SALT_REACTOR_FUEL})).register(Main.instance);
+        (new SlimefunItem(c, DEPLETED_BOOSTED_URANIUM_CELL, fusedSaltReactor_r, new ItemStack[] {Nuclear.ENRICHED_BOOSTED_FUSED_SALT_REACTOR_FUEL})).register(Main.instance);
+
+        (new AdvancedAContainer(c, THERMAL_CENTRIFUGE, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.REINFORCED_ALLOY_INGOT, SlimefunItems.REINFORCED_ALLOY_INGOT,
                             SlimefunItems.REINFORCED_ALLOY_INGOT,
                     SlimefunItems.ADVANCED_CIRCUIT_BOARD, Tech.SUPER_ELECTRO_MOTOR,

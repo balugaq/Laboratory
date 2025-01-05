@@ -1645,7 +1645,7 @@ public class Tech {
                         "&8⇨ &e⚡ &7256 J 缓存",
                         "&8⇨ &e⚡ &742 J/s"));
 
-        (new AContainer(
+        (new AdvancedAContainer(
                         lockedCategory,
                         ADVANCED_ELECTRIC_INGOT_PULVERIZER,
                         RecipeType.ENHANCED_CRAFTING_TABLE,
@@ -1719,7 +1719,7 @@ public class Tech {
                         "&8⇨ &e⚡ &7256 J 缓存",
                         "&8⇨ &e⚡ &732 J/s"));
 
-        (new AContainer(lockedCategory, ELECTROLYZER_1, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+        (new AdvancedAContainer(lockedCategory, ELECTROLYZER_1, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.REDSTONE_ALLOY,
                     U.mat(Material.GLASS),
                     SlimefunItems.REDSTONE_ALLOY,
@@ -1776,7 +1776,7 @@ public class Tech {
                         "&8⇨ &e⚡ &7512 J 缓存",
                         "&8⇨ &e⚡ &764 J/s"));
 
-        (new AContainer(lockedCategory, ELECTROLYZER_2, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+        (new AdvancedAContainer(lockedCategory, ELECTROLYZER_2, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                     SlimefunItems.REDSTONE_ALLOY,
                     SlimefunItems.HARDENED_GLASS,
                     SlimefunItems.REDSTONE_ALLOY,
