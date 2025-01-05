@@ -5,6 +5,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.LockedItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.groups.SubItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
@@ -66,18 +67,21 @@ public class Tech {
     public static final RecipeType PLASMAG = new RecipeType(
             new NamespacedKey(Main.instance, "plasmag"),
             new CustomItemStack(Material.PURPLE_STAINED_GLASS, "&d等离子生成机", "", "&a使用等离子生成机产生等离子体"));
-    public static final ItemGroup c = new ItemGroup(
+    public static final ItemGroup c = new SubItemGroup(
             new NamespacedKey(Main.instance, "tech_misc"),
+            Main.nest,
             new CustomItemStack(Material.BLACK_STAINED_GLASS, "&7Consider 实验室科技材料"));
-    public static final ItemGroup cr = new ItemGroup(
+    public static final ItemGroup cr = new SubItemGroup(
             new NamespacedKey(Main.instance, "resources"),
+            Main.nest,
             new CustomItemStack(Material.BLACK_STAINED_GLASS, "&7Consider 实验室资源"));
     public static final LockedItemGroup lockedCategory = new LockedItemGroup(
             new NamespacedKey(Main.instance, "tech_machines"),
             new CustomItemStack(Material.BLACK_STAINED_GLASS, "&7Consider 实验室机器"),
             new NamespacedKey(Slimefun.instance(), "basic_machines"));
-    public static final ItemGroup cm = new ItemGroup(
+    public static final ItemGroup cm = new SubItemGroup(
             new NamespacedKey(Main.instance, "misc"),
+            Main.nest,
             new CustomItemStack(Material.BLACK_STAINED_GLASS, "&7Consider 实验室杂项"));
     public static SlimefunItemStack MAGNETIC_IRON_INGOT;
     public static SlimefunItemStack RUSTY_MECHANICAL_PARTS;

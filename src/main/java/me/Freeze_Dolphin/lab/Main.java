@@ -1,6 +1,7 @@
 package me.Freeze_Dolphin.lab;
 
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
+import io.github.thebusybiscuit.slimefun4.api.items.groups.NestedItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import java.io.File;
@@ -38,6 +39,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class Main extends JavaPlugin implements SlimefunAddon {
+    public static final NestedItemGroup nest = new NestedItemGroup(new NamespacedKey(Variables.plug, "lab"),
+            new CustomItemStack(Material.GRAY_STAINED_GLASS, "&7Consider 实验室"));
     public static final Map<Double, ItemStack> lo = new HashMap<>();
     public static Main instance;
 

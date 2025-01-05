@@ -3,6 +3,7 @@ package me.Freeze_Dolphin.lab;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.items.groups.SubItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import org.bukkit.Bukkit;
@@ -19,8 +20,9 @@ public class Food {
     public static final SlimefunItemStack COLA;
 
     static {
-        ItemGroup c = new ItemGroup(
+        ItemGroup c = new SubItemGroup(
                 new NamespacedKey(Main.instance, "food"),
+                Main.nest,
                 new CustomItemStack(Material.COOKED_BEEF, "&7Consider 实验室食物", ""),
                 3);
 

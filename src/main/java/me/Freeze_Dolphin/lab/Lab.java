@@ -3,6 +3,7 @@ package me.Freeze_Dolphin.lab;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.items.groups.SubItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
@@ -50,8 +51,9 @@ public class Lab {
         String category_icon =
                 "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2Y1OWY4MjM0Yzk5OGQ5NjM3YWYxMmU4ZTM1NmRmYzFhZjJkODZkYWQwYjE5MWQ5MzU1ZjgyMmE1Y2I2ZTEifX19";
 
-        ItemGroup c = new ItemGroup(
+        ItemGroup c = new SubItemGroup(
                 new NamespacedKey(Main.instance, "lab"),
+                Main.nest,
                 new CustomItemStack(
                         SkullUtil.getByBase64(category_icon), "&7Consider 实验室科技产品", new String[] {"", "&a> 点击打开"}),
                 4);

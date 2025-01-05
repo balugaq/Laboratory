@@ -3,6 +3,7 @@ package me.Freeze_Dolphin.lab;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.items.groups.SubItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
@@ -18,8 +19,9 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class ArmorWeapon {
-    private static final ItemGroup c = new ItemGroup(
+    private static final ItemGroup c = new SubItemGroup(
             new NamespacedKey(Main.instance, "armor_weapon"),
+            Main.nest,
             new CustomItemStack(Material.DIAMOND_CHESTPLATE, "&7Consider 实验室装甲 & 武器", new String[] {"", "&a> 点击打开"}),
             4);
     public static SlimefunItemStack REINFORCED_SCUBA_HELMET;
