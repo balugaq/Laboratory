@@ -1,6 +1,6 @@
 name: Laboratory
 main: me.Freeze_Dolphin.lab.Laboratory
-version: 25.1.5 Fixed
+version: ${project.version}
 api-version: 1.20
 
 author: Freeze_Dolphin
