@@ -70,11 +70,11 @@ public class Tech {
     public static final ItemGroup c = new SubItemGroup(
             new NamespacedKey(Main.instance, "tech_misc"),
             Main.nest,
-            new CustomItemStack(Material.BLACK_STAINED_GLASS, "&7Consider 实验室科技材料"));
+            new CustomItemStack(Material.DETECTOR_RAIL, "&7Consider 实验室科技材料"));
     public static final ItemGroup cr = new SubItemGroup(
             new NamespacedKey(Main.instance, "resources"),
             Main.nest,
-            new CustomItemStack(Material.BLACK_STAINED_GLASS, "&7Consider 实验室资源"));
+            new CustomItemStack(Material.IRON_INGOT, "&7Consider 实验室资源"));
     public static final LockedItemGroup lockedCategory = new LockedItemGroup(
             new NamespacedKey(Main.instance, "tech_machines"),
             new CustomItemStack(Material.BLACK_STAINED_GLASS, "&7Consider 实验室机器"),
@@ -82,7 +82,7 @@ public class Tech {
     public static final ItemGroup cm = new SubItemGroup(
             new NamespacedKey(Main.instance, "misc"),
             Main.nest,
-            new CustomItemStack(Material.BLACK_STAINED_GLASS, "&7Consider 实验室杂项"));
+            new CustomItemStack(Material.PAPER, "&7Consider 实验室杂项"));
     public static SlimefunItemStack MAGNETIC_IRON_INGOT;
     public static SlimefunItemStack RUSTY_MECHANICAL_PARTS;
     public static SlimefunItemStack CARBONADO_EGDED_COAL_GENERATOR;

@@ -39,8 +39,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class Main extends JavaPlugin implements SlimefunAddon {
-    public static final NestedItemGroup nest = new NestedItemGroup(new NamespacedKey(Variables.plug, "lab"),
-            new CustomItemStack(Material.GRAY_STAINED_GLASS, "&7Consider 实验室"));
+    public static NestedItemGroup nest;
     public static final Map<Double, ItemStack> lo = new HashMap<>();
     public static Main instance;
 
@@ -89,6 +88,9 @@ public class Main extends JavaPlugin implements SlimefunAddon {
         instance = this;
         Variables.plug = this;
         Variables.cfg = Variables.plug.getConfig();
+        Variables.Non = RecipeType.NULL;
+        nest = new NestedItemGroup(new NamespacedKey(Variables.plug, "lab"),
+                new CustomItemStack(Material.SHROOMLIGHT, "&7Consider 实验室"));
 
         File datad = getDataFolder();
         String datadp = datad.getPath();

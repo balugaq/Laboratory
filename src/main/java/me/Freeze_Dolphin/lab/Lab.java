@@ -55,7 +55,7 @@ public class Lab {
                 new NamespacedKey(Main.instance, "lab"),
                 Main.nest,
                 new CustomItemStack(
-                        SkullUtil.getByBase64(category_icon), "&7Consider 实验室科技产品", new String[] {"", "&a> 点击打开"}),
+                        SkullUtil.getByBase64(category_icon), "&7Consider 实验室科技产品"),
                 4);
         RecipeType non = Variables.Non;
 

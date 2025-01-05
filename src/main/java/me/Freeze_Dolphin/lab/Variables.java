@@ -22,7 +22,7 @@ public class Variables {
     public static Plugin plug;
     public static FileConfiguration cfg;
     public static boolean Nar;
-    public static RecipeType Non = RecipeType.NULL;
+    public static RecipeType Non;
     public static RecipeType Mystery;
     public static List<String> Vanish = new ArrayList<>();
     public static List<UUID> Plasma = new ArrayList<>();

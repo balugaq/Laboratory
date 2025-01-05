@@ -11,22 +11,29 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.RadioactiveItem;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.reactors.Reactor;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import io.github.thebusybiscuit.slimefun4.utils.ChestMenuUtils;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import java.util.HashMap;
 import java.util.Map;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
+import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
+import org.bukkit.block.Block;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nonnull;
 
 public class Nuclear {
     public static final RecipeType fusedSaltReactor_r = new RecipeType(
@@ -451,90 +458,91 @@ public class Nuclear {
                         return Nuclear.ENRICHED_FUSED_SALT_REACTOR_FUEL;
                     }
 
-                    public void extraTick(final Location l) {
-                        Bukkit.getScheduler()
-                                .scheduleSyncDelayedTask(
-                                        Variables.plug,
-                                        new BukkitRunnable() {
+                    @Override
+                    public void updateInventory(@Nonnull BlockMenu menu, @Nonnull Block b) {
+                        super.updateInventory(menu, b);
+                        menu.replaceExistingItem(1, this.getFuelIcon());
+                    }
 
-                                            public void run() {
-                                                if (U.chance(100, 5)) {
+                    public void extraTick(final @NotNull Location l) {
+                        Bukkit.getScheduler().runTaskLater(Variables.plug,
+                                () -> {
+                                    if (U.chance(100, 5)) {
 
-                                                    try {
-                                                        l.getWorld()
-                                                                .spawnParticle(
-                                                                        Particle.BLOCK_CRACK,
-                                                                        l.getBlock()
-                                                                                .getLocation(),
-                                                                        1,
-                                                                        0.5F,
-                                                                        0.0F,
-                                                                        1.0F,
-                                                                        Material.ORANGE_TERRACOTTA);
-                                                    } catch (Exception e) {
-                                                        Main.debugException(e);
-                                                    }
+                                        try {
+                                            l.getWorld()
+                                                    .spawnParticle(
+                                                            Particle.BLOCK_CRACK,
+                                                            l.getBlock()
+                                                                    .getLocation(),
+                                                            1,
+                                                            0.5F,
+                                                            0.0F,
+                                                            1.0F,
+                                                            Material.ORANGE_TERRACOTTA);
+                                        } catch (Exception e) {
+                                            Main.debugException(e);
+                                        }
+                                    }
+                                    for (Entity entity : l.getNearbyEntities(5.0D, 5.0D, 5.0D)) {
+                                        if (entity instanceof LivingEntity) {
+                                            if (entity instanceof Player p) {
+                                                if (SlimefunUtils.isItemSimilar(
+                                                                SlimefunItems.SCUBA_HELMET,
+                                                                p.getInventory()
+                                                                        .getHelmet(),
+                                                                true)
+                                                        && SlimefunUtils.isItemSimilar(
+                                                                SlimefunItems.HAZMAT_CHESTPLATE,
+                                                                p.getInventory()
+                                                                        .getChestplate(),
+                                                                true)
+                                                        && SlimefunUtils.isItemSimilar(
+                                                                SlimefunItems.HAZMAT_LEGGINGS,
+                                                                p.getInventory()
+                                                                        .getLeggings(),
+                                                                true)
+                                                        && SlimefunUtils.isItemSimilar(
+                                                                SlimefunItems.HAZMAT_BOOTS,
+                                                                p.getInventory()
+                                                                        .getBoots(),
+                                                                true)) {
+                                                    return;
                                                 }
-                                                for (Entity entity : l.getNearbyEntities(5.0D, 5.0D, 5.0D)) {
-                                                    if (entity instanceof LivingEntity) {
-                                                        if (entity instanceof Player p) {
 
-                                                            if (SlimefunUtils.isItemSimilar(
-                                                                            SlimefunItems.SCUBA_HELMET,
-                                                                            p.getInventory()
-                                                                                    .getHelmet(),
-                                                                            true)
-                                                                    && SlimefunUtils.isItemSimilar(
-                                                                            SlimefunItems.HAZMAT_CHESTPLATE,
-                                                                            p.getInventory()
-                                                                                    .getChestplate(),
-                                                                            true)
-                                                                    && SlimefunUtils.isItemSimilar(
-                                                                            SlimefunItems.HAZMAT_LEGGINGS,
-                                                                            p.getInventory()
-                                                                                    .getLeggings(),
-                                                                            true)
-                                                                    && SlimefunUtils.isItemSimilar(
-                                                                            SlimefunItems.HAZMAT_BOOTS,
-                                                                            p.getInventory()
-                                                                                    .getBoots(),
-                                                                            true)) {
-                                                                return;
-                                                            }
-
-                                                            if (SlimefunUtils.isItemSimilar(
-                                                                            ArmorWeapon.REINFORCED_SCUBA_HELMET,
-                                                                            p.getInventory()
-                                                                                    .getHelmet(),
-                                                                            true)
-                                                                    && SlimefunUtils.isItemSimilar(
-                                                                            ArmorWeapon
-                                                                                    .REINFORCED_HAZMATSUIT_CHESTPLATE,
-                                                                            p.getInventory()
-                                                                                    .getChestplate(),
-                                                                            true)
-                                                                    && SlimefunUtils.isItemSimilar(
-                                                                            ArmorWeapon.REINFORCED_HAZMATSUIT_LEGGINGS,
-                                                                            p.getInventory()
-                                                                                    .getLeggings(),
-                                                                            true)
-                                                                    && SlimefunUtils.isItemSimilar(
-                                                                            SlimefunItems.HAZMAT_BOOTS,
-                                                                            p.getInventory()
-                                                                                    .getBoots(),
-                                                                            true)) {
-                                                                return;
-                                                            }
-                                                        }
-
-                                                        if (entity instanceof org.bukkit.entity.ArmorStand) return;
-                                                        entity.setFireTicks(Variables.cfg.getInt(
-                                                                "items.fused-salt-reactor.fire-ticks"));
-                                                    }
+                                                if (SlimefunUtils.isItemSimilar(
+                                                                ArmorWeapon.REINFORCED_SCUBA_HELMET,
+                                                                p.getInventory()
+                                                                        .getHelmet(),
+                                                                true)
+                                                        && SlimefunUtils.isItemSimilar(
+                                                                ArmorWeapon
+                                                                        .REINFORCED_HAZMATSUIT_CHESTPLATE,
+                                                                p.getInventory()
+                                                                        .getChestplate(),
+                                                                true)
+                                                        && SlimefunUtils.isItemSimilar(
+                                                                ArmorWeapon.REINFORCED_HAZMATSUIT_LEGGINGS,
+                                                                p.getInventory()
+                                                                        .getLeggings(),
+                                                                true)
+                                                        && SlimefunUtils.isItemSimilar(
+                                                                SlimefunItems.HAZMAT_BOOTS,
+                                                                p.getInventory()
+                                                                        .getBoots(),
+                                                                true)) {
+                                                    return;
                                                 }
                                             }
-                                        },
-                                        0L);
+
+                                            if (entity instanceof ArmorStand) {
+                                                return;
+                                            }
+
+                                            entity.setFireTicks(Variables.cfg.getInt("items.fused-salt-reactor.fire-ticks"));
+                                        }
+                                    }
+                                }, 1L);
                     }
 
                     public int getCapacity() {
