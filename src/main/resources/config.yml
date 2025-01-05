@@ -85,7 +85,7 @@ items:
   rtg: 
     easy-recipe: false
     # [boolean] 使用简单的RTG靶丸合成表 (简单合成表需要5个提纯铀, 默认合成表需要5个提纯铀和一个光辉铀)
-    energy-generation: 2
+    energy-generation: 4
     # [int] 放射性同位素温差发电机产能量, 总产能量 = 'energy-generation' 的 '发电机中装载的靶丸数' 次幂
     # 注: 千万不要把 'energy-generation' 设为小于或等于 1 的值, 否则装载靶丸会导致发电量减少或不变而非增加
     
