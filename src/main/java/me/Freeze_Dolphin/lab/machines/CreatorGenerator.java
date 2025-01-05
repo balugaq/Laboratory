@@ -17,6 +17,7 @@ import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.Levelled;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
@@ -58,7 +59,7 @@ public class CreatorGenerator extends AGenerator {
             @Override
             public void onPlayerPlace(@NotNull BlockPlaceEvent blockPlaceEvent) {
                 Block b = blockPlaceEvent.getBlockPlaced();
-                BlockStorage.addBlockInfo(b.getLocation(), "energy-generating", "16.0");
+                BlockStorage.addBlockInfo(b.getLocation(), key, "16");
             }
         });
     }
@@ -80,7 +81,7 @@ public class CreatorGenerator extends AGenerator {
                             block,
                             key,
                             String.valueOf(
-                                    (Double.parseDouble(BlockStorage.getLocationInfo(block.getLocation(), key)) + 1)));
+                                    (Integer.parseInt(BlockStorage.getLocationInfo(block.getLocation(), key)) + 1)));
                     return false;
                 });
         preset.addItem(
@@ -89,7 +90,7 @@ public class CreatorGenerator extends AGenerator {
                             block,
                             key,
                             String.valueOf(
-                                    (Double.parseDouble(BlockStorage.getLocationInfo(block.getLocation(), key)) + 10)));
+                                    (Integer.parseInt(BlockStorage.getLocationInfo(block.getLocation(), key)) + 10)));
                     return false;
                 });
         preset.addItem(
@@ -100,7 +101,7 @@ public class CreatorGenerator extends AGenerator {
                             block,
                             key,
                             String.valueOf(
-                                    (Double.parseDouble(BlockStorage.getLocationInfo(block.getLocation(), key)) + 100)));
+                                    (Integer.parseInt(BlockStorage.getLocationInfo(block.getLocation(), key)) + 100)));
                     return false;
                 });
         preset.addItem(
@@ -109,7 +110,7 @@ public class CreatorGenerator extends AGenerator {
                             block,
                             key,
                             String.valueOf(
-                                    (Double.parseDouble(BlockStorage.getLocationInfo(block.getLocation(), key)) - 1)));
+                                    (Integer.parseInt(BlockStorage.getLocationInfo(block.getLocation(), key)) - 1)));
                     return false;
                 });
         preset.addItem(
@@ -120,7 +121,7 @@ public class CreatorGenerator extends AGenerator {
                             block,
                             key,
                             String.valueOf(
-                                    (Double.parseDouble(BlockStorage.getLocationInfo(block.getLocation(), key)) - 10)));
+                                    (Integer.parseInt(BlockStorage.getLocationInfo(block.getLocation(), key)) - 10)));
                     return false;
                 });
         preset.addItem(
@@ -131,13 +132,13 @@ public class CreatorGenerator extends AGenerator {
                             block,
                             key,
                             String.valueOf(
-                                    (Double.parseDouble(BlockStorage.getLocationInfo(block.getLocation(), key)) - 100)));
+                                    (Integer.parseInt(BlockStorage.getLocationInfo(block.getLocation(), key)) - 100)));
                     return false;
                 });
     }
 
     public @NotNull String getInventoryTitle() {
-        return "&6创世神发电机";
+        return getItemName();
     }
 
     public @NotNull ItemStack getProgressBar() {
@@ -153,8 +154,11 @@ public class CreatorGenerator extends AGenerator {
     protected void registerDefaultFuelTypes() {}
 
     public int getGeneratedOutput(Location l, SlimefunBlockData data) {
+        if (l.getBlock().getBlockPower() < 0) {
+            return 0;
+        }
         int energy;
-        energy = Integer.parseInt(BlockStorage.getLocationInfo(l, "energy-generating"));
+        energy = Integer.parseInt(BlockStorage.getLocationInfo(l, key));
         StorageCacheUtils.getMenu(l)
                 .replaceExistingItem(
                         remain,
@@ -164,11 +168,6 @@ public class CreatorGenerator extends AGenerator {
 
     @Override
     public int getCapacity() {
-        return 1024;
-    }
-
-    @Override
-    public int getEnergyProduction() {
-        return 16;
+        return 1073741824;
     }
 }
