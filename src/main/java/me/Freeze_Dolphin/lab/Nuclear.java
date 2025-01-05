@@ -25,6 +25,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -36,6 +37,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nonnull;
 
 public class Nuclear {
+    public static final BlockData particleData = Material.ORANGE_TERRACOTTA.createBlockData();
     public static final RecipeType fusedSaltReactor_r = new RecipeType(
             new NamespacedKey(Main.instance, "fused_salt_reactor_recipe"),
             new CustomItemStack(
@@ -479,7 +481,7 @@ public class Nuclear {
                                                             0.5F,
                                                             0.0F,
                                                             1.0F,
-                                                            Material.ORANGE_TERRACOTTA);
+                                                            particleData);
                                         } catch (Exception e) {
                                             Main.debugException(e);
                                         }
