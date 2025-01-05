@@ -159,11 +159,11 @@ public class Main extends JavaPlugin implements SlimefunAddon {
         }
 
         getLogger().info("Loading Items...");
+        new Resource();
         new Tech();
         new Food();
         new Lab();
         new Nuclear();
-        new Resource();
         new ArmorWeapon();
 
         getLogger().info("Laboratory enabled.");
