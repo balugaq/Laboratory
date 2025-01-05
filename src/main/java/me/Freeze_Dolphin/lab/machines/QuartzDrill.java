@@ -4,9 +4,11 @@ import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import me.Freeze_Dolphin.lab.ADrill;
 import me.Freeze_Dolphin.lab.OreGenSystem;
 import me.Freeze_Dolphin.lab.Tech;
+import me.Freeze_Dolphin.lab.geo.CertusQuartz;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -16,7 +18,7 @@ public abstract class QuartzDrill extends ADrill {
     }
 
     public GEOResource getOreGenResource() {
-        return OreGenSystem.getResource("赛特斯石英");
+        return CertusQuartz.instance;
     }
 
     public ItemStack[] getOutputItems() {

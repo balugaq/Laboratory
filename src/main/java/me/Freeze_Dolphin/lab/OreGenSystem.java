@@ -4,6 +4,9 @@ import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
+import io.github.thebusybiscuit.slimefun4.api.geo.ResourceManager;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.Chunk;
@@ -77,7 +80,6 @@ public class OreGenSystem {
         }
 
         if (!generate) {
-
             return 0;
         }
 

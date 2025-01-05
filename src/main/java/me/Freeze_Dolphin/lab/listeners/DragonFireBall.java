@@ -363,6 +363,7 @@ public class DragonFireBall implements Listener {
             int[] arrayOfInt;
             for (i = (arrayOfInt = border).length, b = 0; b < i; ) {
                 int slot = arrayOfInt[b];
+                if (inv.getItem(slot) == null) return;
                 if (!inv.getItem(slot).hasItemMeta()) return;
                 ItemMeta im = inv.getItem(slot).getItemMeta();
                 if (!im.hasDisplayName()) return;

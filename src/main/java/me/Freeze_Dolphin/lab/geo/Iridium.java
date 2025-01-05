@@ -12,6 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class Iridium implements GEOResource {
+    public static Iridium instance = new Iridium();
     private static final Random random = new Random();
 
     @Override

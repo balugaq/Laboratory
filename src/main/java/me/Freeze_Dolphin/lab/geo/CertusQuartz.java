@@ -10,18 +10,11 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 public class CertusQuartz implements GEOResource {
-
-    public ItemStack getIcon() {
-        return Tech.CERTUS_QUARTZ.clone();
-    }
-
-    public String getMeasurementUnit() {
-        return "块";
-    }
+    public static CertusQuartz instance = new CertusQuartz();
 
     @Override
     public int getDefaultSupply(@NotNull World.Environment environment, @NotNull Biome biome) {
-        if (biome == Biome.NETHER_WASTES) {
+        if (environment == World.Environment.NETHER) {
             return 1;
         }
 
@@ -44,7 +37,7 @@ public class CertusQuartz implements GEOResource {
 
     @Override
     public boolean isObtainableFromGEOMiner() {
-        return true;
+        return false;
     }
 
     @Override

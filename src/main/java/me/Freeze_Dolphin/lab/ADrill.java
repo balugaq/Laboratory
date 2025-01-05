@@ -5,11 +5,14 @@ import io.github.thebusybiscuit.slimefun4.api.geo.GEOResource;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.OptionalInt;
+
 import me.mrCookieSlime.CSCoreLibPlugin.general.Inventory.ClickAction;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
@@ -82,10 +85,17 @@ public abstract class ADrill extends AContainer {
 
             public boolean canOpen(@NotNull Block b, @NotNull Player p) {
                 if (!p.hasPermission("slimefun.inventory.bypass") && !canUse(p, true)) {
+                    Main.debug("Player " + p.getName() + " does not have permission to use " + ADrill.this.getId() + " at " + b.getLocation());
                     return false;
                 }
 
-                return OreGenSystem.wasResourceGenerated(ADrill.this.getOreGenResource(), b.getChunk());
+                Main.debug("Player " + p.getName() + " can use " + ADrill.this.getId() + " at " + b.getLocation());
+                if (hasGeneratedResources(ADrill.this.getOreGenResource(), b)) {
+                    return true;
+                } else {
+                    p.sendMessage("§c你还没有扫描区块资源!");
+                    return false;
+                }
             }
 
             public int[] getSlotsAccessedByItemTransport(ItemTransportFlow flow) {
@@ -133,15 +143,18 @@ public abstract class ADrill extends AContainer {
                 processing.remove(b);
             }
 
-        } else if (OreGenSystem.getSupplies(getOreGenResource(), b.getChunk(), false) > 0) {
+        } else if (hasGeneratedResources(getOreGenResource(), b)) {
+            int current = getResource(getOreGenResource(), b).orElse(0);
+            if (current <= 0) {
+                return;
+            }
+            Main.debug("Generating resources for " + this.getId() + " at " + b.getLocation());
             MachineRecipe r = new MachineRecipe(getProcessingTime() / getSpeed(), new ItemStack[0], getOutputItems());
-            if (!BlockMenuUtil.fits(b, r.getOutput())) return;
+            if (!BlockMenuUtil.fits(b, r.getOutput(), getOutputSlots())) return;
+            Main.debug("Generated resources for " + this.getId() + " at " + b.getLocation());
             processing.put(b, r);
             progress.put(b, r.getTicks());
-            OreGenSystem.setSupplies(
-                    getOreGenResource(),
-                    b.getChunk(),
-                    OreGenSystem.getSupplies(getOreGenResource(), b.getChunk(), false) - 1);
+            setResource(getOreGenResource(), b, current - 1);
         }
     }
 
@@ -159,5 +172,17 @@ public abstract class ADrill extends AContainer {
 
     public boolean isProcessing(Block b) {
         return getProcessing(b) != null;
+    }
+
+    public OptionalInt getResource(GEOResource resource, Block b) {
+        return Slimefun.getGPSNetwork().getResourceManager().getSupplies(resource, b.getChunk().getWorld(), b.getChunk().getX(), b.getChunk().getZ());
+    }
+
+    public boolean hasGeneratedResources(GEOResource resource, Block b) {
+        return getResource(resource, b).isPresent();
+    }
+
+    public void setResource(GEOResource resource, Block b, int amount) {
+        Slimefun.getGPSNetwork().getResourceManager().setSupplies(resource, b.getChunk().getWorld(), b.getChunk().getX(), b.getChunk().getZ(), amount);
     }
 }

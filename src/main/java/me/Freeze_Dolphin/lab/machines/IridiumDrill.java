@@ -8,6 +8,7 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import me.Freeze_Dolphin.lab.ADrill;
 import me.Freeze_Dolphin.lab.OreGenSystem;
 import me.Freeze_Dolphin.lab.Tech;
+import me.Freeze_Dolphin.lab.geo.Iridium;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -18,7 +19,7 @@ public abstract class IridiumDrill extends ADrill {
 
     @Override
     public GEOResource getOreGenResource() {
-        return OreGenSystem.getResource("铱");
+        return Iridium.instance;
     }
 
     @Override

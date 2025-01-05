@@ -23,6 +23,7 @@ import me.Freeze_Dolphin.lab.geo.CertusQuartz;
 import me.Freeze_Dolphin.lab.machines.AdvancedChargingBench;
 import me.Freeze_Dolphin.lab.machines.Converter;
 import me.Freeze_Dolphin.lab.machines.CreatorGenerator;
+import me.Freeze_Dolphin.lab.machines.IridiumDrill;
 import me.Freeze_Dolphin.lab.machines.ItemFreezer;
 import me.Freeze_Dolphin.lab.machines.Magnetizer;
 import me.Freeze_Dolphin.lab.machines.NetherStarCrusher;
@@ -141,6 +142,7 @@ public class Tech {
     public static SlimefunItemStack CERTUS_QUARTZ;
     public static SlimefunItemStack CHARGED_CERTUS_QUARTZ;
     public static SlimefunItemStack QUARTZ_DRILL;
+    public static SlimefunItemStack IRIDIUM_DRILL;
     public static SlimefunItemStack ADVANCED_CHARGING_BENCH;
     public static SlimefunItemStack ITEM_FREEZER;
     public static SlimefunItemStack PROGRAMMABLE_ENDER_ANDROID_FISHERMAN;
@@ -210,7 +212,7 @@ public class Tech {
             (new SlimefunItem(cr, IRIDIUM, MT, U.midr(new ItemStack(Material.IRON_BLOCK)))).register(Main.instance);
         }
 
-        OreGenSystem.registerResource(new CertusQuartz());
+        CertusQuartz.instance.register();
 
         IRIDIUM_BLOCK = new SlimefunItemStack("LAB_IRIDIUM_BLOCK",
                 new CustomItemStack(
@@ -1523,6 +1525,37 @@ public class Tech {
                     SUPER_ELECTRO_MAGNET,
                     SlimefunItems.ELECTRIC_MOTOR,
                     SUPER_ELECTRO_MAGNET
+                }) {
+                    @Override
+                    public int getCapacity() {
+                        return 4096;
+                    }
+                })
+                .register(Main.instance);
+
+        IRIDIUM_DRILL = new SlimefunItemStack("LAB_IRIDIUM_DRILL",
+                new CustomItemStack(
+                        Material.IRON_BLOCK,
+                        "&b铱钻机",
+                        "",
+                        "&r用于挖掘铱",
+                        "",
+                        "&4终级机器",
+                        "&8⇨ &7速度: 1x",
+                        "&8⇨ &e⚡ &764 J/s",
+                        "",
+                        "&c&l! &c仅能在地狱使用!",
+                        "&c&l! &c使用前请先扫描想使用的区块"));
+        (new IridiumDrill(lockedCategory, IRIDIUM_DRILL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+                    SUPER_ELECTRO_MAGNET,
+                    SlimefunItems.REINFORCED_PLATE,
+                    SUPER_ELECTRO_MAGNET,
+                    SlimefunItems.HARDENED_GLASS,
+                    SlimefunItems.ELECTRIC_INGOT_PULVERIZER,
+                    SlimefunItems.HARDENED_GLASS,
+                    SlimefunItems.ADVANCED_CIRCUIT_BOARD,
+                    SlimefunItems.ELECTRIC_MOTOR,
+                    SlimefunItems.ADVANCED_CIRCUIT_BOARD,
                 }) {
                     @Override
                     public int getCapacity() {
