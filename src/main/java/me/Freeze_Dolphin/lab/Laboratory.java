@@ -1,8 +1,10 @@
 package me.Freeze_Dolphin.lab;
 
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.NestedItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.core.attributes.Rechargeable;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import me.Freeze_Dolphin.lab.bugrepair.ElevatorBook;
@@ -25,6 +27,7 @@ import me.Freeze_Dolphin.lab.listeners.RadioactivityWeapons;
 import me.Freeze_Dolphin.lab.listeners.Reloader;
 import me.Freeze_Dolphin.lab.listeners.Rubber;
 import me.Freeze_Dolphin.lab.listeners.RubberBoots;
+import me.Freeze_Dolphin.lab.listeners.SapphireCapacity;
 import me.Freeze_Dolphin.lab.listeners.Stomper;
 import me.Freeze_Dolphin.lab.listeners.UnplaceableItems;
 import me.Freeze_Dolphin.lab.listeners.Vanisher;
@@ -37,6 +40,9 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.Potion;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -49,6 +55,7 @@ public class Laboratory extends JavaPlugin implements SlimefunAddon {
     public static final Map<ItemStack, Float> capacities = new HashMap<>();
     public static final Map<Double, ItemStack> lo = new HashMap<>();
     public static final Map<UUID, Location> locations = new HashMap<>();
+    public static final Map<UUID, Location> sapphireLocations = new HashMap<>();
     public static NestedItemGroup nest;
     public static Laboratory instance;
 
@@ -204,10 +211,74 @@ public class Laboratory extends JavaPlugin implements SlimefunAddon {
                     for (ItemStack itemStack : p.getInventory().getStorageContents()) {
                         for (Map.Entry<ItemStack, Float> capacity : capacities.entrySet()) {
                             if (SlimefunUtils.isItemSimilar(itemStack, capacity.getKey(), false, false)) {
-                                float capacityValue = capacity.getValue();
-                                ChargeableItem.chargeItem(itemStack, capacityValue);
+                                SlimefunItem ca = SlimefunItem.getByItem(itemStack);
+                                if (ca instanceof Rechargeable capa) {
+                                    float charge = capa.getItemCharge(itemStack);
+                                    if (charge > 0) {
+                                        for (ItemStack itemStack1 : p.getInventory().getStorageContents()) {
+                                            boolean c = true;
+                                            for (Map.Entry<ItemStack, Float> d1 : capacities.entrySet()) {
+                                                if (SlimefunUtils.isItemSimilar(d1.getKey(), itemStack1, false, false)) {
+                                                    c = false;
+                                                    break;
+                                                }
+                                            }
+                                            if (!c) {
+                                                continue;
+                                            }
+                                            if (SlimefunItem.getByItem(itemStack1) instanceof Rechargeable rechargeable) {
+                                                float max = rechargeable.getMaxItemCharge(itemStack1);
+                                                float cp = rechargeable.getItemCharge(itemStack1);
+                                                if (cp < max) {
+                                                    float add = Math.max(max - cp, Math.max(0, Math.min(charge, capacity.getValue())));
+                                                    rechargeable.addItemCharge(itemStack1, add);
+                                                    capa.removeItemCharge(itemStack, add);
+                                                    p.updateInventory();
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
+                    }
+                }
+            }
+        }, 20L, 1L);
+
+        Bukkit.getScheduler().runTaskTimer(this, () -> {
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                if (p == null) {
+                    continue;
+                }
+
+                if (p.hasPotionEffect(PotionEffectType.INVISIBILITY)) {
+                    continue;
+                }
+
+                UUID key = p.getUniqueId();
+                Location current = p.getLocation();
+                Location last = sapphireLocations.get(key);
+
+                if (last == null) {
+                    sapphireLocations.put(key, current);
+                    continue;
+                }
+
+                if (current.getBlockX() != last.getBlockX() || current.getBlockY() != last.getBlockY() || current.getBlockZ() != last.getBlockZ() || !current.getWorld().getUID().equals(last.getWorld().getUID())) {
+                    sapphireLocations.put(key, current);
+
+                    ItemStack itemStack = p.getInventory().getBoots();
+                    SlimefunItem item = SlimefunItem.getByItem(itemStack);
+                    if (item == null || !item.getId().equals(Lab.SAPPHIRE_CAPACITY.getItemId())) {
+                        continue;
+                    }
+
+                    if (item instanceof Rechargeable rechargeable) {
+                        rechargeable.removeItemCharge(itemStack, 0.01f);
+                        p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 1, 2, true, false, true));
+                        p.updateInventory();
                     }
                 }
             }
