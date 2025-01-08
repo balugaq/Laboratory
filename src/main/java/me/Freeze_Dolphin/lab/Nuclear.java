@@ -37,8 +37,9 @@ public class Nuclear {
     public static final RecipeType fusedSaltReactor_r = new RecipeType(
             new NamespacedKey(Laboratory.instance, "fused_salt_reactor_recipe"),
             new CustomItemStack(
-                    Material.ORANGE_STAINED_GLASS,
-                    "&6合金反应堆"
+                    SkullUtil.getByBase64(
+                            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjc0MTM2YTk1NzY3MzQ2ZjU2NDBkMDlkYjM2OGExODkyNjE1YTVlOWIyMWI1MGUyOWY0N2ZkMzc0YjFiOTNhMSJ9fX0="),
+                    "&c熔盐反应器"
             )
     );
     public static final SlimefunItemStack FLUORIDE_MACHINE = new SlimefunItemStack("LAB_FLUORIDE_MACHINE",
