@@ -45,7 +45,7 @@ public class StartupTasks {
                                                     p.getInventory().getLeggings(),
                                                     true)
                                                     && SlimefunUtils.isItemSimilar(
-                                                    SlimefunItems.HAZMAT_BOOTS,
+                                                    ArmorWeapon.REINFORCED_HAZMATSUIT_BOOTS,
                                                     p.getInventory().getBoots(),
                                                     true)) {
                                                 break;
@@ -103,7 +103,7 @@ public class StartupTasks {
                                                         p.getInventory().getLeggings(),
                                                         true)
                                                         && SlimefunUtils.isItemSimilar(
-                                                        SlimefunItems.HAZMAT_BOOTS,
+                                                        ArmorWeapon.REINFORCED_HAZMATSUIT_BOOTS,
                                                         p.getInventory().getBoots(),
                                                         true)) {
                                                     break;

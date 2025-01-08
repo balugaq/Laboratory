@@ -8,6 +8,7 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.RadioactiveItem;
+import io.github.thebusybiscuit.slimefun4.implementation.items.armor.HazmatArmorPiece;
 import io.github.thebusybiscuit.slimefun4.implementation.items.armor.SlimefunArmorPiece;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import org.bukkit.Color;
@@ -22,11 +23,12 @@ public class ArmorWeapon {
     private static final ItemGroup c = new SubItemGroup(
             new NamespacedKey(Laboratory.instance, "armor_weapon"),
             Laboratory.nest,
-            new CustomItemStack(Material.DIAMOND_CHESTPLATE, "&7Consider 实验室装甲 & 武器", new String[]{"", "&a> 点击打开"}),
+            new CustomItemStack(Material.DIAMOND_CHESTPLATE, "&7Consider 实验室装甲 & 武器"),
             4);
     public static SlimefunItemStack REINFORCED_SCUBA_HELMET;
     public static SlimefunItemStack REINFORCED_HAZMATSUIT_CHESTPLATE;
     public static SlimefunItemStack REINFORCED_HAZMATSUIT_LEGGINGS;
+    public static SlimefunItemStack REINFORCED_HAZMATSUIT_BOOTS;
     public static SlimefunItemStack WITHER_PROOF_GLASS_HELMET;
     public static SlimefunItemStack WITHER_PROOF_GLASS_CHESTPLATE;
     public static SlimefunItemStack WITHER_PROOF_GLASS_LEGGINGS;
@@ -283,11 +285,22 @@ public class ArmorWeapon {
                         "&f导致其无法防止寻常的辐射对穿戴者的损伤",
                         "",
                         "&b反穿透防护服的一部分"));
+        REINFORCED_HAZMATSUIT_BOOTS = new SlimefunItemStack("LAB_REINFORCED_HAZMATSUIT_BOOTS",
+                new CustomItemStack(
+                        Material.IRON_BOOTS,
+                        "&c加厚防护靴",
+                        "",
+                        "&f比起普通防护服来说",
+                        "&f这种加厚的防护服能够抵挡穿透性射线的伤害",
+                        "&f但是由于其材质与普通防护服的巨大区别",
+                        "&f导致其无法防止寻常的辐射对穿戴者的损伤",
+                        "",
+                        "&b反穿透防护服的一部分"));
 
         ItemStack rag = SlimefunItems.REINFORCED_ALLOY_INGOT;
         ItemStack pc = SlimefunItems.POWER_CRYSTAL;
 
-        (new SlimefunArmorPiece(
+        (new HazmatArmorPiece(
                 c,
                 REINFORCED_SCUBA_HELMET,
                 RecipeType.ENHANCED_CRAFTING_TABLE,
@@ -298,7 +311,7 @@ public class ArmorWeapon {
                 }))
                 .register(Laboratory.instance);
 
-        (new SlimefunArmorPiece(
+        (new HazmatArmorPiece(
                 c,
                 REINFORCED_HAZMATSUIT_CHESTPLATE,
                 RecipeType.ENHANCED_CRAFTING_TABLE,
@@ -313,7 +326,7 @@ public class ArmorWeapon {
                 }))
                 .register(Laboratory.instance);
 
-        (new SlimefunArmorPiece(
+        (new HazmatArmorPiece(
                 c,
                 REINFORCED_HAZMATSUIT_LEGGINGS,
                 RecipeType.ENHANCED_CRAFTING_TABLE,
@@ -321,6 +334,18 @@ public class ArmorWeapon {
                         rag, rag, rag,
                         rag, SlimefunItems.HAZMAT_LEGGINGS, rag,
                         rag, pc, rag
+                },
+                new PotionEffect[]{new PotionEffect(PotionEffectType.SLOW, 300, 1)}))
+                .register(Laboratory.instance);
+
+        (new HazmatArmorPiece(
+                c,
+                REINFORCED_HAZMATSUIT_BOOTS,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{
+                        rag, rag, rag,
+                        rag, SlimefunItems.HAZMAT_BOOTS, rag,
+                        rag, rag, rag
                 },
                 new PotionEffect[]{new PotionEffect(PotionEffectType.SLOW, 300, 1)}))
                 .register(Laboratory.instance);

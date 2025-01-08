@@ -73,7 +73,7 @@ public class RadioactivityWeapons implements Listener {
                                 dp.getInventory().getLeggings(),
                                 true)
                                 && SlimefunUtils.isItemSimilar(
-                                SlimefunItems.HAZMAT_BOOTS,
+                                ArmorWeapon.REINFORCED_HAZMATSUIT_BOOTS,
                                 dp.getInventory().getBoots(),
                                 true)) {
                             return;

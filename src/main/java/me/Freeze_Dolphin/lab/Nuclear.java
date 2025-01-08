@@ -527,7 +527,7 @@ public class Nuclear {
                                                         .getLeggings(),
                                                 true)
                                                 && SlimefunUtils.isItemSimilar(
-                                                SlimefunItems.HAZMAT_BOOTS,
+                                                ArmorWeapon.REINFORCED_HAZMATSUIT_BOOTS,
                                                 p.getInventory()
                                                         .getBoots(),
                                                 true)) {
