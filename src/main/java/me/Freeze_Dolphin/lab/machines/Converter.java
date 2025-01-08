@@ -39,6 +39,7 @@ public abstract class Converter extends AdvancedAContainer {
             }
         } else {
             String mat = cfg.split("MC\\{")[1].split("\\}")[0];
+            Laboratory.debug("String: " + mat);
             rt = new ItemStack(getMaterial(mat));
             rt.setAmount(str2int(cfg.split("\\=")[1]));
         }
@@ -64,43 +65,46 @@ public abstract class Converter extends AdvancedAContainer {
 
     public static Material getMaterial(String string) {
         try {
-            Material mat = Material.getMaterial(string);
-            if (mat == null) {
-                Laboratory.debug("Material not found: " + string);
-                for (Material m : Material.values()) {
-                    if (m.name().toLowerCase().contains(string.toLowerCase())) {
-                        Laboratory.debug("Did you mean: " + m.name() + "?");
-                        break;
-                    }
+            for (Material m : Material.values()) {
+                if (m.name().equalsIgnoreCase(string)) {
+                    return m;
                 }
+            }
 
-                for (Material m : Material.values()) {
-                    if (m.name().toLowerCase().startsWith(string.toLowerCase())) {
-                        Laboratory.debug("Did you mean: " + m.name() + "?");
-                        break;
-                    }
+            Laboratory.debug("Material not found: " + string);
+            for (Material m : Material.values()) {
+                if (m.name().toLowerCase().contains(string.toLowerCase())) {
+                    Laboratory.debug("Did you mean: " + m.name() + "?");
+                    break;
                 }
+            }
 
-                for (Material m : Material.values()) {
-                    if (m.name().toLowerCase().endsWith(string.toLowerCase())) {
-                        Laboratory.debug("Did you mean: " + m.name() + "?");
-                        break;
-                    }
+            for (Material m : Material.values()) {
+                if (m.name().toLowerCase().startsWith(string.toLowerCase())) {
+                    Laboratory.debug("Did you mean: " + m.name() + "?");
+                    break;
                 }
+            }
 
-                int mostLike = 0;
-                Material mostLiked = null;
-                for (Material m : Material.values()) {
-                    int like = getLike(m.name().toLowerCase(), string.toLowerCase());
-                    if (like > mostLike) {
-                        mostLike = like;
-                        mostLiked = m;
-                    }
+            for (Material m : Material.values()) {
+                if (m.name().toLowerCase().endsWith(string.toLowerCase())) {
+                    Laboratory.debug("Did you mean: " + m.name() + "?");
+                    break;
                 }
+            }
 
-                if (mostLiked != null) {
-                    Laboratory.debug("Did you mean: " + mostLiked.name() + "?");
+            int mostLike = 0;
+            Material mostLiked = null;
+            for (Material m : Material.values()) {
+                int like = getLike(m.name().toLowerCase(), string.toLowerCase());
+                if (like > mostLike) {
+                    mostLike = like;
+                    mostLiked = m;
                 }
+            }
+
+            if (mostLiked != null) {
+                Laboratory.debug("Did you mean: " + mostLiked.name() + "?");
             }
         } catch (Exception ex) {
             ex.printStackTrace();
