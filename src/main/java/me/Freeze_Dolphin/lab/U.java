@@ -129,8 +129,8 @@ public class U {
         return new Research(new NamespacedKey(Laboratory.instance, String.valueOf(Variables.ResearchIdentify + id)), Variables.ResearchIdentify + id, name, level);
     }
 
-    public static void newDelayedTask(BukkitRunnable br, Long tick) {
-        Bukkit.getScheduler().scheduleSyncDelayedTask(Variables.plug, br, tick);
+    public static void newDelayedTask(Runnable br, Long tick) {
+        Bukkit.getScheduler().runTaskLater(Variables.plug, br, tick);
     }
 
     public static ItemStack getItemInMainHand(Player p) {
