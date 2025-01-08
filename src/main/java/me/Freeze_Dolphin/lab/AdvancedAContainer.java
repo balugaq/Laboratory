@@ -98,6 +98,8 @@ public abstract class AdvancedAContainer extends AContainer implements RecipeDis
                 }
                 Laboratory.debug(" | Looping through done");
             }
+        } else {
+            Laboratory.debug(" | No recipes found for machine");
         }
 
         return display;
