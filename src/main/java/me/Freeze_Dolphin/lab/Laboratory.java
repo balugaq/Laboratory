@@ -18,6 +18,7 @@ import me.Freeze_Dolphin.lab.listeners.ElectricAxe;
 import me.Freeze_Dolphin.lab.listeners.ElectricDigger;
 import me.Freeze_Dolphin.lab.listeners.EmeraldCapacity;
 import me.Freeze_Dolphin.lab.listeners.JukeboxDisc;
+import me.Freeze_Dolphin.lab.listeners.MimungBlaster;
 import me.Freeze_Dolphin.lab.listeners.NoDyeableSheep;
 import me.Freeze_Dolphin.lab.listeners.PlasmaCell;
 import me.Freeze_Dolphin.lab.listeners.RadioactivityWeapons;
@@ -157,6 +158,7 @@ public class Laboratory extends JavaPlugin implements SlimefunAddon {
         getServer().getPluginManager().registerEvents(new JukeboxDisc(), this);
         getServer().getPluginManager().registerEvents(new RadioactivityWeapons(), this);
         getServer().getPluginManager().registerEvents(new WitherProofArmors(), this);
+        getServer().getPluginManager().registerEvents(new MimungBlaster(), this);
 
         if (Variables.cfg.getBoolean("bugfixers.speed-ingot")) {
             getServer().getPluginManager().registerEvents(new SpeedIngotBUG(), this);
