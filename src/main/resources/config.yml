@@ -176,8 +176,8 @@ items:
     time: 60
     # [int] 电解机加工耗时
   magnetic-iron:
-    chance: 1
-    # [int] 挖掘铁矿石时掉落磁铁矿的几率 (%)
+    chance: 10
+    # [int] 挖掘铁矿石时掉落磁铁矿的几率 (‰)
 
 researches: 
 # 解锁研究的相关设置

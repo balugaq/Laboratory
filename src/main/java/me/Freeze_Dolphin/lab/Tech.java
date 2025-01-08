@@ -187,8 +187,8 @@ public class Tech {
                 MAGNETIC_IRON_INGOT,
                 new RecipeType(
                         new NamespacedKey(Laboratory.instance, "break_iron_ore"),
-                        new CustomItemStack(Material.IRON_PICKAXE, "&7采掘", "", "&a在挖掘铁块时有几率掉落")),
-                U.midr(new ItemStack(Material.IRON_INGOT))))
+                        new CustomItemStack(Material.IRON_PICKAXE, "&7采掘", "", "&a在挖掘铁矿时有几率掉落")),
+                U.midr(new ItemStack(Material.IRON_ORE))))
                 .register(Laboratory.instance);
 
         STARC = new RecipeType(

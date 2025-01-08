@@ -61,7 +61,7 @@ public class U {
     }
 
     public static int random(int highest, int lowest) {
-        return (new Random()).nextInt(highest - lowest + 1) + lowest;
+        return rand.nextInt(highest - lowest + 1) + lowest;
     }
 
     public static ItemStack[] midr(ItemStack item) {
