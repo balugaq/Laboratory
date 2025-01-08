@@ -214,7 +214,8 @@ public class Tech {
                             "&d铱",
                             "",
                             "&f一种稀有的贵重金属",
-                            "&f其质地硬而脆"));
+                            "&f其质地硬而脆",
+                            "&c在蘑菇岛通过铱钻机获取"));
 
             (new SlimefunItem(cr, IRIDIUM, MT, U.midr(new ItemStack(Material.IRON_BLOCK)))).register(Laboratory.instance);
             useSelfIridium = true;
@@ -366,7 +367,8 @@ public class Tech {
                 new CustomItemStack(
                         SkullUtil.getByBase64(
                                 "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjNlZWI0NDA0YTIyZTNjNWZiZGQ0ODM2YzcyYTdmNTljMTYxNTU4OGE5YzU3ZDI4NzE1NTQ1MzcyOGFlYSJ9fX0="),
-                        "&f赛特斯石英块"));
+                        "&f赛特斯石英块",
+                        "&c在下界通过石英钻机获取"));
         CHARGED_CERTUS_QUARTZ = new SlimefunItemStack("LAB_CHARGED_CERTUS_QUARTZ",
                 new CustomItemStack(
                         SkullUtil.getByBase64(
@@ -1527,7 +1529,6 @@ public class Tech {
                         "&8⇨ &7速度: 1x",
                         "&8⇨ &e⚡ &764 J/s",
                         "",
-                        "&c&l! &c仅能在地狱使用!",
                         "&c&l! &c使用前请先扫描想使用的区块"));
 
         (new QuartzDrill(lockedCategory, QUARTZ_DRILL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
@@ -1561,7 +1562,6 @@ public class Tech {
                             "&8⇨ &7速度: 1x",
                             "&8⇨ &e⚡ &764 J/s",
                             "",
-                            "&c&l! &c仅能在地狱使用!",
                             "&c&l! &c使用前请先扫描想使用的区块"));
             (new IridiumDrill(lockedCategory, IRIDIUM_DRILL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                     SUPER_ELECTRO_MAGNET,
