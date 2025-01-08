@@ -1904,7 +1904,7 @@ public class Tech {
 
             @Override
             public void registerDefaultRecipes() {
-                registerRecipe(10, PLASMA_CELL, U.mat(Material.GLASS_BOTTLE));
+                registerRecipe(10, U.mat(Material.GLASS_BOTTLE), PLASMA_CELL);
             }
 
             public int getEnergyConsumption() {
