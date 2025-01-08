@@ -448,13 +448,13 @@ public class Nuclear {
             }
 
             public ItemStack getCoolant() {
-                return Nuclear.FUSED_SALT_REACTOR_COOLANT_CELL;
+                return new CustomItemStack(Nuclear.FUSED_SALT_REACTOR_COOLANT_CELL, Nuclear.FUSED_SALT_REACTOR_COOLANT_CELL.getDisplayName() + " ");
             }
 
             @NotNull
             @Override
             public ItemStack getFuelIcon() {
-                return Nuclear.ENRICHED_FUSED_SALT_REACTOR_FUEL;
+                return new CustomItemStack(Nuclear.ENRICHED_FUSED_SALT_REACTOR_FUEL, Nuclear.ENRICHED_FUSED_SALT_REACTOR_FUEL.getDisplayName() + " ");
             }
 
             @Override
