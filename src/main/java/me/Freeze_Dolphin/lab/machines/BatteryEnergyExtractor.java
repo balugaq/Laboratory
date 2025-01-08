@@ -17,6 +17,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 public class BatteryEnergyExtractor extends AdvancedAContainer {
     public BatteryEnergyExtractor(
@@ -91,17 +92,21 @@ public class BatteryEnergyExtractor extends AdvancedAContainer {
     }
 
     @Override
-    public String getMachineIdentifier() {
+    public @NotNull String getMachineIdentifier() {
         return getId();
     }
 
     @Override
     public int getEnergyConsumption() {
-        return 0;
+        return 10;
     }
 
     @Override
     public int getSpeed() {
         return 1;
+    }
+    @Override
+    public int getCapacity() {
+        return 1024;
     }
 }
