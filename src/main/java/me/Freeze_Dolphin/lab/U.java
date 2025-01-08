@@ -89,6 +89,9 @@ public class U {
     }
 
     public static String color(String str) {
+        if (str == null) {
+            return "";
+        }
         return ChatColor.translateAlternateColorCodes('&', str);
     }
 

@@ -25,6 +25,7 @@ import me.Freeze_Dolphin.lab.machines.Converter;
 import me.Freeze_Dolphin.lab.machines.CreatorGenerator;
 import me.Freeze_Dolphin.lab.machines.IridiumDrill;
 import me.Freeze_Dolphin.lab.machines.ItemFreezer;
+import me.Freeze_Dolphin.lab.machines.LaserDrill;
 import me.Freeze_Dolphin.lab.machines.Magnetizer;
 import me.Freeze_Dolphin.lab.machines.NetherStarCrusher;
 import me.Freeze_Dolphin.lab.machines.PlasmaGenerator;
@@ -167,6 +168,7 @@ public class Tech {
     public static SlimefunItemStack ADVANCED_BIO_REACTOR;
     public static SlimefunItemStack ALLOY_REACTOR;
     public static SlimefunItemStack ADVANCED_ELECTRIC_INGOT_PULVERIZER;
+    public static SlimefunItemStack LASER_DRILL;
     public static RecipeType STARC;
     public static RecipeType LOGS;
 
@@ -974,22 +976,17 @@ public class Tech {
                         "&5创造发电机",
                         "&8⇨ &e⚡ &78192 J/s"));
 
-        (new CreatorGenerator(lockedCategory, CREATOR_GENERATOR, Variables.Non, new ItemStack[0]) {
-            @Override
-            public int getGeneratedOutput(
-                    @NotNull Location l, @NotNull me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config data) {
-                int energy = 0;
-                if (l.getBlock().getBlockPower() > 0) energy = 4096;
-                return energy;
-            }
-
+        (new CreatorGenerator(lockedCategory, CREATOR_GENERATOR, RecipeType.NULL, new ItemStack[] {
+                null, null, null,
+                null, null, null,
+                null, null, null
+        }) {
             @NotNull
             @Override
             public ItemStack getProgressBar() {
                 return new ItemStack(Material.FLINT_AND_STEEL);
             }
-        })
-                .register(Laboratory.instance);
+        }).register(Laboratory.instance);
 
         CARBONADO_EGDED_COAL_GENERATOR = new SlimefunItemStack("LAB_CARBONADO_EGDED_COAL_GENERATOR",
                 new CustomItemStack(
@@ -2111,5 +2108,49 @@ public class Tech {
                 return 16;
             }
         }.register(Laboratory.instance);
+
+        LASER_DRILL = new SlimefunItemStack("LAB_LASER_DRILL",
+                new CustomItemStack(
+                        Material.IRON_BLOCK,
+                        "&bB超机",
+                        "",
+                        "&r用激光激化物品",
+                        "",
+                        "&8⇨ &7速度: 1x",
+                        "&8⇨ &e⚡ &71024 J 缓存",
+                        "&8⇨ &e⚡ &764 J/s"
+                ));
+        (new LaserDrill(lockedCategory, LASER_DRILL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                SlimefunItems.ADVANCED_CIRCUIT_BOARD,
+                SlimefunItems.REINFORCED_PLATE,
+                SlimefunItems.ADVANCED_CIRCUIT_BOARD,
+                SlimefunItems.HARDENED_GLASS,
+                SlimefunItems.ELECTRIC_INGOT_PULVERIZER,
+                SlimefunItems.HARDENED_GLASS,
+                SlimefunItems.ADVANCED_CIRCUIT_BOARD,
+                SlimefunItems.ELECTRIC_MOTOR,
+                SlimefunItems.ADVANCED_CIRCUIT_BOARD,
+        }) {
+
+            @Override
+            public ItemStack getProgressBar() {
+                return new ItemStack(Material.DIAMOND_HOE);
+            }
+
+            @Override
+            public int getEnergyConsumption() {
+                return 64;
+            }
+
+            @Override
+            public int getSpeed() {
+                return 1;
+            }
+
+            @Override
+            public int getCapacity() {
+                return 1024;
+            }
+        }).register(Laboratory.instance);
     }
 }

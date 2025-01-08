@@ -756,7 +756,11 @@ public class Lab {
                         Material.GLOWSTONE,
                         "&b电池能量提取器",
                         "",
-                        "&f提取电池中的能量"
+                        "&f提取电池中的能量",
+                        "",
+                        "&8⇨ &7速度: 1x",
+                        "&8⇨ &e⚡ &71024 J 缓存",
+                        "&8⇨ &e⚡ &710 J/s"
                 ));
 
         new BatteryEnergyExtractor(Tech.lockedCategory, BATTERY_ENERGY_EXTRACTOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{

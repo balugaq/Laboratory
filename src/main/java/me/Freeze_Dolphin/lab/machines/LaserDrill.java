@@ -9,7 +9,7 @@ import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
-import me.Freeze_Dolphin.lab.ADrill;
+import me.Freeze_Dolphin.lab.AdvancedAContainer;
 import me.Freeze_Dolphin.lab.ChargeableBlock;
 import me.Freeze_Dolphin.lab.Laboratory;
 import me.Freeze_Dolphin.lab.MachineHelper;
@@ -39,9 +39,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Deprecated
-@Warning(reason = "Not used")
-public abstract class LaserDrill extends ADrill {
+public abstract class LaserDrill extends AdvancedAContainer {
     public static final Map<Block, MachineRecipe> processing = new HashMap<>();
     public static final Map<Block, Integer> progress = new HashMap<>();
     private static final int[] border = {27, 28, 29, 36, 38, 45, 46, 47};
@@ -100,7 +98,6 @@ public abstract class LaserDrill extends ADrill {
         this.registerDefaultRecipes();
     }
 
-    @SuppressWarnings("deprecation")
     protected void constructMenu(BlockMenuPreset preset) {
         for (int i : border) {
             preset.addItem(
@@ -137,7 +134,7 @@ public abstract class LaserDrill extends ADrill {
     }
 
     public String getInventoryTitle() {
-        return U.getCfgMessage("messages.machines.laser-drill.title");
+        return getItemName();
     }
 
     public abstract int getEnergyConsumption();
@@ -217,7 +214,6 @@ public abstract class LaserDrill extends ADrill {
         super.preRegister();
     }
 
-    @SuppressWarnings("deprecation")
     protected void tick(Block b) {
         if (isProcessing(b)) {
             int timeleft = progress.get(b);
