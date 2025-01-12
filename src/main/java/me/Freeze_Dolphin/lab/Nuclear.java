@@ -1,9 +1,11 @@
 package me.Freeze_Dolphin.lab;
 
+import com.sun.tools.javac.Main;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.groups.LockedItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.groups.SubItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
@@ -95,15 +97,15 @@ public class Nuclear {
 
     static {
         try {
-            c = new LockedItemGroup(
+            c = new SubItemGroup(
                     new NamespacedKey(Laboratory.instance, "nuclear"),
+                    Laboratory.nest,
                     new CustomItemStack(
                             SkullUtil.getByBase64(
                                     "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODI5NmYwOTI1MjRhZTljMmEyZTg3ODgxY2I0MTVhZGIzNThkNmNiNzczYzg1ZGM5NzIwMmZlZmI3NTRjMSJ9fX0="),
                             "&7Consider 实验室核电",
                             new String[]{"", "&a> 点击打开"}),
-                    5,
-                    new NamespacedKey(Slimefun.instance(), "cargo"));
+                    5);
 
             LEAD_CELL_EMPTY = new SlimefunItemStack("LAB_LEAD_CELL_EMPTY",
                     new CustomItemStack(

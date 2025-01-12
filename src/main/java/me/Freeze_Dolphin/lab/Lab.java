@@ -763,7 +763,7 @@ public class Lab {
                         "&8⇨ &e⚡ &710 J/s"
                 ));
 
-        new BatteryEnergyExtractor(Tech.lockedCategory, BATTERY_ENERGY_EXTRACTOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+        new BatteryEnergyExtractor(Tech.e, BATTERY_ENERGY_EXTRACTOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 SlimefunItems.HEATING_COIL, SlimefunItems.BATTERY, SlimefunItems.HEATING_COIL,
                 SlimefunItems.BATTERY, SlimefunItems.BATTERY, SlimefunItems.BATTERY,
                 SlimefunItems.ADVANCED_CIRCUIT_BOARD, SlimefunItems.MEDIUM_CAPACITOR, SlimefunItems.ADVANCED_CIRCUIT_BOARD

@@ -78,10 +78,10 @@ public class Tech {
             new NamespacedKey(Laboratory.instance, "resources"),
             Laboratory.nest,
             new CustomItemStack(Material.IRON_INGOT, "&7Consider 实验室资源"));
-    public static final LockedItemGroup lockedCategory = new LockedItemGroup(
+    public static final ItemGroup e = new SubItemGroup(
             new NamespacedKey(Laboratory.instance, "tech_machines"),
-            new CustomItemStack(Material.BLACK_STAINED_GLASS, "&7Consider 实验室机器"),
-            new NamespacedKey(Slimefun.instance(), "basic_machines"));
+            Laboratory.nest,
+            new CustomItemStack(Material.BLACK_STAINED_GLASS, "&7Consider 实验室机器"));
     public static final ItemGroup cm = new SubItemGroup(
             new NamespacedKey(Laboratory.instance, "misc"),
             Laboratory.nest,
@@ -952,7 +952,7 @@ public class Tech {
                         "",
                         "&4终极电容器",
                         "&8⇨ &e⚡ &71048576 J 容量"));
-        (new Capacitor(lockedCategory, 1048576, IRIDIUM_CAPACITY, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+        (new Capacitor(e, 1048576, IRIDIUM_CAPACITY, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 REINFORCED_IRIDIUM_PLATE,
                 SlimefunItems.REDSTONE_ALLOY,
                 REINFORCED_IRIDIUM_PLATE,
@@ -976,7 +976,7 @@ public class Tech {
                         "&5创造发电机",
                         "&8⇨ &e⚡ &78192 J/s"));
 
-        (new CreatorGenerator(lockedCategory, CREATOR_GENERATOR, RecipeType.NULL, new ItemStack[] {
+        (new CreatorGenerator(e, CREATOR_GENERATOR, RecipeType.NULL, new ItemStack[] {
                 null, null, null,
                 null, null, null,
                 null, null, null
@@ -999,7 +999,7 @@ public class Tech {
                         "&8⇨ &e⚡ &748 J/s"));
 
         (new AGenerator(
-                lockedCategory,
+                e,
                 CARBONADO_EGDED_COAL_GENERATOR,
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
@@ -1048,7 +1048,7 @@ public class Tech {
                         "&4终级发电机",
                         "&8⇨ &e⚡ &7768 J/s"));
 
-        new AGenerator(lockedCategory, EGG_GENERATOR, NON, new ItemStack[0]) {
+        new AGenerator(e, EGG_GENERATOR, NON, new ItemStack[0]) {
             @NotNull
             @Override
             public ItemStack getProgressBar() {
@@ -1099,7 +1099,7 @@ public class Tech {
                         "&8⇨ &e⚡ &764 J 缓存",
                         "&8⇨ &e⚡ &74 J/s"));
 
-        (new AGenerator(lockedCategory, ENDER_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+        (new AGenerator(e, ENDER_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 SUPER_HEATING_COIL,
                 ALUMAG_ALLOY,
                 SUPER_HEATING_COIL,
@@ -1148,7 +1148,7 @@ public class Tech {
                         "&8⇨ &e⚡ &764 J 缓存"));
 
         (new RadioisotopeThermoelectricGenerator(
-                lockedCategory,
+                e,
                 RADIOISOTOPE_THERMOELECTRIC_GENERATOR,
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
@@ -1173,7 +1173,7 @@ public class Tech {
                 new CustomItemStack(
                         Material.RED_TERRACOTTA, "&c红石发电机", "", "&a中级发电机", "&8⇨ &e⚡ &7128 J 缓存", "&8⇨ &e⚡ &78 J/s"));
 
-        (new AGenerator(lockedCategory, REDSTONE_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+        (new AGenerator(e, REDSTONE_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 SlimefunItems.HEATING_COIL, SlimefunItems.HEATING_COIL, SlimefunItems.HEATING_COIL,
                 SlimefunItems.BASIC_CIRCUIT_BOARD, CERTUS_QUARTZ, SlimefunItems.BASIC_CIRCUIT_BOARD,
                 SlimefunItems.ELECTRIC_MOTOR, SlimefunItems.SMALL_CAPACITOR, SlimefunItems.ELECTRIC_MOTOR
@@ -1206,7 +1206,7 @@ public class Tech {
                 new CustomItemStack(
                         Material.RED_TERRACOTTA, "&2进阶生化反应器", "", "&6发电机组", "&8⇨ &e⚡ &7256 J 缓存", "&8⇨ &e⚡ &724 J/s"));
 
-        (new AGenerator(lockedCategory, ADVANCED_BIO_REACTOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+        (new AGenerator(e, ADVANCED_BIO_REACTOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 SlimefunItems.HEATING_COIL,
                 SlimefunItems.BIO_REACTOR,
                 SlimefunItems.HEATING_COIL,
@@ -1266,7 +1266,7 @@ public class Tech {
                         "&8⇨ &e⚡ &716384 J 缓存",
                         "&8⇨ &e⚡ &7512 J/s"));
 
-        (new AGenerator(lockedCategory, ALLOY_REACTOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+        (new AGenerator(e, ALLOY_REACTOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 SlimefunItems.REINFORCED_PLATE,
                 SlimefunItems.FLUID_PUMP,
                 SlimefunItems.REINFORCED_PLATE,
@@ -1314,7 +1314,7 @@ public class Tech {
                 new CustomItemStack(
                         Material.IRON_BLOCK, "&b磁化机 &7- &eI", "", "&6高级机器", "&8⇨ &7速度: 1x", "&8⇨ &e⚡ &764 J/s"));
 
-        (new Magnetizer(lockedCategory, MAGNETIZER_1, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+        (new Magnetizer(e, MAGNETIZER_1, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 SlimefunItems.ELECTRO_MAGNET, SlimefunItems.ELECTRO_MAGNET, SlimefunItems.ELECTRO_MAGNET,
                 SlimefunItems.REDSTONE_ALLOY, SlimefunItems.HEATING_COIL, SlimefunItems.REDSTONE_ALLOY,
                 SlimefunItems.REDSTONE_ALLOY, SlimefunItems.ELECTRIC_MOTOR, SlimefunItems.REDSTONE_ALLOY
@@ -1338,7 +1338,7 @@ public class Tech {
                 new CustomItemStack(
                         Material.IRON_BLOCK, "&b磁化机 &7- &eII", "", "&6高级机器", "&8⇨ &7速度: 3x", "&8⇨ &e⚡ &764 J/s"));
 
-        (new Magnetizer(lockedCategory, MAGNETIZER_2, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+        (new Magnetizer(e, MAGNETIZER_2, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 SUPER_ELECTRO_MAGNET,
                 SUPER_ELECTRO_MAGNET,
                 SUPER_ELECTRO_MAGNET,
@@ -1378,7 +1378,7 @@ public class Tech {
                         "&8⇨ &7速度: 1x",
                         "&8⇨ &e⚡ &764 J/s"));
 
-        (new Converter(lockedCategory, CONVERTER_1, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+        (new Converter(e, CONVERTER_1, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 ALUMAG_ALLOY,
                 MAGNETIZED_REINFORCED_PLATE,
                 ALUMAG_ALLOY,
@@ -1419,7 +1419,7 @@ public class Tech {
                         "&8⇨ &7速度: 2x",
                         "&8⇨ &e⚡ &7128 J/s"));
 
-        (new Converter(lockedCategory, CONVERTER_2, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+        (new Converter(e, CONVERTER_2, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 OPTICAL_COMPONENT,
                 SlimefunItems.BLISTERING_INGOT_3,
                 OPTICAL_COMPONENT,
@@ -1460,7 +1460,7 @@ public class Tech {
                         "&8⇨ &7速度: 8x",
                         "&8⇨ &e⚡ &7512 J/s"));
 
-        (new Converter(lockedCategory, CONVERTER_3, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+        (new Converter(e, CONVERTER_3, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 SPEED_INGOT, SPEED_INGOT, SPEED_INGOT,
                 SUPER_CIRCUIT_BOARD, CONVERTER_2, SUPER_CIRCUIT_BOARD,
                 OPTICAL_COMPONENT, SlimefunItems.ELECTRIC_MOTOR, OPTICAL_COMPONENT
@@ -1495,7 +1495,7 @@ public class Tech {
                         "&8⇨ &7速度: 16x",
                         "&8⇨ &e⚡ &71024 J/s"));
 
-        (new Converter(lockedCategory, CONVERTER_4, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+        (new Converter(e, CONVERTER_4, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 IRIDIUM_BLOCK, IRIDIUM_BLOCK, IRIDIUM_BLOCK,
                 SUPER_CIRCUIT_BOARD, CONVERTER_3, SUPER_CIRCUIT_BOARD,
                 OPTICAL_COMPONENT, SlimefunItems.ELECTRIC_MOTOR, OPTICAL_COMPONENT
@@ -1528,7 +1528,7 @@ public class Tech {
                         "",
                         "&c&l! &c使用前请先扫描想使用的区块"));
 
-        (new QuartzDrill(lockedCategory, QUARTZ_DRILL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+        (new QuartzDrill(e, QUARTZ_DRILL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 SlimefunItems.ADVANCED_CIRCUIT_BOARD,
                 SlimefunItems.REINFORCED_PLATE,
                 SlimefunItems.ADVANCED_CIRCUIT_BOARD,
@@ -1560,7 +1560,7 @@ public class Tech {
                             "&8⇨ &e⚡ &764 J/s",
                             "",
                             "&c&l! &c使用前请先扫描想使用的区块"));
-            (new IridiumDrill(lockedCategory, IRIDIUM_DRILL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+            (new IridiumDrill(e, IRIDIUM_DRILL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                     SUPER_ELECTRO_MAGNET,
                     SlimefunItems.REINFORCED_PLATE,
                     SUPER_ELECTRO_MAGNET,
@@ -1593,7 +1593,7 @@ public class Tech {
                         "&8⇨ &e⚡ &7能量损耗: &c25%"));
 
         (new AdvancedChargingBench(
-                lockedCategory, ADVANCED_CHARGING_BENCH, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                e, ADVANCED_CHARGING_BENCH, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 null,
                 SUPER_ELECTRO_MAGNET,
                 SlimefunItems.BATTERY,
@@ -1622,7 +1622,7 @@ public class Tech {
                         "&8⇨ &e⚡ &7128 J 缓存",
                         "&8⇨ &e⚡ &724 J/s"));
 
-        (new ItemFreezer(lockedCategory, ITEM_FREEZER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+        (new ItemFreezer(e, ITEM_FREEZER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 ALUMAG_ALLOY,
                 SlimefunItems.ALUMINUM_INGOT,
                 ALUMAG_ALLOY,
@@ -1661,7 +1661,7 @@ public class Tech {
                         "&8⇨ &e⚡ &742 J/s"));
 
         (new AdvancedAContainer(
-                lockedCategory,
+                e,
                 ADVANCED_ELECTRIC_INGOT_PULVERIZER,
                 RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
@@ -1734,7 +1734,7 @@ public class Tech {
                         "&8⇨ &e⚡ &7256 J 缓存",
                         "&8⇨ &e⚡ &732 J/s"));
 
-        (new AdvancedAContainer(lockedCategory, ELECTROLYZER_1, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+        (new AdvancedAContainer(e, ELECTROLYZER_1, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 SlimefunItems.REDSTONE_ALLOY,
                 U.mat(Material.GLASS),
                 SlimefunItems.REDSTONE_ALLOY,
@@ -1791,7 +1791,7 @@ public class Tech {
                         "&8⇨ &e⚡ &7512 J 缓存",
                         "&8⇨ &e⚡ &764 J/s"));
 
-        (new AdvancedAContainer(lockedCategory, ELECTROLYZER_2, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+        (new AdvancedAContainer(e, ELECTROLYZER_2, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 SlimefunItems.REDSTONE_ALLOY,
                 SlimefunItems.HARDENED_GLASS,
                 SlimefunItems.REDSTONE_ALLOY,
@@ -1852,7 +1852,7 @@ public class Tech {
                         "&8⇨ &e⚡ &7512 J/s"));
 
         (new NetherStarCrusher(
-                lockedCategory, NETHER_STAR_CRUSHER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                e, NETHER_STAR_CRUSHER, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 IRIDIUM,
                 IRIDIUM,
                 SlimefunItems.ELECTRIC_MOTOR,
@@ -1887,7 +1887,7 @@ public class Tech {
                         "&8⇨ &e⚡ &71024 J 缓存",
                         "&8⇨ &e⚡ &71024 J/s"));
 
-        (new PlasmaGenerator(lockedCategory, PLASMA_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+        (new PlasmaGenerator(e, PLASMA_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 SUPER_CIRCUIT_BOARD,
                 NEUTRON_REFLECTOR,
                 SUPER_ELECTRO_MOTOR,
@@ -1929,7 +1929,7 @@ public class Tech {
                         "&8⇨ &7燃料效率: 2.0x"));
 
         (new ProgrammableAndroid(
-                lockedCategory,
+                e,
                 3,
                 PROGRAMMABLE_ENDER_ANDROID_FISHERMAN,
                 RecipeType.ENHANCED_CRAFTING_TABLE,
@@ -1978,7 +1978,7 @@ public class Tech {
                         "&8⇨ &7燃料效率: 2.0x"));
 
         (new ProgrammableAndroid(
-                lockedCategory,
+                e,
                 3,
                 PROGRAMMABLE_ENDER_ANDROID_MINER,
                 RecipeType.ENHANCED_CRAFTING_TABLE,
@@ -2027,7 +2027,7 @@ public class Tech {
                         "&8⇨ &7燃料效率: 2.0x"));
 
         (new ProgrammableAndroid(
-                lockedCategory,
+                e,
                 3,
                 PROGRAMMABLE_ENDER_ANDROID_BUTCHER,
                 RecipeType.ENHANCED_CRAFTING_TABLE,
@@ -2082,7 +2082,7 @@ public class Tech {
                         "&8⇨ &7速度: 1x",
                         "&8⇨ &e⚡ &7256 J 缓存",
                         "&8⇨ &e⚡ &732 J/s"));
-        new ChemicalReactor(lockedCategory, CHEMICAL_REACTOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+        new ChemicalReactor(e, CHEMICAL_REACTOR, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 SlimefunItems.HEATING_COIL,
                 SlimefunItems.PLASTIC_SHEET,
                 SlimefunItems.HEATING_COIL,
@@ -2120,7 +2120,7 @@ public class Tech {
                         "&8⇨ &e⚡ &71024 J 缓存",
                         "&8⇨ &e⚡ &764 J/s"
                 ));
-        (new LaserDrill(lockedCategory, LASER_DRILL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+        (new LaserDrill(e, LASER_DRILL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                 SlimefunItems.ADVANCED_CIRCUIT_BOARD,
                 SlimefunItems.REINFORCED_PLATE,
                 SlimefunItems.ADVANCED_CIRCUIT_BOARD,
