@@ -9,6 +9,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.groups.SubItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.api.researches.Research;
 import io.github.thebusybiscuit.slimefun4.core.attributes.Radioactivity;
+import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.RadioactiveItem;
@@ -31,6 +32,7 @@ import me.Freeze_Dolphin.lab.machines.NetherStarCrusher;
 import me.Freeze_Dolphin.lab.machines.PlasmaGenerator;
 import me.Freeze_Dolphin.lab.machines.QuartzDrill;
 import me.Freeze_Dolphin.lab.machines.RadioisotopeThermoelectricGenerator;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AGenerator;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import org.bukkit.Color;
@@ -38,6 +40,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Particle;
+import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
@@ -1048,7 +1051,7 @@ public class Tech {
                         "&4终级发电机",
                         "&8⇨ &e⚡ &7768 J/s"));
 
-        new AGenerator(e, EGG_GENERATOR, NON, new ItemStack[0]) {
+        new AdvancedAContainer(e, EGG_GENERATOR, NON, new ItemStack[0]) {
             @NotNull
             @Override
             public ItemStack getProgressBar() {
@@ -1056,10 +1059,8 @@ public class Tech {
             }
 
             @Override
-            protected void registerDefaultFuelTypes() {
-            }
-
-            public int getGeneratedOutput(Location loc, SlimefunBlockData data) {
+            public void tick(Block b) {
+                Location loc = b.getLocation();
                 int rt = 0;
 
                 Location locup = new Location(loc.getWorld(), loc.getBlockX(), (loc.getBlockY() + 1), loc.getBlockZ());
@@ -1068,7 +1069,7 @@ public class Tech {
                         new Location(locup.getWorld(), locup.getX() + 0.5D, locup.getY() + 0.5D, locup.getZ() + 0.5D);
 
                 if (locup.getBlock().getType().equals(Material.DRAGON_EGG)) {
-                    rt = Variables.cfg.getInt("items.egg-generator.energy-production");
+                    rt = Variables.cfg.getInt("items.egg-generator.energy-production", 768);
                     try {
                         locupmid.getWorld().spawnParticle(Particle.END_ROD, locupmid, 5);
                         locupmid.getWorld().spawnParticle(Particle.DRAGON_BREATH, locupmid, 3);
@@ -1077,15 +1078,22 @@ public class Tech {
                     }
                 }
 
-                return rt;
+                addCharge(loc, rt);
             }
 
             public int getCapacity() {
                 return 1024;
             }
 
-            public int getEnergyProduction() {
-                return 768;
+            @NotNull
+            @Override
+            public String getMachineIdentifier() {
+                return getId();
+            }
+
+            @Override
+            public EnergyNetComponentType getEnergyComponentType() {
+                return EnergyNetComponentType.GENERATOR;
             }
         }.register(Laboratory.instance);
 
