@@ -202,12 +202,12 @@ public class Tech {
                 new CustomItemStack(Material.IRON_AXE, "&e伐木", "", "&a砍伐橡木和深色橡木时有几率掉落"));
 
         boolean useSelfIridium = false;
-        SlimefunItem iridium = SlimefunItem.getById("IRIDIUM");
         SlimefunItem spacetechIridium = SlimefunItem.getById("SPACETECH_IRIDIUM");
-        if (iridium != null) {
-            IRIDIUM = new SlimefunItemStack(iridium.getId(), iridium.getItem());
-        } else if (spacetechIridium != null) {
+        SlimefunItem iridium = SlimefunItem.getById("IRIDIUM");
+        if (spacetechIridium != null) {
             IRIDIUM = new SlimefunItemStack(spacetechIridium.getId(), spacetechIridium.getItem());
+        } else if (iridium != null) {
+            IRIDIUM = new SlimefunItemStack(iridium.getId(), iridium.getItem());
         } else {
             IRIDIUM = new SlimefunItemStack("LAB_IRIDIUM",
                     new CustomItemStack(
