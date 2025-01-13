@@ -1051,7 +1051,11 @@ public class Tech {
                         "&4终级发电机",
                         "&8⇨ &e⚡ &7768 J/s"));
 
-        new AdvancedAContainer(e, EGG_GENERATOR, NON, new ItemStack[0]) {
+        new AdvancedAContainer(e, EGG_GENERATOR, NON, new ItemStack[] {
+                SUNNARIUM_ALLOY, SUNNARIUM_ALLOY, SUNNARIUM_ALLOY,
+                new ItemStack(Material.END_STONE), new ItemStack(Material.FURNACE), new ItemStack(Material.END_STONE),
+                SUNNARIUM_ALLOY, SUNNARIUM_ALLOY, SUNNARIUM_ALLOY
+        }) {
             @NotNull
             @Override
             public ItemStack getProgressBar() {
