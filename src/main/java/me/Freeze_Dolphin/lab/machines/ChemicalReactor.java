@@ -122,9 +122,7 @@ public abstract class ChemicalReactor extends AdvancedAContainer {
                 new ItemStack[]{
                         SlimefunItems.URANIUM,
                         SlimefunItems.SMALL_URANIUM,
-                        SlimefunItems.SULFATE,
-                        SlimefunItems.SULFATE,
-                        SlimefunItems.SULFATE
+                        new SlimefunItemStack(SlimefunItems.SULFATE, 3)
                 },
                 new ItemStack[]{Tech.RADIUM});
     }
