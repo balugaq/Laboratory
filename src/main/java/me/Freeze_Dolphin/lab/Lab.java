@@ -223,6 +223,7 @@ public class Lab {
                 "",
                 "&c&o&8⇨ &7充电效率: &e0.01 J/move",
                 "&c&o&8⇨ &e⚡ &70 / 2048 J");
+        Variables.rechargableBattery.add(EMERALD_CAPACITY_1);
 
         (new ChargeableItem(
                 c,
@@ -249,6 +250,7 @@ public class Lab {
                 "",
                 "&c&o&8⇨ &7充电效率: &e1 J/move",
                 "&c&o&8⇨ &e⚡ &70 / 8192 J");
+        Variables.rechargableBattery.add(EMERALD_CAPACITY_2);
 
         (new ChargeableItem(
                 c,
@@ -272,6 +274,7 @@ public class Lab {
                         Color.BLUE));
 
         SAPPHIRE_CAPACITY.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 10);
+        Variables.rechargableBattery.add(SAPPHIRE_CAPACITY);
 
         (new ChargeableItem(
                 c,
