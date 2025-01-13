@@ -14,6 +14,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.RadioactiveItem;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.reactors.Reactor;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
+import me.Freeze_Dolphin.lab.machines.LaserDrill;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineFuel;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import org.bukkit.Bukkit;
@@ -90,6 +91,7 @@ public class Nuclear {
     public static SlimefunItemStack ENRICHED_FUSED_SALT_REACTOR_FUEL;
     public static SlimefunItemStack ENRICHED_BOOSTED_FUSED_SALT_REACTOR_FUEL;
     public static SlimefunItemStack FUSED_SALT_REACTOR;
+    public static SlimefunItemStack LASER_DRILL;
     public static RecipeType MELTINGM;
     public static RecipeType CENTRIFUGEM = new RecipeType(
             new NamespacedKey(Laboratory.instance, "centrifugem"),
@@ -552,6 +554,50 @@ public class Nuclear {
             }
         })
                 .register(Laboratory.instance);
+
+        LASER_DRILL = new SlimefunItemStack("LAB_LASER_DRILL",
+                new CustomItemStack(
+                        Material.IRON_BLOCK,
+                        "&bB超机",
+                        "",
+                        "&r用激光激化物品",
+                        "",
+                        "&8⇨ &7速度: 1x",
+                        "&8⇨ &e⚡ &71024 J 缓存",
+                        "&8⇨ &e⚡ &764 J/s"
+                ));
+        (new LaserDrill(Tech.e, LASER_DRILL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                SlimefunItems.ADVANCED_CIRCUIT_BOARD,
+                SlimefunItems.REINFORCED_PLATE,
+                SlimefunItems.ADVANCED_CIRCUIT_BOARD,
+                SlimefunItems.HARDENED_GLASS,
+                SlimefunItems.ELECTRIC_INGOT_PULVERIZER,
+                SlimefunItems.HARDENED_GLASS,
+                SlimefunItems.ADVANCED_CIRCUIT_BOARD,
+                SlimefunItems.ELECTRIC_MOTOR,
+                SlimefunItems.ADVANCED_CIRCUIT_BOARD,
+        }) {
+
+            @Override
+            public ItemStack getProgressBar() {
+                return new ItemStack(Material.DIAMOND_HOE);
+            }
+
+            @Override
+            public int getEnergyConsumption() {
+                return 64;
+            }
+
+            @Override
+            public int getSpeed() {
+                return 1;
+            }
+
+            @Override
+            public int getCapacity() {
+                return 1024;
+            }
+        }).register(Laboratory.instance);
     }
 
     private void registerCell(SlimefunItemStack item, ItemStack inside) {

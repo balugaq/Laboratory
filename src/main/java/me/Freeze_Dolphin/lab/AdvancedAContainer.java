@@ -43,60 +43,45 @@ public abstract class AdvancedAContainer extends AContainer implements RecipeDis
                 ItemStack[] input = recipe.getInput();
                 ItemStack[] output = recipe.getOutput();
                 if (input.length == 0 || output.length == 0) {
-                    Laboratory.debug(" | Invalid recipe in machine");
-                    Laboratory.debug(" | k = " + k);
                     continue;
                 }
 
                 if (!displayingInput) {
-                    Laboratory.debug(" | Adding pre-separator");
                     display.add(SEPARATOR_ITEM);
                 }
 
-                boolean added = false;
-                Laboratory.debug(" | Looping through inputs");
                 for (int i = 0; i < input.length; i++) {
                     ItemStack item = input[i];
                     if (item != null && item.getType() != Material.AIR && item.getType().isItem()) {
-                        Laboratory.debug(" | Adding input " + item.getType());
                         display.add(item);
                         valid = true;
-                        added = true;
                     }
                     if (i < input.length - 1) {
-                        Laboratory.debug(" | Adding separator");
                         display.add(SEPARATOR_ITEM);
                     }
                     displayingInput = false;
                 }
-                Laboratory.debug(" | Looping through done");
 
                 if (displayingInput) {
-                    Laboratory.debug(" | Adding pre-separator");
                     display.add(SEPARATOR_ITEM);
                 }
 
-                Laboratory.debug(" | Looping through outputs");
                 for (int i = 0; i < output.length; i++) {
                     ItemStack item = output[i];
                     if (item != null && item.getType() != Material.AIR && item.getType().isItem()) {
-                        Laboratory.debug(" | Adding output " + item.getType());
                         display.add(item);
                         valid = true;
                     }
                     if (i < output.length - 1) {
-                        Laboratory.debug(" | Adding separator");
                         display.add(SEPARATOR_ITEM);
                     }
                     displayingInput = true;
                 }
 
                 if (valid && k != recipes.size() - 1) {
-                    Laboratory.debug(" | Adding splitter");
                     display.add(SPLIT_PLACEHOLDER);
                     display.add(SPLIT_PLACEHOLDER);
                 }
-                Laboratory.debug(" | Looping through done");
             }
         } else {
             Laboratory.debug(" | No recipes found for machine");

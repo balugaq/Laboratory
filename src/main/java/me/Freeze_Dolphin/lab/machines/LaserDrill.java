@@ -7,12 +7,14 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import me.Freeze_Dolphin.lab.AdvancedAContainer;
 import me.Freeze_Dolphin.lab.ChargeableBlock;
 import me.Freeze_Dolphin.lab.Laboratory;
 import me.Freeze_Dolphin.lab.MachineHelper;
+import me.Freeze_Dolphin.lab.Nuclear;
 import me.Freeze_Dolphin.lab.U;
 import me.Freeze_Dolphin.lab.Variables;
 import me.Freeze_Dolphin.lab.api.Str2Item;
@@ -46,7 +48,6 @@ public abstract class LaserDrill extends AdvancedAContainer {
     private static final int[] border_drills = {30, 31, 32, 33, 34, 35, 39, 44, 48, 49, 50, 51, 52, 53};
     private static final int[] border_out = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
     private static final int process = 37;
-    protected final List<MachineRecipe> recipes = new ArrayList<>();
 
     public LaserDrill(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
@@ -282,5 +283,14 @@ public abstract class LaserDrill extends AdvancedAContainer {
                 progress.put(b, r.getTicks());
             }
         }
+    }
+
+    @Override
+    public void registerDefaultRecipes() {
+        registerRecipe(100, Nuclear.ENRICHED_BOOSTED_FUSED_SALT_REACTOR_FUEL, Nuclear.ENRICHED_FUSED_SALT_REACTOR_FUEL);
+        registerRecipe(100, Nuclear.ENRICHED_FUSED_SALT_REACTOR_FUEL, SlimefunItems.PLUTONIUM);
+        registerRecipe(100, SlimefunItems.PLUTONIUM, SlimefunItems.NEPTUNIUM);
+        registerRecipe(100, SlimefunItems.NEPTUNIUM, SlimefunItems.URANIUM);
+        registerRecipe(100, SlimefunItems.URANIUM, SlimefunItems.STONE_CHUNK);
     }
 }

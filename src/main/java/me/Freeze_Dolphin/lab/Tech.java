@@ -171,7 +171,6 @@ public class Tech {
     public static SlimefunItemStack ADVANCED_BIO_REACTOR;
     public static SlimefunItemStack ALLOY_REACTOR;
     public static SlimefunItemStack ADVANCED_ELECTRIC_INGOT_PULVERIZER;
-    public static SlimefunItemStack LASER_DRILL;
     public static RecipeType STARC;
     public static RecipeType LOGS;
 
@@ -1911,11 +1910,6 @@ public class Tech {
                 A_PIECE_OF_NETHER_STAR
         }) {
 
-            @Override
-            public void registerDefaultRecipes() {
-                registerRecipe(10, U.mat(Material.GLASS_BOTTLE), PLASMA_CELL);
-            }
-
             public int getEnergyConsumption() {
                 return 512;
             }
@@ -2120,49 +2114,5 @@ public class Tech {
                 return 16;
             }
         }.register(Laboratory.instance);
-
-        LASER_DRILL = new SlimefunItemStack("LAB_LASER_DRILL",
-                new CustomItemStack(
-                        Material.IRON_BLOCK,
-                        "&bB超机",
-                        "",
-                        "&r用激光激化物品",
-                        "",
-                        "&8⇨ &7速度: 1x",
-                        "&8⇨ &e⚡ &71024 J 缓存",
-                        "&8⇨ &e⚡ &764 J/s"
-                ));
-        (new LaserDrill(e, LASER_DRILL, RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
-                SlimefunItems.ADVANCED_CIRCUIT_BOARD,
-                SlimefunItems.REINFORCED_PLATE,
-                SlimefunItems.ADVANCED_CIRCUIT_BOARD,
-                SlimefunItems.HARDENED_GLASS,
-                SlimefunItems.ELECTRIC_INGOT_PULVERIZER,
-                SlimefunItems.HARDENED_GLASS,
-                SlimefunItems.ADVANCED_CIRCUIT_BOARD,
-                SlimefunItems.ELECTRIC_MOTOR,
-                SlimefunItems.ADVANCED_CIRCUIT_BOARD,
-        }) {
-
-            @Override
-            public ItemStack getProgressBar() {
-                return new ItemStack(Material.DIAMOND_HOE);
-            }
-
-            @Override
-            public int getEnergyConsumption() {
-                return 64;
-            }
-
-            @Override
-            public int getSpeed() {
-                return 1;
-            }
-
-            @Override
-            public int getCapacity() {
-                return 1024;
-            }
-        }).register(Laboratory.instance);
     }
 }
