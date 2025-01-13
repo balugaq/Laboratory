@@ -104,4 +104,10 @@ public abstract class AdvancedAContainer extends AContainer implements RecipeDis
 
         return display;
     }
+
+    @NotNull
+    @Override
+    public String getMachineIdentifier() {
+        return getId();
+    }
 }

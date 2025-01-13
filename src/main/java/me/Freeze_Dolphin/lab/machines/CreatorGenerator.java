@@ -6,7 +6,9 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockPlaceHandler;
+import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import me.Freeze_Dolphin.lab.AdvancedAContainer;
 import me.Freeze_Dolphin.lab.SkullUtil;
 import me.Freeze_Dolphin.lab.U;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AGenerator;
@@ -22,7 +24,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-public class CreatorGenerator extends AGenerator {
+public class CreatorGenerator extends AdvancedAContainer {
     private static final int[] border = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26};
     private static final int[] remove = {10, 11, 12};
     private static final int[] add = {14, 15, 16};
@@ -64,7 +66,7 @@ public class CreatorGenerator extends AGenerator {
     }
 
     @SuppressWarnings("deprecation")
-    private void constructMenu(BlockMenuPreset preset) {
+    public void constructMenu(BlockMenuPreset preset) {
         for (int i : border) {
             preset.addItem(
                     i, new CustomItemStack(Material.GRAY_STAINED_GLASS_PANE, " "), (arg0, arg1, arg2, arg3) -> false);
@@ -149,10 +151,6 @@ public class CreatorGenerator extends AGenerator {
         }
     }
 
-    @Override
-    protected void registerDefaultFuelTypes() {
-    }
-
     public int getGeneratedOutput(Location l, SlimefunBlockData data) {
         if (l.getBlock().getBlockPower() < 0) {
             return 0;
@@ -166,8 +164,47 @@ public class CreatorGenerator extends AGenerator {
         return energy;
     }
 
+    public void tick(Block b) {
+        if (b.getBlockPower() < 0) {
+            return;
+        }
+
+        int energy = Integer.parseInt(BlockStorage.getLocationInfo(b.getLocation(), key));
+        if (energy > 0) {
+            BlockMenu menu = StorageCacheUtils.getMenu(b.getLocation());
+            if (menu.hasViewer()) {
+                menu.replaceExistingItem(
+                        remain,
+                        new CustomItemStack(Material.YELLOW_STAINED_GLASS_PANE, "&e当前发电效率: &f" + energy + " &7J/s"));
+            }
+
+            this.addCharge(b.getLocation(), energy);
+        }
+    }
+
     @Override
     public int getCapacity() {
         return 1073741824;
+    }
+
+    @NotNull
+    @Override
+    public String getMachineIdentifier() {
+        return getId();
+    }
+
+    @Override
+    public EnergyNetComponentType getEnergyComponentType() {
+        return EnergyNetComponentType.GENERATOR;
+    }
+
+    @Override
+    public int getEnergyConsumption() {
+        return 1;
+    }
+
+    @Override
+    public int getSpeed() {
+        return 1;
     }
 }
