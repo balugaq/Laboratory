@@ -45,7 +45,7 @@ public class MimungBlaster implements Listener {
                     return -1; // "核心状态: &a正常"
                 } else return -5;
             } else if (sl.matches(U.color("(.*)&b冷却中(.*)"))) { // "核心状态: &b冷却中 (50 %)"
-                return Integer.parseInt(sl.split(U.color("&b冷却中 &7("))[1].split(" %)")[0]);
+                return Integer.parseInt(sl.split(U.color("&b冷却中 &7("))[1].split(" %\\)")[0]);
             } else return -5;
         } else return -10;
     }
