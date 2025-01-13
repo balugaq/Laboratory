@@ -10,9 +10,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityPickupItemEvent;
@@ -20,12 +22,23 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class MimungBlaster implements Listener {
+    @EventHandler
+    public void onHit(EntityDamageByEntityEvent e) {
+        if (e.getEntity() instanceof Player p) {
+            if (e.getDamager() instanceof Projectile pj) {
+                if ("Mimung Blaster Bullet".equals(pj.getCustomName())) {
+                    p.setFireTicks(20 * 5);
+                }
+            }
+        }
+    }
     private static int getCoolingPercent(ItemStack mb) {
         int line = 0;
         int statusLine = -1;
@@ -131,7 +144,8 @@ public class MimungBlaster implements Listener {
                             nl.add(p.getUniqueId().toString());
                             immb.setLore(nl);
                             mmbb.setItemMeta(immb);
-                            Item etyi = p.getWorld().dropItem(U.getHandLocation(p), mmbb);
+                            Projectile etyi = p.getWorld().spawnArrow(p.getLocation(), new Vector(0, 0, 0), 1.0f, 1.0f);
+                            etyi.setCustomName("Mimung Blaster Bullet");
                             etyi.setInvulnerable(true);
                             if (Variables.cfg.getBoolean("items.mimung-blaster.fire")) {
                                 etyi.setFireTicks(2147483647);
