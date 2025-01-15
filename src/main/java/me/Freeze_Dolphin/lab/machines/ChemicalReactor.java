@@ -8,6 +8,7 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.BlockBreakHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.implementation.operations.CraftingOperation;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import me.Freeze_Dolphin.lab.AdvancedAContainer;
@@ -47,7 +48,6 @@ public abstract class ChemicalReactor extends AdvancedAContainer {
     private static final int[] border = {4, 5, 6, 7, 8, 13, 31, 40, 41, 42, 43, 44};
     private static final int[] border_in = {0, 1, 2, 3, 9, 12, 18, 21, 27, 30, 36, 37, 38, 39};
     private static final int[] border_out = {14, 15, 16, 17, 23, 26, 32, 33, 34, 35};
-    protected final List<MachineRecipe> recipes = new ArrayList<>();
 
     public ChemicalReactor(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(category, item, recipeType, recipe);
@@ -206,11 +206,11 @@ public abstract class ChemicalReactor extends AdvancedAContainer {
         super.preRegister();
     }
 
-    @SuppressWarnings("deprecation")
     protected void tick(Block b) {
-        if (progress.get(b) != null) {
-            int timeleft = progress.get(b);
-            if (timeleft > 0) {
+        BlockMenu inv = StorageCacheUtils.getMenu(b.getLocation());
+        CraftingOperation currentOperation = this.getMachineProcessor().getOperation(b);
+        if (currentOperation != null) {
+            if (this.takeCharge(b.getLocation())) {
                 try {
                     b.getLocation()
                             .getWorld()
@@ -218,37 +218,28 @@ public abstract class ChemicalReactor extends AdvancedAContainer {
                 } catch (Exception ex) {
                     Laboratory.debugException(ex);
                 }
-                ItemStack item = getProgressBar().clone();
-                item.setDurability(MachineHelper.getDurability(
-                        item, timeleft, processing.get(b).getTicks()));
-                ItemMeta im = item.getItemMeta();
-                im.setDisplayName(" ");
-                List<String> lore = new ArrayList<>();
-                lore.add(MachineHelper.getProgress(timeleft, processing.get(b).getTicks()));
-                lore.add("");
-                lore.add(MachineHelper.getTimeLeft(timeleft / 2));
-                im.setLore(lore);
-                item.setItemMeta(im);
-                StorageCacheUtils.getMenu(b.getLocation()).replaceExistingItem(22, item);
-                if (ChargeableBlock.isChargeable(b)) {
-                    if (ChargeableBlock.getCharge(b) < getEnergyConsumption()) return;
-                    ChargeableBlock.addCharge(b, -getEnergyConsumption());
-                    progress.put(b, timeleft - 1);
-                } else progress.put(b, timeleft - 1);
-            } else {
-                StorageCacheUtils.getMenu(b.getLocation())
-                        .replaceExistingItem(22, new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " "));
-                BlockMenuUtil.pushItem(b, processing.get(b).getOutput().clone());
-                progress.remove(b);
-                processing.remove(b);
+                if (!currentOperation.isFinished()) {
+                    this.getMachineProcessor().updateProgressBar(inv, 22, currentOperation);
+                    currentOperation.addProgress(1);
+                } else {
+                    inv.replaceExistingItem(22, new CustomItemStack(Material.BLACK_STAINED_GLASS_PANE, " ", new String[0]));
+                    ItemStack[] var4 = currentOperation.getResults();
+                    int var5 = var4.length;
+
+                    for(int var6 = 0; var6 < var5; ++var6) {
+                        ItemStack output = var4[var6];
+                        inv.pushItem(output.clone(), this.getOutputSlots());
+                    }
+
+                    this.getMachineProcessor().endOperation(b);
+                }
             }
         } else {
-            BlockMenu menu = StorageCacheUtils.getMenu(b.getLocation());
-            MachineRecipe r = findNextRecipe(menu);
-            if (r != null) {
-                if (!BlockMenuUtil.fits(b, r.getOutput())) return;
-                processing.put(b, r);
-                progress.put(b, r.getTicks());
+            MachineRecipe next = this.findNextRecipe(inv);
+            if (next != null) {
+                currentOperation = new CraftingOperation(next);
+                this.getMachineProcessor().startOperation(b, currentOperation);
+                this.getMachineProcessor().updateProgressBar(inv, 22, currentOperation);
             }
         }
     }
