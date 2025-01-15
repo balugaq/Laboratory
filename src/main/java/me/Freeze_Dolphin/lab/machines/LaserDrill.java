@@ -219,20 +219,7 @@ public abstract class LaserDrill extends AdvancedAContainer {
         if (isProcessing(b)) {
             int timeleft = progress.get(b);
             if (timeleft > 0) {
-                List<Double> d = new ArrayList<>();
-                for (double keys : Laboratory.lo.keySet()) {
-                    if (U.random(100, 0) <= keys) {
-                        d.add(keys);
-                    }
-                }
-                ItemStack processBar = new ItemStack(Material.IRON_PICKAXE);
-                if (d.isEmpty()) {
-                    processBar = Str2Item.str2item(Variables.cfg.getString("items.laser-drill.failure"));
-                } else {
-                    processBar = Laboratory.lo.get(d.get(U.random(d.size(), 0)));
-                }
-
-                ItemStack item = processBar.clone();
+                ItemStack item = getProgressBar().clone();
                 item.setDurability(MachineHelper.getDurability(
                         item, timeleft, processing.get(b).getTicks()));
                 ItemMeta im = item.getItemMeta();
