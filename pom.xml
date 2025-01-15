@@ -6,7 +6,7 @@
 
 	<groupId>me.Freeze_Dolphin</groupId>
 	<artifactId>Laboratory</artifactId>
-	<version>4</version>
+	<version>5</version>
 	<packaging>jar</packaging>
 
 	<name>Laboratory</name>
