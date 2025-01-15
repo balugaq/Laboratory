@@ -14,6 +14,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Item;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
@@ -22,6 +23,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -31,27 +33,55 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public class MimungBlaster implements Listener {
+    public static final Set<UUID> a = new HashSet<>();
     @EventHandler
     public void onShoot(EntityShootBowEvent event) {
-        ItemStack bow = event.getBow();
-        SlimefunItem item = SlimefunItem.getByItem(bow);
-        if (item == null) return;
-        if (item.getId().equals(Lab.MIMUNG_BLASTER.getItemId())) {
-            if (ItemEnergy.getStoredEnergy(bow) < 1024F) {
-                event.setCancelled(true);
+        if (event.getEntity() instanceof Player p) {
+            ItemStack bow = event.getBow();
+            SlimefunItem item = SlimefunItem.getByItem(bow);
+            if (item == null) return;
+            if (item.getId().equals(Lab.MIMUNG_BLASTER.getItemId())) {
+                if (ItemEnergy.getStoredEnergy(bow) < 1024F) {
+                    event.setCancelled(true);
+                }
+                if (a.contains(p.getUniqueId())) {
+                    Fireball etyi = (Fireball) p.getWorld().spawnEntity(p.getLocation(), EntityType.FIREBALL);
+                    etyi.setCustomName("Mimung Blaster Bullet");
+                    etyi.setInvulnerable(true);
+                    if (Variables.cfg.getBoolean("items.mimung-blaster.fire")) {
+                        etyi.setFireTicks(2147483647);
+                    }
+                    etyi.setGravity(false);
+                    etyi.setVelocity(p.getVelocity()
+                            .multiply(Variables.cfg.getDouble("items.mimung-blaster.vector-multiplier")));
+                    U.newDelayedTask(
+                            new BukkitRunnable() {
+                                @Override
+                                public void run() {
+                                    if (etyi != null && etyi.isValid()) etyi.remove();
+                                }
+                            },
+                            Variables.cfg.getLong("items.mimung-blaster.clean-delay"));
+                    a.remove(p.getUniqueId());
+                }
             }
         }
     }
     @EventHandler
-    public void onHit(EntityDamageByEntityEvent e) {
-        if (e.getEntity() instanceof Player p) {
-            if (e.getDamager() instanceof Projectile pj) {
-                if ("Mimung Blaster Bullet".equals(pj.getCustomName())) {
-                    p.setFireTicks(20 * 5);
+    public void onHit(EntityExplodeEvent e) {
+        if ("Mimung Blaster Bullet".equals(e.getEntity().getCustomName())) {
+            Collection<Entity> entities = e.getLocation().getNearbyEntities(5, 5, 5);
+            for (Entity entity : entities) {
+                entity.setFireTicks(20 * 100);
+                if (entity instanceof LivingEntity le) {
+                    le.damage(le.getHealth() / 10.0d);
                 }
             }
         }
@@ -161,23 +191,7 @@ public class MimungBlaster implements Listener {
                             nl.add(p.getUniqueId().toString());
                             immb.setLore(nl);
                             mmbb.setItemMeta(immb);
-                            Fireball etyi = (Fireball) p.getWorld().spawnEntity(p.getLocation(), EntityType.FIREBALL);
-                            etyi.setCustomName("Mimung Blaster Bullet");
-                            etyi.setInvulnerable(true);
-                            if (Variables.cfg.getBoolean("items.mimung-blaster.fire")) {
-                                etyi.setFireTicks(2147483647);
-                            }
-                            etyi.setGravity(false);
-                            etyi.setVelocity(p.getVelocity()
-                                    .multiply(Variables.cfg.getDouble("items.mimung-blaster.vector-multiplier")));
-                            U.newDelayedTask(
-                                    new BukkitRunnable() {
-                                        @Override
-                                        public void run() {
-                                            if (etyi.isValid()) etyi.remove();
-                                        }
-                                    },
-                                    Variables.cfg.getLong("items.mimung-blaster.clean-delay"));
+                            a.add(p.getUniqueId());
                         } else if (per >= 0) { // status is 'cooling'
                             int level = per / 25;
                             while (level <= 4) {
@@ -199,9 +213,13 @@ public class MimungBlaster implements Listener {
                                     && (U.getItemInMainHand(p).equals(itclone))) {
                                 setCoolingPercent(U.getItemInMainHand(p), -1);
                             }
-                        } // not mimung blaster
+                        }
+                            // not mimung blaster
                     }
-                } else p.sendMessage(U.getCfgMessage("messages.mimung-blaster.not-enough-power"));
+                } else {
+                    p.sendMessage(U.getCfgMessage("messages.mimung-blaster.not-enough-power"));
+                    a.remove(p.getUniqueId());
+                }
             }
         }
     }

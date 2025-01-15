@@ -180,6 +180,8 @@ items:
     # [int] 挖掘铁矿石时掉落磁铁矿的几率 (‰)
   chemical-reator:
     time: 20
+  mimung-blaster:
+    clean-delay: 200
 
 researches: 
 # 解锁研究的相关设置
