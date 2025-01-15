@@ -726,7 +726,7 @@ public class Lab {
         iridium_jettool.addItems(SlimefunItem.getById("LAB_IRIDIUM_ARMORED_JETBOOTS"));
         iridium_jettool.register();
 
-        MIMUNG_BLASTER = new SlimefunItemStack("LAB_MIMUNG_BLASTER", new CustomItemStack(Material.BOW, "&6米姆尤格斯弹匣", new String[]{
+        MIMUNG_BLASTER = new SlimefunItemStack("LAB_MIMUNG_BLASTER", new CustomItemStack(Material.BLAZE_POWDER, "&6米姆尤格斯弹匣", new String[]{
                 "",
                 "&f可将火焰喷射到周围",
                 "&f并对敌人造成巨大伤害",
@@ -736,24 +736,15 @@ public class Lab {
                 "",
                 "&c&o&8⇨ &e⚡ &70 / 1024 J"
         }));
-        (new ChargeableBow(
+        (new ChargeableItem(
                 c,
                 MIMUNG_BLASTER,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[]{
                         SlimefunItems.PLASTIC_SHEET, SlimefunItems.PLASTIC_SHEET, SlimefunItems.PLASTIC_SHEET,
                         SlimefunItems.SYNTHETIC_DIAMOND, SlimefunItems.SYNTHETIC_DIAMOND, SlimefunItems.SYNTHETIC_DIAMOND,
                         SlimefunItems.ADVANCED_CIRCUIT_BOARD, SlimefunItems.MEDIUM_CAPACITOR, SlimefunItems.ADVANCED_CIRCUIT_BOARD
-                }) {
-            @NotNull
-            @Override
-            public BowShootHandler onShoot() {
-                return new BowShootHandler() {
-                    @Override
-                    public void onHit(EntityDamageByEntityEvent entityDamageByEntityEvent, LivingEntity livingEntity) {
-                        livingEntity.setFireTicks(20 * 5);
-                    }
-                };
-            }
+                }, 1024) {
 
             @Override
             public float getMaxItemCharge(ItemStack item) {

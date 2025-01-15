@@ -9,6 +9,7 @@ import me.Freeze_Dolphin.lab.Lab;
 import me.Freeze_Dolphin.lab.U;
 import me.Freeze_Dolphin.lab.Variables;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -42,46 +43,61 @@ import java.util.UUID;
 public class MimungBlaster implements Listener {
     public static final Set<UUID> a = new HashSet<>();
     @EventHandler
-    public void onShoot(EntityShootBowEvent event) {
-        if (event.getEntity() instanceof Player p) {
-            ItemStack bow = event.getBow();
-            SlimefunItem item = SlimefunItem.getByItem(bow);
-            if (item == null) return;
-            if (item.getId().equals(Lab.MIMUNG_BLASTER.getItemId())) {
-                if (ItemEnergy.getStoredEnergy(bow) < 1024F) {
-                    event.setCancelled(true);
+    public void onShoot(PlayerInteractEvent event) {
+        Player p = event.getPlayer();
+        ItemStack bow = p.getInventory().getItemInMainHand();
+        SlimefunItem item = SlimefunItem.getByItem(bow);
+        if (item == null) return;
+        if (item.getId().equals(Lab.MIMUNG_BLASTER.getItemId())) {
+            if (ItemEnergy.getStoredEnergy(bow) < 1024F) {
+                event.setCancelled(true);
+            }
+            if (a.contains(p.getUniqueId())) {
+                Fireball etyi = (Fireball) p.getWorld().spawnEntity(p.getLocation(), EntityType.FIREBALL);
+                etyi.setCustomName("Mimung Blaster Bullet&*&%&###");
+                etyi.setInvulnerable(true);
+                if (Variables.cfg.getBoolean("items.mimung-blaster.fire")) {
+                    etyi.setFireTicks(2147483647);
                 }
-                if (a.contains(p.getUniqueId())) {
-                    Fireball etyi = (Fireball) p.getWorld().spawnEntity(p.getLocation(), EntityType.FIREBALL);
-                    etyi.setCustomName("Mimung Blaster Bullet");
-                    etyi.setInvulnerable(true);
-                    if (Variables.cfg.getBoolean("items.mimung-blaster.fire")) {
-                        etyi.setFireTicks(2147483647);
-                    }
-                    etyi.setGravity(false);
-                    etyi.setVelocity(p.getVelocity()
-                            .multiply(Variables.cfg.getDouble("items.mimung-blaster.vector-multiplier")));
-                    U.newDelayedTask(
-                            new BukkitRunnable() {
-                                @Override
-                                public void run() {
-                                    if (etyi != null && etyi.isValid()) etyi.remove();
-                                }
-                            },
-                            Variables.cfg.getLong("items.mimung-blaster.clean-delay"));
-                    a.remove(p.getUniqueId());
-                }
+                etyi.setGravity(false);
+                etyi.setVelocity(p.getVelocity()
+                        .multiply(Variables.cfg.getDouble("items.mimung-blaster.vector-multiplier")));
+                U.newDelayedTask(
+                        new BukkitRunnable() {
+                            @Override
+                            public void run() {
+                                if (etyi != null && etyi.isValid()) etyi.remove();
+                            }
+                        },
+                        Variables.cfg.getLong("items.mimung-blaster.clean-delay"));
+                a.remove(p.getUniqueId());
             }
         }
     }
     @EventHandler
     public void onHit(EntityExplodeEvent e) {
-        if ("Mimung Blaster Bullet".equals(e.getEntity().getCustomName())) {
+        if ("Mimung Blaster Bullet&*&%&###".equals(e.getEntity().getCustomName())) {
             Collection<Entity> entities = e.getLocation().getNearbyEntities(5, 5, 5);
             for (Entity entity : entities) {
                 entity.setFireTicks(20 * 100);
                 if (entity instanceof LivingEntity le) {
                     le.damage(le.getHealth() / 10.0d);
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onHit(EntityDamageByEntityEvent e) {
+        if (e.getDamager() instanceof Fireball fireball) {
+            if ("Mimung Blaster Bullet&*&%&###".equals(fireball.getCustomName())) {
+                Location location = fireball.getLocation();
+                Collection<Entity> entities = location.getNearbyEntities(5, 5, 5);
+                for (Entity entity : entities) {
+                    entity.setFireTicks(20 * 100);
+                    if (entity instanceof LivingEntity le) {
+                        le.damage(le.getHealth() / 10.0d);
+                    }
                 }
             }
         }
