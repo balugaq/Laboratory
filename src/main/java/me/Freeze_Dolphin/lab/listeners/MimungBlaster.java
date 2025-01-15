@@ -1,5 +1,7 @@
 package me.Freeze_Dolphin.lab.listeners;
 
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.SlimefunUtils;
 import me.Freeze_Dolphin.lab.ItemEnergy;
@@ -18,6 +20,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityPickupItemEvent;
+import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -29,6 +32,17 @@ import java.util.List;
 import java.util.UUID;
 
 public class MimungBlaster implements Listener {
+    @EventHandler
+    public void onShoot(EntityShootBowEvent event) {
+        ItemStack bow = event.getBow();
+        SlimefunItem item = SlimefunItem.getByItem(bow);
+        if (item == null) return;
+        if (item.getId().equals(Lab.MIMUNG_BLASTER.getItemId())) {
+            if (ItemEnergy.getStoredEnergy(bow) < 1024F) {
+                event.setCancelled(true);
+            }
+        }
+    }
     @EventHandler
     public void onHit(EntityDamageByEntityEvent e) {
         if (e.getEntity() instanceof Player p) {
