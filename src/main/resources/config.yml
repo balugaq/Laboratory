@@ -178,6 +178,8 @@ items:
   magnetic-iron:
     chance: 10
     # [int] 挖掘铁矿石时掉落磁铁矿的几率 (‰)
+  chemical-reator:
+    time: 20
 
 researches: 
 # 解锁研究的相关设置
