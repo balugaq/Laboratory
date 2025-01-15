@@ -243,28 +243,10 @@ public abstract class ChemicalReactor extends AdvancedAContainer {
                 processing.remove(b);
             }
         } else {
-            MachineRecipe r = null;
-            Map<Integer, Integer> found = new HashMap<>();
-            for (MachineRecipe recipe : recipes) {
-                for (ItemStack input : recipe.getInput()) {
-                    for (int slot : getInputSlots()) {
-                        if (SlimefunUtils.isItemSimilar(
-                                StorageCacheUtils.getMenu(b.getLocation()).getItemInSlot(slot), input, true)) {
-                            found.put(slot, input.getAmount());
-                            break;
-                        }
-                    }
-                }
-                if (found.size() == recipe.getInput().length) {
-                    r = recipe;
-                    break;
-                } else found.clear();
-            }
+            BlockMenu menu = StorageCacheUtils.getMenu(b.getLocation());
+            MachineRecipe r = findNextRecipe(menu);
             if (r != null) {
                 if (!BlockMenuUtil.fits(b, r.getOutput())) return;
-                for (Map.Entry<Integer, Integer> entry : found.entrySet()) {
-                    StorageCacheUtils.getMenu(b.getLocation()).consumeItem(entry.getKey(), entry.getValue());
-                }
                 processing.put(b, r);
                 progress.put(b, r.getTicks());
             }
