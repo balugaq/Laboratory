@@ -279,7 +279,7 @@ public class Laboratory extends JavaPlugin implements SlimefunAddon {
 
                     if (item instanceof Rechargeable rechargeable) {
                         rechargeable.removeItemCharge(itemStack, 0.01f);
-                        p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 2, 2, true, false, true));
+                        p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 100, 2, true, false, true));
                         p.updateInventory();
                     }
                 }
