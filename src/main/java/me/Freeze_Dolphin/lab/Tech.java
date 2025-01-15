@@ -1096,7 +1096,17 @@ public class Tech {
 
             @Override
             public EnergyNetComponentType getEnergyComponentType() {
-                return EnergyNetComponentType.GENERATOR;
+                return EnergyNetComponentType.CAPACITOR;
+            }
+
+            @Override
+            public int getSpeed() {
+                return 1;
+            }
+
+            @Override
+            public int getEnergyConsumption() {
+                return 1;
             }
         }.register(Laboratory.instance);
 
