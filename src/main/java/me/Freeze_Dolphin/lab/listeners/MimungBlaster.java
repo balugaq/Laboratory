@@ -10,6 +10,9 @@ import me.Freeze_Dolphin.lab.U;
 import me.Freeze_Dolphin.lab.Variables;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -158,7 +161,7 @@ public class MimungBlaster implements Listener {
                             nl.add(p.getUniqueId().toString());
                             immb.setLore(nl);
                             mmbb.setItemMeta(immb);
-                            Projectile etyi = p.getWorld().spawnArrow(p.getLocation(), new Vector(0, 0, 0), 1.0f, 1.0f);
+                            Fireball etyi = (Fireball) p.getWorld().spawnEntity(p.getLocation(), EntityType.FIREBALL);
                             etyi.setCustomName("Mimung Blaster Bullet");
                             etyi.setInvulnerable(true);
                             if (Variables.cfg.getBoolean("items.mimung-blaster.fire")) {
