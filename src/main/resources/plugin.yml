@@ -1,7 +1,7 @@
 name: Laboratory
 main: me.Freeze_Dolphin.lab.Laboratory
-version: ${project.version}
-api-version: 1.20
+version: ${version}
+api-version: "1.20"
 
 author: Freeze_Dolphin
 depend: [Slimefun]

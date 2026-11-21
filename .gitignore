@@ -112,4 +112,10 @@ buildNumber.properties
 # Common working directory
 run/
 
-.workbuddy
+.workbuddy/
+# Added by mc-plugin-github-automation
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!lib/*.jar
+server/

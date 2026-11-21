@@ -1,0 +1,12 @@
+* text=auto eol=lf
+
+# Windows 专属二进制
+*.png binary
+*.ico binary
+*.icns binary
+*.exe binary
+*.dll binary
+
+# 换行敏感的脚本类型已由上面 * 规则统一为 LF
+*.bat text eol=crlf
+*.cmd text eol=crlf
