@@ -4,7 +4,7 @@
 [versions]
 # paper-api 刻意锁 1.18.2：plugin.yml 虽声明 api-version 1.20，但源码是按 1.18.2 API 写出来的，
 # 直接升到 1.21+ 会踩到被移除的旧 API，属于独立的适配任务。
-paper-api = "1.18.2-R0.1-SNAPSHOT"
+paper-api = "26.3.build.255-stable"
 slimefun4 = "2025.1"
 guizhan-lib-plugin = "2.5.0"
 lombok = "1.18.48"
